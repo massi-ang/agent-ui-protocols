@@ -89,10 +89,26 @@ TOOLS = [
                 "resourceUri": "ui://table"
             }
         }
+    },
+    {
+        "name": "collect_recipe_preferences",
+        "description": "Show an interactive form where the user selects cuisine, dietary restrictions, ingredients, and serving size. Returns their choices for recipe generation.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "prompt": {
+                    "type": "string",
+                    "description": "Optional message to display to the user"
+                }
+            }
+        },
+        "_meta": {
+            "ui": {
+                "resourceUri": "ui://recipe-form"
+            }
+        }
     }
 ]
-
-@app.get("/mcp")
 async def mcp_sse_endpoint(request: Request):
     """MCP Server-Sent Events endpoint (legacy SSE transport)"""
     
@@ -208,6 +224,24 @@ async def mcp_post_endpoint(request: Request):
                 }
             }
             print(f"   📤 JSON-RPC:\n{json.dumps(resp, indent=2)}")
+            return JSONResponse(resp)
+
+        elif tool_name == "collect_recipe_preferences":
+            ui_html = generate_recipe_form(arguments.get("prompt", ""))
+            ui_id = str(uuid.uuid4())
+            ui_resources[ui_id] = ui_html
+            ui_latest["recipe-form"] = ui_html
+            resp = {
+                "jsonrpc": "2.0",
+                "id": req_id,
+                "result": {
+                    "content": [
+                        {"type": "text", "text": "Showing recipe preferences form to user."},
+                        {"type": "resource", "resource": {"uri": f"ui://{ui_id}", "mimeType": "text/html", "text": "done"}}
+                    ]
+                }
+            }
+            print(f"   📤 tool={tool_name} uri=ui://{ui_id}")
             return JSONResponse(resp)
 
         return JSONResponse({
@@ -365,6 +399,113 @@ def generate_table_ui(data: list, columns: list) -> str:
     </div>
 </body>
 </html>"""
+
+def generate_recipe_form(prompt: str) -> str:
+    """Generate an interactive recipe preferences form"""
+    return f"""<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        * {{ box-sizing: border-box; margin: 0; padding: 0; }}
+        body {{ font-family: -apple-system, sans-serif; padding: 24px; background: #fefefe; color: #333; }}
+        h2 {{ margin-bottom: 8px; font-size: 20px; }}
+        .subtitle {{ color: #666; margin-bottom: 20px; font-size: 14px; }}
+        .field {{ margin-bottom: 16px; }}
+        label {{ display: block; font-weight: 600; margin-bottom: 6px; font-size: 13px; color: #444; }}
+        select, input[type="number"] {{ width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; }}
+        .chips {{ display: flex; flex-wrap: wrap; gap: 8px; }}
+        .chip {{ padding: 6px 14px; border: 1px solid #ddd; border-radius: 20px; font-size: 13px; cursor: pointer; transition: all 0.2s; user-select: none; }}
+        .chip:hover {{ border-color: #7c3aed; }}
+        .chip.selected {{ background: #7c3aed; color: white; border-color: #7c3aed; }}
+        .btn {{ margin-top: 20px; width: 100%; padding: 12px; background: #7c3aed; color: white; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; }}
+        .btn:hover {{ background: #6d28d9; }}
+        .result {{ margin-top: 16px; padding: 12px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; font-size: 13px; display: none; }}
+    </style>
+</head>
+<body>
+    <h2>🍳 Recipe Maker</h2>
+    <p class="subtitle">{prompt or "Tell me your preferences and I'll suggest a recipe!"}</p>
+
+    <div class="field">
+        <label>Cuisine</label>
+        <select id="cuisine">
+            <option value="">Select cuisine...</option>
+            <option>Italian</option><option>Mexican</option><option>Japanese</option>
+            <option>Indian</option><option>Thai</option><option>French</option>
+            <option>Mediterranean</option><option>Chinese</option><option>American</option>
+        </select>
+    </div>
+
+    <div class="field">
+        <label>Dietary Restrictions</label>
+        <div class="chips" id="diet-chips">
+            <span class="chip" data-val="vegetarian">🥬 Vegetarian</span>
+            <span class="chip" data-val="vegan">🌱 Vegan</span>
+            <span class="chip" data-val="gluten-free">🚫 Gluten-Free</span>
+            <span class="chip" data-val="dairy-free">🥛 Dairy-Free</span>
+            <span class="chip" data-val="keto">🥑 Keto</span>
+            <span class="chip" data-val="none">✅ None</span>
+        </div>
+    </div>
+
+    <div class="field">
+        <label>Main Ingredient</label>
+        <div class="chips" id="ingredient-chips">
+            <span class="chip" data-val="chicken">🍗 Chicken</span>
+            <span class="chip" data-val="beef">🥩 Beef</span>
+            <span class="chip" data-val="fish">🐟 Fish</span>
+            <span class="chip" data-val="tofu">🧈 Tofu</span>
+            <span class="chip" data-val="pasta">🍝 Pasta</span>
+            <span class="chip" data-val="rice">🍚 Rice</span>
+            <span class="chip" data-val="vegetables">🥦 Vegetables</span>
+        </div>
+    </div>
+
+    <div class="field">
+        <label>Servings</label>
+        <input type="number" id="servings" value="2" min="1" max="12" />
+    </div>
+
+    <div class="field">
+        <label>Max Cooking Time (minutes)</label>
+        <select id="time">
+            <option value="15">15 min (quick)</option>
+            <option value="30" selected>30 min</option>
+            <option value="45">45 min</option>
+            <option value="60">1 hour</option>
+            <option value="120">2 hours (slow cook)</option>
+        </select>
+    </div>
+
+    <button class="btn" onclick="submitForm()">🚀 Generate Recipe</button>
+    <div class="result" id="result"></div>
+
+    <script>
+        document.querySelectorAll('.chip').forEach(chip => {{
+            chip.addEventListener('click', () => chip.classList.toggle('selected'));
+        }});
+
+        function submitForm() {{
+            const data = {{
+                cuisine: document.getElementById('cuisine').value,
+                dietary: [...document.querySelectorAll('#diet-chips .selected')].map(c => c.dataset.val),
+                ingredient: [...document.querySelectorAll('#ingredient-chips .selected')].map(c => c.dataset.val),
+                servings: parseInt(document.getElementById('servings').value),
+                maxTime: parseInt(document.getElementById('time').value)
+            }};
+            const el = document.getElementById('result');
+            el.style.display = 'block';
+            el.innerHTML = '✅ <strong>Preferences submitted!</strong><br><pre>' + JSON.stringify(data, null, 2) + '</pre>';
+
+            // Send back to MCP host if available
+            if (window.parent !== window) {{
+                window.parent.postMessage({{ type: 'mcp-app-result', data }}, '*');
+            }}
+        }}
+    </script>
+</body>
+</html>"""
+
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT", "3003"))
