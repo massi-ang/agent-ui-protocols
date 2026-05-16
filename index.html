@@ -1116,54 +1116,55 @@ def create_chart(data: list, chart_type: str):
         <div class="slide" id="slide-10">
             <h2>🎨 How They Work Together</h2>
             
-            <div class="relationship-grid">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 30px 0;">
                 <div class="relationship-card">
-                    <h3 style="color: #667eea;">🔧 MCP + MCP Apps</h3>
-                    <p><strong>Scenario:</strong> An agent uses MCP to access your calendar data, then returns an MCP App that renders an interactive schedule viewer.</p>
-                    <div class="code-block" style="font-size: 0.85em; margin-top: 15px;"><pre><code class="language-plaintext">1. Agent calls MCP tool: get_calendar()
-2. MCP server returns event data
-3. Agent processes data
-4. Agent returns MCP App with UI
-5. User views/interacts with calendar UI</code></pre></div>
+                    <h3 style="color: #667eea; font-size: 1.3em;">🔧 MCP + MCP Apps</h3>
+                    <p><strong>Scenario:</strong> Agent accesses your calendar, then renders an interactive schedule viewer.</p>
+                    <ol style="margin-top: 12px; margin-left: 18px; font-size: 0.95em; line-height: 1.8;">
+                        <li>Agent calls MCP tool: <code>get_calendar()</code></li>
+                        <li>MCP server returns event data</li>
+                        <li>Agent processes and formats data</li>
+                        <li>Agent returns MCP App with interactive UI</li>
+                        <li>User views and interacts with calendar</li>
+                    </ol>
                 </div>
 
                 <div class="relationship-card">
-                    <h3 style="color: #667eea;">🤖 A2A + A2UI</h3>
-                    <p><strong>Scenario:</strong> A coordinator agent delegates to specialized agents, each returning A2UI components that combine into one interface.</p>
-                    <div class="code-block" style="font-size: 0.85em; margin-top: 15px;"><pre><code class="language-plaintext">1. User asks for financial report
-2. Coordinator agent (A2A) asks:
-   - Data agent for numbers
-   - Chart agent for visualization
-3. Each returns A2UI components
-4. Coordinator combines them
-5. User sees unified dashboard</code></pre></div>
+                    <h3 style="color: #667eea; font-size: 1.3em;">🤖 A2A + A2UI</h3>
+                    <p><strong>Scenario:</strong> Coordinator delegates to specialized agents, each returning A2UI components.</p>
+                    <ol style="margin-top: 12px; margin-left: 18px; font-size: 0.95em; line-height: 1.8;">
+                        <li>User asks for a financial report</li>
+                        <li>Coordinator (A2A) delegates to sub-agents</li>
+                        <li>Data agent returns numbers, Chart agent returns visuals</li>
+                        <li>Each returns A2UI components</li>
+                        <li>Coordinator combines → unified dashboard</li>
+                    </ol>
                 </div>
 
                 <div class="relationship-card">
-                    <h3 style="color: #667eea;">🎯 MCP + AG-UI</h3>
-                    <p><strong>Scenario:</strong> An agent uses MCP to fetch data and triggers pre-built AG-UI components to display it consistently.</p>
-                    <div class="code-block" style="font-size: 0.85em; margin-top: 15px;"><pre><code class="language-plaintext">1. Agent calls MCP tool: get_user_data()
-2. MCP returns structured data
-3. Agent calls AG-UI tool:
-   render_profile_card(data)
-4. Frontend renders pre-built
-   ProfileCard component
-5. Consistent, type-safe UI</code></pre></div>
+                    <h3 style="color: #667eea; font-size: 1.3em;">🎯 MCP + AG-UI</h3>
+                    <p><strong>Scenario:</strong> Agent fetches data via MCP, then triggers pre-built AG-UI components.</p>
+                    <ol style="margin-top: 12px; margin-left: 18px; font-size: 0.95em; line-height: 1.8;">
+                        <li>Agent calls MCP tool: <code>get_user_data()</code></li>
+                        <li>MCP returns structured data</li>
+                        <li>Agent calls AG-UI: <code>render_profile_card(data)</code></li>
+                        <li>Frontend renders pre-built ProfileCard</li>
+                        <li>Consistent, type-safe UI every time</li>
+                    </ol>
                 </div>
 
                 <div class="relationship-card">
-                    <h3 style="color: #667eea;">🌐 Full Stack Example</h3>
-                    <p><strong>Scenario:</strong> Multi-agent system with comprehensive UI generation.</p>
-                    <div class="code-block" style="font-size: 0.85em; margin-top: 15px;"><pre><code class="language-plaintext">User → Coordinator Agent
-  ↓ (A2A) → Research Agent
-     ↓ (MCP) → Web Search API
-     ↓ Returns A2UI summary card
-  ↓ (A2A) → Viz Agent
-     ↓ (MCP) → Data warehouse
-     ↓ Returns MCP App (D3 chart)
-  ↓ (AG-UI) → Render action buttons
-
-Result: Rich multi-source dashboard</code></pre></div>
+                    <h3 style="color: #667eea; font-size: 1.3em;">🌐 Full Stack Example</h3>
+                    <p><strong>Scenario:</strong> Multi-agent system combining all protocols.</p>
+                    <ol style="margin-top: 12px; margin-left: 18px; font-size: 0.95em; line-height: 1.8;">
+                        <li>User → Coordinator Agent</li>
+                        <li>↳ <strong>A2A</strong> → Research Agent → <strong>MCP</strong> → Web Search</li>
+                        <li>↳ Returns <strong>A2UI</strong> summary card</li>
+                        <li>↳ <strong>A2A</strong> → Viz Agent → <strong>MCP</strong> → Data warehouse</li>
+                        <li>↳ Returns <strong>MCP App</strong> (D3 chart)</li>
+                        <li>↳ <strong>AG-UI</strong> renders action buttons</li>
+                    </ol>
+                    <p style="margin-top: 10px; font-weight: 600; color: #667eea;">Result: Rich multi-source dashboard</p>
                 </div>
             </div>
 
