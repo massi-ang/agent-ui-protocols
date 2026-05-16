@@ -1297,8 +1297,18 @@ Result: Rich multi-source dashboard</code></pre></div>
         let currentStop = 0;
 
         function navigate(dir) {
-            currentStop = Math.max(0, Math.min(stops.length - 1, currentStop + dir));
-            document.getElementById(stops[currentStop].id).scrollIntoView({ behavior: 'smooth' });
+            const currentEl = document.getElementById(stops[currentStop].id);
+            const rect = currentEl ? currentEl.getBoundingClientRect() : null;
+            const atTop = rect && Math.abs(rect.top) < 50;
+
+            if (!atTop && dir === 1) {
+                // First click: align current section to top
+                currentEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                // Already at top (or going back): move to next/prev
+                currentStop = Math.max(0, Math.min(stops.length - 1, currentStop + dir));
+                document.getElementById(stops[currentStop].id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
             updateNav();
         }
 
