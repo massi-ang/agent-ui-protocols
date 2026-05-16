@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connecting UI to AI Agents: AG-UI, A2UI & MCP Apps</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', () => hljs.highlightAll());</script>
     <style>
         * {
             margin: 0;
@@ -177,14 +180,21 @@
         }
 
         .code-block {
-            background: #2d3748;
-            color: #68d391;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: 0.85em;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            margin: 0;
             padding: 20px;
             border-radius: 10px;
-            font-family: 'Courier New', monospace;
-            overflow-x: auto;
-            margin: 20px 0;
-            font-size: 0.95em;
+        }
+
+        .code-block code {
+            font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
         }
 
         .architecture-diagram {
@@ -380,57 +390,48 @@
             
             <div style="background: #e8f4f8; padding: 25px; border-radius: 12px; margin: 25px 0;">
                 <h4 style="color: #0984e3; margin-bottom: 15px;">📊 Server-Side Data Tools</h4>
-                <div class="code-block">
-// Fetch external data and render components
+                <p style="margin-bottom: 15px;">Fetch external data and render pre-built React components:</p>
+                <div class="code-block"><pre><code class="language-typescript">// Define a tool that fetches data and renders a component
 useFrontendTool({
   name: "get_weather",
   description: "Display weather information",
   parameters: z.object({ location: z.string() }),
-  render: ({ status, args, result }) => {
-    if (status === "executing") {
-      return &lt;WeatherLoadingState /&gt;;
-    }
-    return &lt;WeatherCard data={result} /&gt;;
+  render: ({ status, result }) => {
+    if (status === "executing") return <Spinner />;
+    return <WeatherCard data={result} />;
   }
-});
-
-// Agent calls: get_weather({ location: "San Francisco" })
-// UI automatically renders the WeatherCard component
+});</code></pre></div>
+                <div style="margin-top: 15px; padding: 15px; background: white; border-radius: 8px; border-left: 4px solid #0984e3;">
+                    <p style="margin: 0;"><strong>User:</strong> "Show me the weather in San Francisco"</p>
+                    <p style="margin: 5px 0 0 0; color: #666;">→ Agent calls <code>get_weather({ location: "San Francisco" })</code><br>
+                    → UI renders <code>&lt;WeatherCard&gt;</code> with live data</p>
                 </div>
             </div>
 
             <div style="background: #f3e8ff; padding: 25px; border-radius: 12px; margin: 25px 0;">
                 <h4 style="color: #6c5ce7; margin-bottom: 15px;">🎮 Client-Side UI Tools (Instant Updates!)</h4>
-                <div class="code-block">
-// Manipulate local UI state directly
+                <p style="margin-bottom: 15px;">Manipulate local React state directly — no server round-trip:</p>
+                <div class="code-block"><pre><code class="language-typescript">// 1. Define UI state
 const [uiState, setUiState] = useState({
-  sidebarOpen: true,
-  theme: 'light',
-  counter: 0
+  sidebarOpen: true, theme: 'light', counter: 0
 });
 
-// Make state readable by agent
-useCopilotReadable({
-  description: 'Current UI state',
-  value: uiState
-});
+// 2. Let agent READ the state
+useCopilotReadable({ description: 'Current UI state', value: uiState });
 
-// Create client-side tool
+// 3. Let agent MODIFY the state
 useCopilotAction({
   name: "toggle_sidebar",
-  description: "Toggle sidebar open/closed",
   handler: async ({ open }) => {
     setUiState(prev => ({ ...prev, sidebarOpen: open }));
     return `Sidebar ${open ? 'opened' : 'closed'}`;
   }
-});
-
-// Agent: "Close sidebar" → Instant UI update! ⚡
-// No server round-trip: ~10-50ms vs ~500ms-2s
+});</code></pre></div>
+                <div style="margin-top: 15px; padding: 15px; background: white; border-radius: 8px; border-left: 4px solid #6c5ce7;">
+                    <p style="margin: 0;"><strong>User:</strong> "Close the sidebar"</p>
+                    <p style="margin: 5px 0 0 0; color: #666;">→ Agent calls <code>toggle_sidebar({ open: false })</code><br>
+                    → React setState fires → UI updates in <strong>~10ms</strong> ⚡</p>
                 </div>
-                <p style="margin-top: 15px; color: #6c5ce7; font-weight: 600;">
-                    💡 Client-side tools enable instant UI updates without server latency!
-                </p>
             </div>
 
             <h3>🎯 Client-Side Tool Examples</h3>
@@ -641,28 +642,26 @@ useCopilotAction({
             </div>
 
             <h3>🔧 How It Works</h3>
-            <div class="code-block">
-// Agent streams A2UI messages (JSONL format):
-
+            <p style="margin-bottom: 15px;">Agent streams JSONL messages describing UI structure. Renderer interprets and displays:</p>
+            <div class="code-block"><pre><code class="language-json">// Message 1: Define components
 {"surfaceUpdate": {
-  "surfaceId": "weather-ui",
+  "surfaceId": "contact-form",
   "components": [
-    {
-      "id": "weather-card",
-      "component": {
-        "Column": {
-          "children": ["title", "temperature", "conditions"]
-        }
-      }
-    },
-    {"id": "title", "component": {"Text": {"text": "San Francisco"}}},
-    {"id": "temperature", "component": {"Text": {"text": "72°F"}}}
+    {"id": "root",  "component": {"Column": {"children": ["title","name","email","submit"]}}},
+    {"id": "title", "component": {"Text": {"text": "Contact Us", "usageHint": "h2"}}},
+    {"id": "name",  "component": {"TextField": {"label": "Name", "placeholder": "Your name"}}},
+    {"id": "email", "component": {"TextField": {"label": "Email"}}},
+    {"id": "submit","component": {"Button": {"label": "Send"}}}
   ]
 }}
-{"dataModelUpdate": {...}}  // State updates
-{"beginRendering": {...}}   // Signal to render
 
-// Renderer interprets and displays the UI
+// Message 2: Bind data model
+{"dataModelUpdate": {"surfaceId": "contact-form", "path": "/", "contents": {}}}
+
+// Message 3: Signal to render
+{"beginRendering": {"surfaceId": "contact-form", "root": "root"}}</code></pre></div>
+            <div style="margin-top: 15px; padding: 15px; background: #f0f4ff; border-radius: 8px; border-left: 4px solid #667eea;">
+                <p style="margin: 0;"><strong>Result:</strong> Renderer receives these 3 messages and displays a fully interactive contact form with text inputs and a submit button — all from JSON, no HTML.</p>
             </div>
 
             <div class="pros-cons">
@@ -738,24 +737,22 @@ useCopilotAction({
             </div>
 
             <h3>🔧 How It Works</h3>
-            <div class="code-block">
-// MCP Server exposes a tool with UI resource
-{
-  "tool": "create_diagram",
-  "_meta": {
-    "ui": {
-      "resourceUri": "ui://excalidraw-view"
-    }
-  }
-}
+            <p style="margin-bottom: 15px;">MCP server exposes tools that return full interactive web apps:</p>
+            <div class="code-block"><pre><code class="language-python"># 1. MCP Server declares a tool with a UI resource
+@server.tool()
+def create_chart(data: list, chart_type: str):
+    """Create an interactive chart visualization"""
+    return ToolResult(
+        content="Chart created successfully",
+        ui=UIResource(uri="ui://chart-view")  # ← full HTML app
+    )
 
-// Agent calls tool, returns result
-// Host fetches ui:// resource → HTML page
-// Renders in sandboxed iframe within chat
-
-// App communicates via postMessage
-app.send("tools/call", { tool: "update_data", params: {...} });
-host.send("ui/data-update", { newData: {...} });
+# 2. Host fetches the UI resource → gets complete HTML/JS
+# 3. Renders in sandboxed iframe within the chat
+# 4. App can communicate back via postMessage:
+# app.send("tools/call", { tool: "update_data", params: {...} })</code></pre></div>
+            <div style="margin-top: 15px; padding: 15px; background: #f0f4ff; border-radius: 8px; border-left: 4px solid #667eea;">
+                <p style="margin: 0;"><strong>Result:</strong> A fully interactive D3.js chart appears inline in Claude Desktop or VS Code — with zoom, hover tooltips, and the ability to request new data from the agent.</p>
             </div>
 
             <div class="pros-cons">
@@ -1013,48 +1010,41 @@ host.send("ui/data-update", { newData: {...} });
                 <div class="relationship-card">
                     <h3 style="color: #667eea;">🔧 MCP + MCP Apps</h3>
                     <p><strong>Scenario:</strong> An agent uses MCP to access your calendar data, then returns an MCP App that renders an interactive schedule viewer.</p>
-                    <div class="code-block" style="font-size: 0.85em; margin-top: 15px;">
-1. Agent calls MCP tool: get_calendar()
+                    <div class="code-block" style="font-size: 0.85em; margin-top: 15px;"><pre><code class="language-plaintext">1. Agent calls MCP tool: get_calendar()
 2. MCP server returns event data
 3. Agent processes data
 4. Agent returns MCP App with UI
-5. User views/interacts with calendar UI
-                    </div>
+5. User views/interacts with calendar UI</code></pre></div>
                 </div>
 
                 <div class="relationship-card">
                     <h3 style="color: #667eea;">🤖 A2A + A2UI</h3>
                     <p><strong>Scenario:</strong> A coordinator agent delegates to specialized agents, each returning A2UI components that combine into one interface.</p>
-                    <div class="code-block" style="font-size: 0.85em; margin-top: 15px;">
-1. User asks for financial report
+                    <div class="code-block" style="font-size: 0.85em; margin-top: 15px;"><pre><code class="language-plaintext">1. User asks for financial report
 2. Coordinator agent (A2A) asks:
    - Data agent for numbers
    - Chart agent for visualization
 3. Each returns A2UI components
 4. Coordinator combines them
-5. User sees unified dashboard
-                    </div>
+5. User sees unified dashboard</code></pre></div>
                 </div>
 
                 <div class="relationship-card">
                     <h3 style="color: #667eea;">🎯 MCP + AG-UI</h3>
                     <p><strong>Scenario:</strong> An agent uses MCP to fetch data and triggers pre-built AG-UI components to display it consistently.</p>
-                    <div class="code-block" style="font-size: 0.85em; margin-top: 15px;">
-1. Agent calls MCP tool: get_user_data()
+                    <div class="code-block" style="font-size: 0.85em; margin-top: 15px;"><pre><code class="language-plaintext">1. Agent calls MCP tool: get_user_data()
 2. MCP returns structured data
-3. Agent calls AG-UI tool: 
+3. Agent calls AG-UI tool:
    render_profile_card(data)
-4. Frontend renders pre-built 
+4. Frontend renders pre-built
    ProfileCard component
-5. Consistent, type-safe UI
-                    </div>
+5. Consistent, type-safe UI</code></pre></div>
                 </div>
 
                 <div class="relationship-card">
                     <h3 style="color: #667eea;">🌐 Full Stack Example</h3>
                     <p><strong>Scenario:</strong> Multi-agent system with comprehensive UI generation.</p>
-                    <div class="code-block" style="font-size: 0.85em; margin-top: 15px;">
-User → Coordinator Agent
+                    <div class="code-block" style="font-size: 0.85em; margin-top: 15px;"><pre><code class="language-plaintext">User → Coordinator Agent
   ↓ (A2A) → Research Agent
      ↓ (MCP) → Web Search API
      ↓ Returns A2UI summary card
@@ -1063,8 +1053,7 @@ User → Coordinator Agent
      ↓ Returns MCP App (D3 chart)
   ↓ (AG-UI) → Render action buttons
 
-Result: Rich multi-source dashboard
-                    </div>
+Result: Rich multi-source dashboard</code></pre></div>
                 </div>
             </div>
 

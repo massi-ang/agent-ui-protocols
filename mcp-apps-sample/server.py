@@ -21,7 +21,7 @@ bedrock_client = boto3.client(
     aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'),
 )
 
-MODEL_ID = os.getenv('BEDROCK_MODEL', 'anthropic.claude-3-5-sonnet-20241022-v2:0')
+MODEL_ID = os.getenv('BEDROCK_MODEL', 'global.anthropic.claude-sonnet-4-6')
 
 # MCP Tools
 TOOLS = [

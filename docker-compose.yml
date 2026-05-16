@@ -1,21 +1,32 @@
 version: '3.8'
 
 services:
-  ag-ui-sample:
+  ag-ui-frontend:
     build:
-      context: ./ag-ui-sample
-      dockerfile: Dockerfile
+      context: ./ag-ui-sample/frontend
     ports:
       - "3001:3001"
     environment:
-      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
-      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
-      - AWS_REGION=${AWS_REGION:-us-east-1}
-      - BEDROCK_MODEL=${BEDROCK_MODEL:-anthropic.claude-3-5-sonnet-20241022-v2:0}
+      - AGENT_URL=http://ag-ui-backend:8080/invocations
       - NODE_ENV=production
+    depends_on:
+      - ag-ui-backend
     restart: unless-stopped
     networks:
-      - agent-ui-network
+      - credentials_provider_network
+
+  ag-ui-backend:
+    build:
+      context: ./ag-ui-sample/backend
+    ports:
+      - "8080:8080"
+    environment:
+      - AWS_CONTAINER_CREDENTIALS_FULL_URI=http://169.254.170.2:8000/credentials
+      - AWS_REGION=${AWS_REGION:-us-east-1}
+      - BEDROCK_MODEL=${BEDROCK_MODEL:-global.anthropic.claude-sonnet-4-6}
+    restart: unless-stopped
+    networks:
+      - credentials_provider_network
 
   a2ui-sample:
     build:
@@ -24,13 +35,12 @@ services:
     ports:
       - "3002:3002"
     environment:
-      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
-      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_CONTAINER_CREDENTIALS_FULL_URI=http://169.254.170.2:8000/credentials
       - AWS_REGION=${AWS_REGION:-us-east-1}
-      - BEDROCK_MODEL=${BEDROCK_MODEL:-anthropic.claude-3-5-sonnet-20241022-v2:0}
+      - BEDROCK_MODEL=${BEDROCK_MODEL:-global.anthropic.claude-sonnet-4-6}
     restart: unless-stopped
     networks:
-      - agent-ui-network
+      - credentials_provider_network
 
   mcp-apps-sample:
     build:
@@ -39,14 +49,13 @@ services:
     ports:
       - "3003:3003"
     environment:
-      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
-      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_CONTAINER_CREDENTIALS_FULL_URI=http://169.254.170.2:8000/credentials
       - AWS_REGION=${AWS_REGION:-us-east-1}
-      - BEDROCK_MODEL=${BEDROCK_MODEL:-anthropic.claude-3-5-sonnet-20241022-v2:0}
+      - BEDROCK_MODEL=${BEDROCK_MODEL:-global.anthropic.claude-sonnet-4-6}
     restart: unless-stopped
     networks:
-      - agent-ui-network
+      - credentials_provider_network
 
 networks:
-  agent-ui-network:
-    driver: bridge
+  credentials_provider_network:
+    external: true

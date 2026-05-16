@@ -51,31 +51,66 @@ Controlled Generative UI demo using CopilotKit with Amazon Bedrock, showcasing b
 
 ## Setup
 
-### Local Development
+### Remote Agent (Python + Strands SDK)
+
+The backend agent lives in `agent/` and uses [Strands Agents SDK](https://github.com/strands-agents/sdk-python) with the [AG-UI protocol](https://github.com/ag-ui-protocol/ag-ui) to communicate with the CopilotKit frontend.
+
+```bash
+# Install dependencies (requires uv)
+cd agent
+uv pip install -r requirements.txt
+
+# Run the agent
+python agent.py
+# → Listening on http://localhost:8080
+```
+
+Or with Docker:
+
+```bash
+cd agent
+docker build -t ag-ui-agent .
+docker run -p 8080:8080 \
+  -e AWS_ACCESS_KEY_ID=xxx \
+  -e AWS_SECRET_ACCESS_KEY=xxx \
+  -e AWS_REGION=us-east-1 \
+  ag-ui-agent
+```
+
+### Frontend (Next.js + CopilotKit)
 
 ```bash
 npm install
 npm run dev
+# → http://localhost:3001
 ```
 
-### Docker
+The frontend connects to the agent at `AGENT_URL` (defaults to `http://localhost:8080/invocations`).
+
+### Docker (Frontend only)
 
 ```bash
 docker build -t ag-ui-sample .
 docker run -p 3001:3001 \
-  -e AWS_ACCESS_KEY_ID=xxx \
-  -e AWS_SECRET_ACCESS_KEY=xxx \
-  -e AWS_REGION=us-east-1 \
+  -e AGENT_URL=http://host.docker.internal:8080/invocations \
   ag-ui-sample
 ```
 
 ## Environment Variables
 
+### Agent (`agent/`)
+
 ```env
 AWS_ACCESS_KEY_ID=your_key
 AWS_SECRET_ACCESS_KEY=your_secret
 AWS_REGION=us-east-1
-BEDROCK_MODEL=anthropic.claude-3-5-sonnet-20241022-v2:0
+BEDROCK_MODEL=us.anthropic.claude-sonnet-4-20250514-v1:0
+```
+
+### Frontend
+
+```env
+AGENT_URL=http://localhost:8080/invocations
 ```
 
 ## Usage Examples
@@ -251,7 +286,7 @@ useCopilotAction({
 ### Change Model
 
 Update `BEDROCK_MODEL` env var to any Bedrock model:
-- `anthropic.claude-3-5-sonnet-20241022-v2:0` (default)
+- `global.anthropic.claude-sonnet-4-6` (default)
 - `anthropic.claude-3-haiku-20240307-v1:0`
 - `anthropic.claude-3-opus-20240229-v1:0`
 

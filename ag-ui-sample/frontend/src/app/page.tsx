@@ -7,7 +7,7 @@ import { Tools } from '@/components/Tools'
 
 export default function Home() {
   return (
-    <CopilotKit runtimeUrl="/api/copilotkit">
+    <CopilotKit runtimeUrl="/api/copilotkit" agent="sample_agent">
       <Tools />
       <div className="min-h-screen p-8 ml-64 transition-all">
         <div className="max-w-4xl mx-auto">

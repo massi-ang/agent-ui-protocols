@@ -69,7 +69,7 @@ docker run -p 3002:3002 \
 AWS_ACCESS_KEY_ID=your_key
 AWS_SECRET_ACCESS_KEY=your_secret
 AWS_REGION=us-east-1
-BEDROCK_MODEL=anthropic.claude-3-5-sonnet-20241022-v2:0
+BEDROCK_MODEL=global.anthropic.claude-sonnet-4-6
 ```
 
 ## Usage
