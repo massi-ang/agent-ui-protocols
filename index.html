@@ -262,6 +262,58 @@
             margin: 5px;
         }
 
+        .nav-bar {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 1000;
+        }
+
+        .nav-bar button {
+            background: #667eea;
+            color: white;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .nav-bar button:hover {
+            background: #764ba2;
+        }
+
+        .nav-bar button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .nav-bar span {
+            font-size: 0.85em;
+            color: #555;
+            font-weight: 600;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         @media (max-width: 768px) {
             .slide {
                 padding: 30px 20px;
@@ -296,7 +348,7 @@
     <div class="presentation">
         
         <!-- Slide 1: Title -->
-        <div class="slide">
+        <div class="slide" id="slide-1">
             <h1>🤖 Connecting UI to AI Agents</h1>
             <p class="subtitle">Understanding AG-UI, A2UI, and MCP Apps Protocols</p>
             <div class="architecture-diagram">
@@ -308,7 +360,7 @@
         </div>
 
         <!-- Slide 2: The Problem -->
-        <div class="slide">
+        <div class="slide" id="slide-2">
             <h2>🎯 The Core Problem</h2>
             
             <div class="problem-box">
@@ -336,7 +388,7 @@
         </div>
 
         <!-- Slide 3: The Solution Landscape -->
-        <div class="slide">
+        <div class="slide" id="slide-3">
             <h2>🌟 Solution Landscape: Three Approaches</h2>
             
             <p style="font-size: 1.2em; margin-bottom: 30px;">Three major protocols have emerged to solve the agent-to-UI communication challenge, each with different trade-offs:</p>
@@ -370,7 +422,7 @@
         </div>
 
         <!-- Slide 4: AG-UI Protocol -->
-        <div class="slide">
+        <div class="slide" id="slide-4">
             <h2>1️⃣ AG-UI (Agent-User Interaction Protocol)</h2>
             
             <div class="protocol-card">
@@ -500,7 +552,7 @@ useCopilotAction({
         </div>
 
         <!-- Slide 4.5: AG-UI Client-Side State Deep Dive -->
-        <div class="slide">
+        <div class="slide" id="slide-5">
             <h2>🎮 AG-UI: Client-Side State Control</h2>
             
             <div style="background: linear-gradient(135deg, #a8e6cf 0%, #56ab91 100%); padding: 30px; border-radius: 15px; margin-bottom: 30px; color: white;">
@@ -625,7 +677,7 @@ useCopilotAction({
         </div>
 
         <!-- Slide 5: A2UI Protocol -->
-        <div class="slide">
+        <div class="slide" id="slide-6">
             <h2>2️⃣ A2UI (Agent-to-UI Protocol)</h2>
             
             <div class="protocol-card">
@@ -749,7 +801,7 @@ useCopilotAction({
         </div>
 
         <!-- Slide 6: MCP Apps Protocol -->
-        <div class="slide">
+        <div class="slide" id="slide-7">
             <h2>3️⃣ MCP Apps (Model Context Protocol Apps)</h2>
             
             <div class="protocol-card">
@@ -863,7 +915,7 @@ def create_chart(data: list, chart_type: str):
         </div>
 
         <!-- Slide 7: Comparison Table -->
-        <div class="slide">
+        <div class="slide" id="slide-8">
             <h2>⚖️ Side-by-Side Comparison</h2>
             
             <table class="comparison-table">
@@ -980,7 +1032,7 @@ def create_chart(data: list, chart_type: str):
         </div>
 
         <!-- Slide 8: Relationship to MCP and A2A -->
-        <div class="slide">
+        <div class="slide" id="slide-9">
             <h2>🔗 How They Relate: MCP & A2A</h2>
             
             <div style="background: linear-gradient(135deg, #a8e6cf 0%, #56ab91 100%); padding: 40px; border-radius: 15px; margin-bottom: 40px; color: white;">
@@ -1059,7 +1111,7 @@ def create_chart(data: list, chart_type: str):
         </div>
 
         <!-- Slide 9: Integration Examples -->
-        <div class="slide">
+        <div class="slide" id="slide-10">
             <h2>🎨 How They Work Together</h2>
             
             <div class="relationship-grid">
@@ -1130,7 +1182,7 @@ Result: Rich multi-source dashboard</code></pre></div>
         </div>
 
         <!-- Slide 10: Future & Conclusion -->
-        <div class="slide">
+        <div class="slide" id="slide-11">
             <h2>🚀 The Future of Agent-UI Communication</h2>
             
             <h3>🔮 Emerging Trends</h3>
@@ -1203,5 +1255,48 @@ Result: Rich multi-source dashboard</code></pre></div>
         </div>
     </div>
 
+    <div class="nav-bar">
+        <button onclick="navigate(-1)" id="nav-prev">←</button>
+        <span id="nav-label">1 / 11</span>
+        <button onclick="navigate(1)" id="nav-next">→</button>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 11;
+
+        function navigate(dir) {
+            currentSlide = Math.max(1, Math.min(totalSlides, currentSlide + dir));
+            document.getElementById('slide-' + currentSlide).scrollIntoView({ behavior: 'smooth' });
+            updateNav();
+        }
+
+        function updateNav() {
+            document.getElementById('nav-label').textContent = currentSlide + ' / ' + totalSlides;
+            document.getElementById('nav-prev').disabled = currentSlide === 1;
+            document.getElementById('nav-next').disabled = currentSlide === totalSlides;
+        }
+
+        // Track scroll position to update current slide
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    if (id && id.startsWith('slide-')) {
+                        currentSlide = parseInt(id.split('-')[1]);
+                        updateNav();
+                    }
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('[id^="slide-"]').forEach(el => observer.observe(el));
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); navigate(1); }
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); navigate(-1); }
+        });
+    </script>
 </body>
 </html>
