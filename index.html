@@ -717,6 +717,35 @@ useCopilotAction({
                     <li><strong>Moderate Flexibility:</strong> Balance between control and freedom</li>
                 </ul>
             </div>
+
+            <div style="background: #d4edda; padding: 25px; border-radius: 12px; margin: 25px 0; border-left: 5px solid #28a745;">
+                <h4 style="color: #155724; margin-bottom: 10px;">🔄 A2UI Bidirectional Communication</h4>
+                <p style="color: #155724; margin-bottom: 15px;">
+                    A2UI has <strong>built-in bidirectional support</strong> through its data model and action system:
+                </p>
+                <ul style="color: #155724; margin-bottom: 15px;">
+                    <li><strong>Agent → UI:</strong> <code>updateComponents</code> + <code>updateDataModel</code> messages stream UI and state to the renderer</li>
+                    <li><strong>UI → Agent:</strong> Components declare <code>actions</code> with events. When a user clicks a button or submits a form, the renderer fires the event with <code>context</code> containing bound data model values back to the agent</li>
+                    <li><strong>Data Binding:</strong> Components bind to paths in the data model (e.g., <code>/form/email</code>). User input updates the model locally; on submit, the full state is sent back</li>
+                </ul>
+                <div class="code-block"><pre><code class="language-json">// Button with action — sends data back to agent on click
+{
+  "id": "submit-btn",
+  "component": "Button",
+  "action": {
+    "event": {
+      "name": "form_submit",
+      "context": {
+        "email": {"path": "/form/email"},
+        "name": {"path": "/form/name"}
+      }
+    }
+  }
+}</code></pre></div>
+                <p style="color: #155724; font-size: 0.95em; margin-top: 10px;">
+                    <strong>vs MCP Apps:</strong> A2UI's bidirectional flow is part of the protocol spec and works today. MCP Apps relies on <code>postMessage</code> which most clients don't yet relay back to the agent.
+                </p>
+            </div>
         </div>
 
         <!-- Slide 6: MCP Apps Protocol -->
@@ -764,7 +793,7 @@ def create_chart(data: list, chart_type: str):
                         <li><strong>Existing Ecosystems:</strong> Use Three.js, D3, any JS library</li>
                         <li><strong>No Limits:</strong> Any UI that works in a browser</li>
                         <li><strong>Context Preservation:</strong> UI stays in conversation</li>
-                        <li><strong>Bidirectional:</strong> App can call back to MCP server</li>
+                        <li><strong>Bidirectional (spec):</strong> Spec defines postMessage for app↔host communication</li>
                     </ul>
                 </div>
                 <div class="cons">
@@ -776,8 +805,23 @@ def create_chart(data: list, chart_type: str):
                         <li><strong>Complexity:</strong> Requires building full web apps</li>
                         <li><strong>Limited Portability:</strong> Web-only, doesn't work on native mobile</li>
                         <li><strong>Client Support:</strong> Requires MCP Apps-capable host</li>
+                        <li><strong>Bidirectional Gap:</strong> Most clients (VS Code, Claude Desktop) don't yet relay user input from the iframe back to the agent conversation</li>
                     </ul>
                 </div>
+            </div>
+
+            <div style="background: #fff3cd; padding: 25px; border-radius: 12px; margin: 25px 0; border-left: 5px solid #ffc107;">
+                <h4 style="color: #856404; margin-bottom: 10px;">⚠️ Bidirectional Communication: Current Reality</h4>
+                <p style="color: #856404; margin-bottom: 15px;">
+                    The MCP Apps spec defines <code>postMessage</code> for app↔host communication, but in practice:
+                </p>
+                <ul style="color: #856404; margin-bottom: 15px;">
+                    <li><strong>Agent → UI:</strong> ✅ Works — agent calls tool, server returns HTML, client renders it</li>
+                    <li><strong>UI → Agent:</strong> ❌ Not yet supported — user interactions in the iframe (form submissions, button clicks) cannot feed back into the agent conversation in most clients</li>
+                </ul>
+                <p style="color: #856404; font-size: 0.95em;">
+                    <strong>Result:</strong> MCP Apps are currently best for <em>displaying</em> rich interactive content, not for <em>collecting</em> user input that the agent can act on. The user must communicate choices back via text.
+                </p>
             </div>
 
             <h3>🎨 Real-World Example: Excalidraw MCP App</h3>
@@ -893,10 +937,10 @@ def create_chart(data: list, chart_type: str):
                         <td>🟢 Yes (any JS)</td>
                     </tr>
                     <tr>
-                        <td><strong>Client-Side State</strong></td>
-                        <td>🟢 Direct manipulation</td>
-                        <td>🔴 Limited/indirect</td>
-                        <td>🟡 Via postMessage</td>
+                        <td><strong>Bidirectional (UI→Agent)</strong></td>
+                        <td>🟢 Direct (useCopilotReadable)</td>
+                        <td>🟢 Built-in (actions + events)</td>
+                        <td>🔴 Spec exists, clients lack support</td>
                     </tr>
                     <tr>
                         <td><strong>UI Update Latency</strong></td>
