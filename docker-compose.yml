@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  ag-ui-sample:
+    build:
+      context: ./ag-ui-sample
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_REGION=${AWS_REGION:-us-east-1}
+      - BEDROCK_MODEL=${BEDROCK_MODEL:-anthropic.claude-3-5-sonnet-20241022-v2:0}
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - agent-ui-network
+
+  a2ui-sample:
+    build:
+      context: ./a2ui-sample
+      dockerfile: Dockerfile
+    ports:
+      - "3002:3002"
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_REGION=${AWS_REGION:-us-east-1}
+      - BEDROCK_MODEL=${BEDROCK_MODEL:-anthropic.claude-3-5-sonnet-20241022-v2:0}
+    restart: unless-stopped
+    networks:
+      - agent-ui-network
+
+  mcp-apps-sample:
+    build:
+      context: ./mcp-apps-sample
+      dockerfile: Dockerfile
+    ports:
+      - "3003:3003"
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_REGION=${AWS_REGION:-us-east-1}
+      - BEDROCK_MODEL=${BEDROCK_MODEL:-anthropic.claude-3-5-sonnet-20241022-v2:0}
+    restart: unless-stopped
+    networks:
+      - agent-ui-network
+
+networks:
+  agent-ui-network:
+    driver: bridge
