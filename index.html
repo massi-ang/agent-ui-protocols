@@ -830,12 +830,24 @@ def create_chart(data: list, chart_type: str):
                 <ol style="margin-left: 20px;">
                     <li>User: "Create a system architecture diagram for a microservices app"</li>
                     <li>Agent calls <code>create_view</code> tool with Excalidraw JSON elements</li>
-                    <li>MCP server returns fully interactive Excalidraw canvas</li>
-                    <li>Renders in Claude Desktop as iframe</li>
-                    <li>User can edit, save, export diagram directly in chat</li>
-                    <li>Agent can update diagram via further tool calls</li>
+                    <li>MCP server returns fully interactive Excalidraw canvas as HTML</li>
+                    <li>Renders in Claude Desktop as sandboxed iframe</li>
+                    <li>User can edit the diagram directly in the canvas</li>
+                    <li>User: "Add a database" → Agent calls tool again with updated elements → <strong>new iframe replaces the old one</strong></li>
                 </ol>
-                <p style="margin-top: 20px; color: #667eea; font-weight: 600;">Result: Full-featured diagramming app embedded in conversational AI interface</p>
+            </div>
+
+            <div style="background: #f8d7da; padding: 25px; border-radius: 12px; margin: 25px 0; border-left: 5px solid #dc3545;">
+                <h4 style="color: #721c24; margin-bottom: 10px;">⚠️ The Update & State Problem</h4>
+                <p style="color: #721c24; margin-bottom: 15px;">
+                    <strong>How does the agent "update" the diagram?</strong> It doesn't push into the iframe — it calls the tool again, generating a <em>completely new</em> HTML page. The client replaces the old iframe with the new one.
+                </p>
+                <p style="color: #721c24; margin-bottom: 15px;">
+                    <strong>What if the user edits the diagram in the UI?</strong> Those edits are <em>invisible to the agent</em>. They live only in the iframe's local JavaScript state. If the agent calls the tool again, user edits are lost (overwritten by the new render).
+                </p>
+                <p style="color: #721c24; font-size: 0.95em;">
+                    <strong>Workaround:</strong> The iframe app could persist state back to the MCP server via direct HTTP calls (e.g., <code>fetch('/save')</code>), so the server can merge user edits with agent updates on the next tool call. But this requires custom implementation — it's not part of the MCP Apps protocol.
+                </p>
             </div>
 
             <div class="use-case-box">
