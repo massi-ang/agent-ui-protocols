@@ -306,7 +306,7 @@
             font-size: 0.85em;
             color: #555;
             font-weight: 600;
-            min-width: 60px;
+            min-width: 200px;
             text-align: center;
         }
 
@@ -438,7 +438,7 @@
                 </div>
             </div>
 
-            <h3>🔧 Two Types of Tools</h3>
+            <h3 id="agui-tools">🔧 Two Types of Tools</h3>
             
             <div style="background: #e8f4f8; padding: 25px; border-radius: 12px; margin: 25px 0;">
                 <h4 style="color: #0984e3; margin-bottom: 15px;">📊 Server-Side Data Tools</h4>
@@ -486,7 +486,7 @@ useCopilotAction({
                 </div>
             </div>
 
-            <h3>🎯 Client-Side Tool Examples</h3>
+            <h3 id="agui-client-examples">🎯 Client-Side Tool Examples</h3>
             <div style="background: #fff3cd; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #ffc107;">
                 <ul style="margin-left: 20px;">
                     <li><strong>Sidebar Control:</strong> "Close the sidebar" → Instant toggle</li>
@@ -523,7 +523,7 @@ useCopilotAction({
                 </div>
             </div>
 
-            <div style="background: linear-gradient(135deg, #a8e6cf 0%, #56ab91 100%); padding: 25px; border-radius: 12px; margin: 25px 0; color: white;">
+            <div id="agui-killer" style="background: linear-gradient(135deg, #a8e6cf 0%, #56ab91 100%); padding: 25px; border-radius: 12px; margin: 25px 0; color: white;">
                 <h3 style="color: white; margin-top: 0;">⚡ AG-UI's Killer Feature</h3>
                 <p style="font-size: 1.1em; margin-bottom: 15px; color: white;">
                     <strong>Direct client-side state manipulation</strong> is AG-UI's unique advantage:
@@ -594,7 +594,7 @@ useCopilotAction({
                 </div>
             </div>
 
-            <h3>💬 Real-World Examples</h3>
+            <h3 id="agui-realworld">💬 Real-World Examples</h3>
             
             <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
                 <h4 style="color: #667eea;">Example 1: Simple Toggle</h4>
@@ -631,7 +631,7 @@ useCopilotAction({
                 <p style="color: #28a745; font-weight: 600;">✓ Chained actions feel instant!</p>
             </div>
 
-            <h3>🔄 Bidirectional Flow</h3>
+            <h3 id="agui-bidir">🔄 Bidirectional Flow</h3>
             
             <div class="architecture-diagram">
                 <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; align-items: center;">
@@ -693,7 +693,7 @@ useCopilotAction({
                 </div>
             </div>
 
-            <h3>🔧 How It Works</h3>
+            <h3 id="a2ui-howitworks">🔧 How It Works</h3>
             <p style="margin-bottom: 15px;">Agent streams JSONL messages describing UI structure. Renderer interprets and displays:</p>
             <div class="code-block"><pre><code class="language-json">// Message 1: Define components
 {"surfaceUpdate": {
@@ -740,7 +740,7 @@ useCopilotAction({
                 </div>
             </div>
 
-            <h3>📦 A2UI Component Set</h3>
+            <h3 id="a2ui-components">📦 A2UI Component Set</h3>
             <div style="background: #f8f9fa; padding: 25px; border-radius: 12px; margin: 25px 0;">
                 <p style="margin-bottom: 15px;">A2UI includes ~22 primitive components:</p>
                 <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px;">
@@ -770,7 +770,7 @@ useCopilotAction({
                 </ul>
             </div>
 
-            <div style="background: #d4edda; padding: 25px; border-radius: 12px; margin: 25px 0; border-left: 5px solid #28a745;">
+            <div id="a2ui-bidir" style="background: #d4edda; padding: 25px; border-radius: 12px; margin: 25px 0; border-left: 5px solid #28a745;">
                 <h4 style="color: #155724; margin-bottom: 10px;">🔄 A2UI Bidirectional Communication</h4>
                 <p style="color: #155724; margin-bottom: 15px;">
                     A2UI has <strong>built-in bidirectional support</strong> through its data model and action system:
@@ -817,7 +817,7 @@ useCopilotAction({
                 </div>
             </div>
 
-            <h3>🔧 How It Works</h3>
+            <h3 id="mcp-howitworks">🔧 How It Works</h3>
             <p style="margin-bottom: 15px;">MCP server exposes tools that return full interactive web apps:</p>
             <div class="code-block"><pre><code class="language-python"># 1. MCP Server declares a tool with a UI resource
 @server.tool()
@@ -862,7 +862,7 @@ def create_chart(data: list, chart_type: str):
                 </div>
             </div>
 
-            <div style="background: #fff3cd; padding: 25px; border-radius: 12px; margin: 25px 0; border-left: 5px solid #ffc107;">
+            <div id="mcp-limitations" style="background: #fff3cd; padding: 25px; border-radius: 12px; margin: 25px 0; border-left: 5px solid #ffc107;">
                 <h4 style="color: #856404; margin-bottom: 10px;">⚠️ Bidirectional Communication: Current Reality</h4>
                 <p style="color: #856404; margin-bottom: 15px;">
                     The MCP Apps spec defines <code>postMessage</code> for app↔host communication, but in practice:
@@ -876,7 +876,7 @@ def create_chart(data: list, chart_type: str):
                 </p>
             </div>
 
-            <h3>🎨 Real-World Example: Excalidraw MCP App</h3>
+            <h3 id="mcp-excalidraw">🎨 Real-World Example: Excalidraw MCP App</h3>
             <div style="background: #f8f9fa; padding: 25px; border-radius: 12px; margin: 25px 0;">
                 <p style="font-size: 1.1em; margin-bottom: 15px;"><strong>Use case:</strong> AI-powered diagramming</p>
                 <ol style="margin-left: 20px;">
@@ -1257,46 +1257,110 @@ Result: Rich multi-source dashboard</code></pre></div>
 
     <div class="nav-bar">
         <button onclick="navigate(-1)" id="nav-prev">←</button>
-        <span id="nav-label">1 / 11</span>
+        <span id="nav-label" style="cursor: pointer;" onclick="toggleToc()">1 / 22</span>
         <button onclick="navigate(1)" id="nav-next">→</button>
     </div>
 
+    <div id="toc" style="display:none; position:fixed; bottom:80px; left:50%; transform:translateX(-50%); background:rgba(255,255,255,0.97); backdrop-filter:blur(10px); padding:20px; border-radius:16px; box-shadow:0 8px 30px rgba(0,0,0,0.3); z-index:1001; max-height:60vh; overflow-y:auto; width:360px;">
+        <div style="font-weight:700; margin-bottom:10px; font-size:0.9em; color:#667eea;">📑 Table of Contents</div>
+        <div id="toc-list" style="font-size:0.82em; line-height:2;"></div>
+    </div>
+
     <script>
-        let currentSlide = 1;
-        const totalSlides = 11;
+        const stops = [
+            { id: 'slide-1', label: 'Title' },
+            { id: 'slide-2', label: 'The Problem' },
+            { id: 'slide-3', label: 'Solution Landscape' },
+            { id: 'slide-4', label: 'AG-UI: Overview' },
+            { id: 'agui-tools', label: 'AG-UI: Two Types of Tools' },
+            { id: 'agui-client-examples', label: 'AG-UI: Client-Side Examples' },
+            { id: 'agui-killer', label: 'AG-UI: Killer Feature' },
+            { id: 'slide-5', label: 'AG-UI: State Deep Dive' },
+            { id: 'agui-realworld', label: 'AG-UI: Real-World Examples' },
+            { id: 'agui-bidir', label: 'AG-UI: Bidirectional Flow' },
+            { id: 'slide-6', label: 'A2UI: Overview' },
+            { id: 'a2ui-howitworks', label: 'A2UI: How It Works' },
+            { id: 'a2ui-components', label: 'A2UI: Component Set' },
+            { id: 'a2ui-bidir', label: 'A2UI: Bidirectional Comm' },
+            { id: 'slide-7', label: 'MCP Apps: Overview' },
+            { id: 'mcp-howitworks', label: 'MCP Apps: How It Works' },
+            { id: 'mcp-limitations', label: 'MCP Apps: Bidirectional Gap' },
+            { id: 'mcp-excalidraw', label: 'MCP Apps: Update & State Problem' },
+            { id: 'slide-8', label: 'Comparison Table' },
+            { id: 'slide-9', label: 'Protocol Stack: MCP & A2A' },
+            { id: 'slide-10', label: 'Integration Examples' },
+            { id: 'slide-11', label: 'Future & Conclusion' },
+        ];
+
+        let currentStop = 0;
 
         function navigate(dir) {
-            currentSlide = Math.max(1, Math.min(totalSlides, currentSlide + dir));
-            document.getElementById('slide-' + currentSlide).scrollIntoView({ behavior: 'smooth' });
+            currentStop = Math.max(0, Math.min(stops.length - 1, currentStop + dir));
+            document.getElementById(stops[currentStop].id).scrollIntoView({ behavior: 'smooth' });
             updateNav();
         }
 
         function updateNav() {
-            document.getElementById('nav-label').textContent = currentSlide + ' / ' + totalSlides;
-            document.getElementById('nav-prev').disabled = currentSlide === 1;
-            document.getElementById('nav-next').disabled = currentSlide === totalSlides;
+            document.getElementById('nav-label').textContent = (currentStop + 1) + ' / ' + stops.length + '  ' + stops[currentStop].label;
+            document.getElementById('nav-prev').disabled = currentStop === 0;
+            document.getElementById('nav-next').disabled = currentStop === stops.length - 1;
+            // Update TOC highlight
+            document.querySelectorAll('.toc-item').forEach((el, i) => {
+                el.style.fontWeight = i === currentStop ? '700' : '400';
+                el.style.color = i === currentStop ? '#667eea' : '#333';
+            });
         }
 
-        // Track scroll position to update current slide
+        function toggleToc() {
+            const toc = document.getElementById('toc');
+            toc.style.display = toc.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function goToStop(i) {
+            currentStop = i;
+            document.getElementById(stops[i].id).scrollIntoView({ behavior: 'smooth' });
+            updateNav();
+            document.getElementById('toc').style.display = 'none';
+        }
+
+        // Build TOC
+        const tocList = document.getElementById('toc-list');
+        stops.forEach((s, i) => {
+            const div = document.createElement('div');
+            div.className = 'toc-item';
+            div.style.cursor = 'pointer';
+            div.style.padding = '2px 8px';
+            div.style.borderRadius = '4px';
+            div.textContent = (i + 1) + '. ' + s.label;
+            div.onmouseover = () => div.style.background = '#f0f0ff';
+            div.onmouseout = () => div.style.background = '';
+            div.onclick = () => goToStop(i);
+            tocList.appendChild(div);
+        });
+
+        // Track scroll position
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const id = entry.target.id;
-                    if (id && id.startsWith('slide-')) {
-                        currentSlide = parseInt(id.split('-')[1]);
-                        updateNav();
-                    }
+                    const idx = stops.findIndex(s => s.id === entry.target.id);
+                    if (idx >= 0) { currentStop = idx; updateNav(); }
                 }
             });
         }, { threshold: 0.3 });
 
-        document.querySelectorAll('[id^="slide-"]').forEach(el => observer.observe(el));
+        stops.forEach(s => {
+            const el = document.getElementById(s.id);
+            if (el) observer.observe(el);
+        });
 
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); navigate(1); }
             if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); navigate(-1); }
+            if (e.key === 'Escape') document.getElementById('toc').style.display = 'none';
         });
+
+        updateNav();
     </script>
 </body>
 </html>
