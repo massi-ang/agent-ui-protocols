@@ -1,6 +1,7 @@
 import os
 import json
 import uuid
+import logging
 from typing import Dict, Any
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, JSONResponse
@@ -8,10 +9,19 @@ from sse_starlette.sse import EventSourceResponse
 import uvicorn
 import boto3
 
+# Filter out GET /mcp noise
+class MCPLogFilter(logging.Filter):
+    def filter(self, record):
+        return "GET /mcp" not in record.getMessage()
+
+logging.getLogger("uvicorn.access").addFilter(MCPLogFilter())
+
 app = FastAPI(title="MCP Apps Sample")
 
 # In-memory storage for UI resources
 ui_resources: Dict[str, str] = {}
+# Track latest resource per type
+ui_latest: Dict[str, str] = {}
 
 # Bedrock client
 bedrock_client = boto3.client(
@@ -83,100 +93,166 @@ TOOLS = [
 ]
 
 @app.get("/mcp")
-async def mcp_endpoint(request: Request):
-    """MCP Server-Sent Events endpoint"""
+async def mcp_sse_endpoint(request: Request):
+    """MCP Server-Sent Events endpoint (legacy SSE transport)"""
     
     async def generate():
-        # Send initialization
+        # Send the POST endpoint location
         yield {
             "event": "endpoint",
-            "data": json.dumps({
-                "jsonrpc": "2.0",
-                "id": 1,
-                "result": {
-                    "protocolVersion": "2024-11-05",
-                    "serverInfo": {
-                        "name": "agent-ui-mcp-sample",
-                        "version": "1.0.0"
-                    },
-                    "capabilities": {
-                        "tools": {
-                            "listChanged": False
-                        },
-                        "resources": {
-                            "subscribe": False,
-                            "listChanged": False
-                        }
-                    }
-                }
-            })
-        }
-        
-        # Send tools list
-        yield {
-            "event": "message",
-            "data": json.dumps({
-                "jsonrpc": "2.0",
-                "method": "tools/list",
-                "params": {
-                    "tools": TOOLS
-                }
-            })
+            "data": "/mcp"
         }
     
     return EventSourceResponse(generate())
 
-@app.post("/mcp/tools/call")
-async def call_tool(request: Request):
-    """Handle tool calls from MCP client"""
+
+@app.post("/mcp")
+async def mcp_post_endpoint(request: Request):
+    """MCP Streamable HTTP transport - handles JSON-RPC requests"""
     body = await request.json()
-    tool_name = body.get("name")
-    arguments = body.get("arguments", {})
-    
-    if tool_name == "create_chart":
-        ui_html = generate_chart_ui(
-            arguments.get("data", []),
-            arguments.get("labels", []),
-            arguments.get("chart_type", "bar")
-        )
-        ui_id = str(uuid.uuid4())
-        ui_resources[ui_id] = ui_html
-        
+    method = body.get("method")
+    req_id = body.get("id")
+
+    if method == "initialize":
         return JSONResponse({
-            "content": [
-                {
-                    "type": "resource",
-                    "resource": {
-                        "uri": f"ui://{ui_id}",
-                        "mimeType": "text/html",
-                        "text": ui_html
-                    }
+            "jsonrpc": "2.0",
+            "id": req_id,
+            "result": {
+                "protocolVersion": "2024-11-05",
+                "serverInfo": {
+                    "name": "agent-ui-mcp-sample",
+                    "version": "1.0.0"
+                },
+                "capabilities": {
+                    "tools": {"listChanged": False},
+                    "resources": {"subscribe": False, "listChanged": False}
                 }
-            ]
+            }
         })
-    
-    elif tool_name == "create_table":
-        ui_html = generate_table_ui(
-            arguments.get("data", []),
-            arguments.get("columns", [])
-        )
-        ui_id = str(uuid.uuid4())
-        ui_resources[ui_id] = ui_html
-        
+
+    elif method == "notifications/initialized":
+        return JSONResponse({"jsonrpc": "2.0", "id": req_id, "result": {}})
+
+    elif method == "tools/list":
         return JSONResponse({
-            "content": [
-                {
-                    "type": "resource",
-                    "resource": {
-                        "uri": f"ui://{ui_id}",
-                        "mimeType": "text/html",
-                        "text": ui_html
-                    }
-                }
-            ]
+            "jsonrpc": "2.0",
+            "id": req_id,
+            "result": {"tools": TOOLS}
         })
-    
-    return JSONResponse({"error": "Unknown tool"}, status_code=400)
+
+    elif method == "tools/call":
+        params = body.get("params", {})
+        tool_name = params.get("name")
+        arguments = params.get("arguments", {})
+        print(f"\n🔧 Tool call: {tool_name}")
+        print(f"   Arguments: {json.dumps(arguments, indent=2)}")
+
+        if tool_name == "create_chart":
+            ui_html = generate_chart_ui(
+                arguments.get("data", []),
+                arguments.get("labels", []),
+                arguments.get("chart_type", "bar")
+            )
+            ui_id = str(uuid.uuid4())
+            ui_resources[ui_id] = ui_html
+            ui_latest["chart"] = ui_html
+            resp = {
+                "jsonrpc": "2.0",
+                "id": req_id,
+                "result": {
+                    "content": [
+                        {
+                            "type": "text",
+                            "text": f"Created {arguments.get('chart_type', 'bar')} chart with {len(arguments.get('data', []))} data points."
+                        },
+                        {
+                            "type": "resource",
+                            "resource": {
+                                "uri": f"ui://{ui_id}",
+                                "mimeType": "text/html",
+                                "text": "done"
+                            }
+                        }
+                    ]
+                }
+            }
+            print(f"   📤 JSON-RPC:\n{json.dumps(resp, indent=2)}")
+            return JSONResponse(resp)
+
+        elif tool_name == "create_table":
+            ui_html = generate_table_ui(
+                arguments.get("data", []),
+                arguments.get("columns", [])
+            )
+            ui_id = str(uuid.uuid4())
+            ui_resources[ui_id] = ui_html
+            ui_latest["table"] = ui_html
+            resp = {
+                "jsonrpc": "2.0",
+                "id": req_id,
+                "result": {
+                    "content": [
+                        {
+                            "type": "text",
+                            "text": f"Created table with {len(arguments.get('data', []))} rows and {len(arguments.get('columns', []))} columns."
+                        },
+                        {
+                            "type": "resource",
+                            "resource": {
+                                "uri": f"ui://{ui_id}",
+                                "mimeType": "text/html",
+                                "text": "done"
+                            }
+                        }
+                    ]
+                }
+            }
+            print(f"   📤 JSON-RPC:\n{json.dumps(resp, indent=2)}")
+            return JSONResponse(resp)
+
+        return JSONResponse({
+            "jsonrpc": "2.0",
+            "id": req_id,
+            "error": {"code": -32601, "message": f"Unknown tool: {tool_name}"}
+        })
+
+    elif method == "resources/list":
+        return JSONResponse({
+            "jsonrpc": "2.0",
+            "id": req_id,
+            "result": {"resources": []}
+        })
+
+    elif method == "resources/read":
+        uri = body.get("params", {}).get("uri", "")
+        ui_id = uri.replace("ui://", "")
+        print(f"\n📖 resources/read: uri={uri} → lookup key={ui_id}")
+        # Check dynamic UUIDs first, then static keys
+        html = ui_resources.get(ui_id) or ui_latest.get(ui_id)
+        print(f"   Found: {bool(html)} ({len(html) if html else 0} bytes)")
+        if html:
+            return JSONResponse({
+                "jsonrpc": "2.0",
+                "id": req_id,
+                "result": {
+                    "contents": [{
+                        "uri": uri,
+                        "mimeType": "text/html",
+                        "text": html
+                    }]
+                }
+            })
+        return JSONResponse({
+            "jsonrpc": "2.0",
+            "id": req_id,
+            "error": {"code": -32602, "message": f"Resource not found: {uri}"}
+        })
+
+    return JSONResponse({
+        "jsonrpc": "2.0",
+        "id": req_id,
+        "error": {"code": -32601, "message": f"Method not found: {method}"}
+    })
 
 @app.get("/ui/{ui_id}")
 async def get_ui_resource(ui_id: str):
@@ -186,72 +262,64 @@ async def get_ui_resource(ui_id: str):
     return HTMLResponse("<h1>UI not found</h1>", status_code=404)
 
 def generate_chart_ui(data: list, labels: list, chart_type: str) -> str:
-    """Generate D3.js chart HTML"""
+    """Generate chart HTML with inline SVG (no external dependencies)"""
     if not labels:
         labels = [f"Item {i+1}" for i in range(len(data))]
+    if not data:
+        data = [10, 25, 40, 30, 55]
+        labels = ["A", "B", "C", "D", "E"]
     
+    max_val = max(data) if data else 1
+    width = 500
+    height = 300
+    margin_left = 50
+    margin_bottom = 40
+    bar_gap = 8
+    chart_width = width - margin_left - 20
+    chart_height = height - margin_bottom - 20
+    bar_width = (chart_width - bar_gap * len(data)) / len(data)
+    
+    colors = ["#4F46E5", "#7C3AED", "#2563EB", "#0891B2", "#059669", "#D97706", "#DC2626", "#DB2777"]
+    
+    bars_svg = ""
+    labels_svg = ""
+    for i, val in enumerate(data):
+        bar_h = (val / max_val) * chart_height
+        x = margin_left + i * (bar_width + bar_gap)
+        y = 20 + chart_height - bar_h
+        color = colors[i % len(colors)]
+        bars_svg += f'<rect x="{x}" y="{y}" width="{bar_width}" height="{bar_h}" fill="{color}" rx="4"><title>{labels[i]}: {val}</title></rect>'
+        labels_svg += f'<text x="{x + bar_width/2}" y="{height - 10}" text-anchor="middle" font-size="11" fill="#666">{labels[i]}</text>'
+        bars_svg += f'<text x="{x + bar_width/2}" y="{y - 5}" text-anchor="middle" font-size="11" fill="#333" font-weight="bold">{val}</text>'
+
+    # Y-axis ticks
+    y_axis = ""
+    for i in range(5):
+        tick_val = int(max_val * i / 4)
+        y_pos = 20 + chart_height - (chart_height * i / 4)
+        y_axis += f'<text x="{margin_left - 8}" y="{y_pos + 4}" text-anchor="end" font-size="10" fill="#999">{tick_val}</text>'
+        y_axis += f'<line x1="{margin_left}" y1="{y_pos}" x2="{width - 20}" y2="{y_pos}" stroke="#eee" stroke-width="1"/>'
+
     return f"""<!DOCTYPE html>
 <html>
 <head>
-    <title>Chart Visualization</title>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
     <style>
-        body {{ margin: 0; padding: 20px; font-family: Arial, sans-serif; }}
-        .bar {{ fill: steelblue; }}
-        .bar:hover {{ fill: orange; }}
-        .axis {{ font-size: 12px; }}
-        .label {{ font-size: 14px; font-weight: bold; }}
+        body {{ margin: 0; padding: 20px; font-family: -apple-system, sans-serif; background: white; }}
+        h2 {{ margin: 0 0 16px 0; font-size: 18px; }}
+        .footer {{ margin-top: 16px; padding: 10px; background: #f8f9fa; border-radius: 6px; font-size: 12px; color: #666; }}
+        svg {{ display: block; }}
+        rect {{ transition: opacity 0.2s; cursor: pointer; }}
+        rect:hover {{ opacity: 0.8; }}
     </style>
 </head>
 <body>
     <h2>📊 {chart_type.capitalize()} Chart</h2>
-    <svg id="chart"></svg>
-    <div style="margin-top: 20px; padding: 10px; background: #f0f0f0; border-radius: 5px;">
-        <small>🎯 MCP Apps: Full HTML/JS application generated by agent</small>
-    </div>
-    <script>
-        const data = {json.dumps(data)};
-        const labels = {json.dumps(labels)};
-        const width = 600;
-        const height = 400;
-        const margin = {{top: 20, right: 20, bottom: 60, left: 60}};
-
-        const svg = d3.select("#chart")
-            .attr("width", width)
-            .attr("height", height);
-
-        const x = d3.scaleBand()
-            .domain(labels)
-            .range([margin.left, width - margin.right])
-            .padding(0.1);
-
-        const y = d3.scaleLinear()
-            .domain([0, d3.max(data)])
-            .nice()
-            .range([height - margin.bottom, margin.top]);
-
-        svg.selectAll(".bar")
-            .data(data)
-            .join("rect")
-            .attr("class", "bar")
-            .attr("x", (d, i) => x(labels[i]))
-            .attr("y", d => y(d))
-            .attr("width", x.bandwidth())
-            .attr("height", d => y(0) - y(d));
-
-        svg.append("g")
-            .attr("class", "axis")
-            .attr("transform", `translate(0,${{height - margin.bottom}})`)
-            .call(d3.axisBottom(x))
-            .selectAll("text")
-            .attr("transform", "rotate(-45)")
-            .style("text-anchor", "end");
-
-        svg.append("g")
-            .attr("class", "axis")
-            .attr("transform", `translate(${{margin.left}},0)`)
-            .call(d3.axisLeft(y));
-    </script>
+    <svg width="{width}" height="{height}" viewBox="0 0 {width} {height}">
+        {y_axis}
+        {bars_svg}
+        {labels_svg}
+    </svg>
+    <div class="footer">🎯 MCP Apps: Full HTML/JS application generated by agent • {len(data)} data points</div>
 </body>
 </html>"""
 
