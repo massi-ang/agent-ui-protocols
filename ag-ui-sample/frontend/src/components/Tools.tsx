@@ -83,13 +83,13 @@ export function Tools() {
     parameters: [
       {
         name: 'values',
-        type: 'array',
+        type: 'number[]',
         description: 'Array of numeric values to chart',
         required: true,
       },
       {
         name: 'labels',
-        type: 'array',
+        type: 'string[]',
         description: 'Optional labels for each value',
         required: false,
       },

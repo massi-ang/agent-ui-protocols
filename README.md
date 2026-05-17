@@ -44,7 +44,7 @@ AWS_SECRET_ACCESS_KEY=your_secret_key
 AWS_REGION=us-east-1
 
 # Bedrock Model
-BEDROCK_MODEL=anthropic.claude-3-5-sonnet-20241022-v2:0
+BEDROCK_MODEL=global.anthropic.claude-sonnet-4-6
 
 # Optional: Specific endpoint
 # AWS_ENDPOINT_URL=https://bedrock-runtime.us-east-1.amazonaws.com

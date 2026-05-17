@@ -23,5 +23,8 @@ COPY --from=frontend-builder /app/frontend/dist ./frontend/dist
 # Expose port
 EXPOSE 3002
 
+ENV PORT=3002
+
 # Start the application
-CMD ["python", "backend/app.py"]
+WORKDIR /app/backend
+CMD ["python", "app.py"]

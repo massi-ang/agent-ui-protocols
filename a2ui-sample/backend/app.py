@@ -2,18 +2,56 @@ import os
 import json
 import asyncio
 from fastapi import FastAPI, Request
-from fastapi.responses import StreamingResponse, FileResponse
+from fastapi.responses import StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from sse_starlette.sse import EventSourceResponse
 import uvicorn
 
-from agent import BedrockAgent
-from a2ui_generator import A2UIGenerator
+from google.adk.agents.llm_agent import LlmAgent
+from google.adk.runners import Runner
+from google.adk.sessions import InMemorySessionService
+from google.genai import types
+from a2ui.schema.manager import A2uiSchemaManager
+from a2ui.basic_catalog.provider import BasicCatalog
+from a2ui.parser.parser import parse_response
 
+# --- A2UI Schema Setup ---
+schema_manager = A2uiSchemaManager(
+    version="0.9",
+    catalogs=[BasicCatalog.get_config(version="0.9")],
+)
+
+_a2ui_instruction = schema_manager.generate_system_prompt(
+    role_description="You are a UI generation assistant. Generate rich interactive UIs based on user requests.",
+    workflow_description="Analyze the user's request and return A2UI JSON for forms, cards, or surveys.",
+    ui_description="Use TextField for inputs, Card for profiles, Column/Row for layout, Button for actions, Text for labels.",
+    include_schema=True,
+    include_examples=True,
+)
+
+# Use a simple instruction for ADK (no curly braces) and prepend the A2UI schema as a user context
+instruction = "You are a UI generation assistant. Follow the A2UI schema provided in the conversation to generate valid A2UI JSON."
+
+# --- ADK Agent with Bedrock (Claude) ---
+model_id = os.getenv("BEDROCK_MODEL", "global.anthropic.claude-sonnet-4-6")
+region = os.getenv("AWS_REGION", "us-east-1")
+os.environ.setdefault("AWS_REGION_NAME", region)
+
+agent = LlmAgent(
+    model=f"bedrock/{model_id}",
+    name="a2ui_agent",
+    description="An agent that generates A2UI interfaces",
+    instruction=instruction,
+)
+
+# --- Runner ---
+session_service = InMemorySessionService()
+runner = Runner(agent=agent, app_name="a2ui_sample", session_service=session_service)
+
+# --- FastAPI App ---
 app = FastAPI(title="A2UI Sample")
 
-# CORS middleware
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -22,50 +60,65 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Initialize agent and A2UI generator
-bedrock_agent = BedrockAgent()
-a2ui_gen = A2UIGenerator()
 
 @app.post("/api/chat")
 async def chat(request: Request):
     """Handle chat messages and stream A2UI responses"""
     body = await request.json()
     message = body.get("message", "")
-    
+
     async def generate():
-        # Get agent response
-        agent_response = await bedrock_agent.process(message)
-        
-        # Determine UI type based on response
-        if "form" in message.lower() or "input" in message.lower():
-            ui_type = "form"
-        elif "card" in message.lower() or "profile" in message.lower():
-            ui_type = "card"
-        elif "survey" in message.lower() or "question" in message.lower():
-            ui_type = "survey"
-        else:
-            ui_type = "card"
-        
-        # Generate A2UI JSONL messages
-        a2ui_messages = a2ui_gen.generate(ui_type, {
-            "title": agent_response.get("title", "Generated UI"),
-            "fields": agent_response.get("fields", []),
-            "data": agent_response.get("data", {}),
-        })
-        
-        # Stream each JSONL message
-        for msg in a2ui_messages:
+        try:
+            session = await session_service.create_session(
+                app_name="a2ui_sample", user_id="user"
+            )
+
+            content = types.Content(
+                role="user", parts=[
+                    types.Part(text=_a2ui_instruction + "\n\nUser request: " + message)
+                ]
+            )
+
+            final_text = ""
+            async for event in runner.run_async(
+                user_id="user", session_id=session.id, new_message=content
+            ):
+                if event.content and event.content.parts:
+                    for part in event.content.parts:
+                        if part.text:
+                            final_text += part.text
+
+            # Parse A2UI from the response
+            response_parts = parse_response(final_text)
+
+            for part in response_parts:
+                if part.a2ui_json:
+                    yield {
+                        "event": "message",
+                        "data": json.dumps({"a2ui": part.a2ui_json}),
+                    }
+                elif part.text:
+                    yield {
+                        "event": "message",
+                        "data": json.dumps({"text": part.text}),
+                    }
+                await asyncio.sleep(0.05)
+
+        except Exception as e:
+            import traceback
+            traceback.print_exc()
             yield {
                 "event": "message",
-                "data": json.dumps(msg)
+                "data": json.dumps({"error": str(e)}),
             }
-            await asyncio.sleep(0.1)  # Simulate streaming
-    
+
     return EventSourceResponse(generate())
+
 
 @app.get("/health")
 async def health():
     return {"status": "ok", "service": "a2ui-sample"}
+
 
 # Serve static frontend files
 frontend_path = os.path.join(os.path.dirname(__file__), "../frontend/dist")
@@ -74,10 +127,4 @@ if os.path.exists(frontend_path):
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT", "3002"))
-    uvicorn.run(
-        "app:app",
-        host="0.0.0.0",
-        port=port,
-        reload=False,
-        log_level="info"
-    )
+    uvicorn.run("app:app", host="0.0.0.0", port=port, reload=False, log_level="info")

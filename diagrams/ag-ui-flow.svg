@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 900 520" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;">
+    <path d="M900,12L900,508C900,514.623 894.623,520 888,520L12,520C5.377,520 0,514.623 0,508L0,12C0,5.377 5.377,0 12,0L888,0C894.623,0 900,5.377 900,12Z" style="fill:rgb(15,15,26);"/>
+    <g transform="matrix(1,0,0,1,450,38)">
+        <text x="-87.495px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:18px;fill:rgb(165,180,252);">AG-UI Protocol Flow</text>
+    </g>
+    <g transform="matrix(1,0,0,1,450,56)">
+        <text x="-176.696px" y="0px" style="font-family:'Helvetica';font-size:11px;fill:rgb(100,116,139);">Controlled Generative UI — Pre-built components with bidirectional state</text>
+    </g>
+    <path d="M180,90L180,126C180,131.519 175.519,136 170,136L70,136C64.481,136 60,131.519 60,126L60,90C60,84.481 64.481,80 70,80L170,80C175.519,80 180,84.481 180,90Z" style="fill:rgb(129,140,248);fill-opacity:0.12;stroke:rgb(129,140,248);stroke-width:1.5px;"/>
+    <g transform="matrix(1,0,0,1,120,105)">
+        <text x="-14.454px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:13px;fill:rgb(165,180,252);">User</text>
+    </g>
+    <g transform="matrix(1,0,0,1,120,121)">
+        <text x="-22.793px" y="0px" style="font-family:'Helvetica';font-size:10px;fill:rgb(100,116,139);">Chat input</text>
+    </g>
+    <path d="M420,90L420,126C420,131.519 415.519,136 410,136L290,136C284.481,136 280,131.519 280,126L280,90C280,84.481 284.481,80 290,80L410,80C415.519,80 420,84.481 420,90Z" style="fill:rgb(192,132,252);fill-opacity:0.12;stroke:rgb(192,132,252);stroke-width:1.5px;"/>
+    <g transform="matrix(1,0,0,1,350,105)">
+        <text x="-31.046px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:13px;fill:rgb(192,132,252);">CopilotKit</text>
+    </g>
+    <g transform="matrix(1,0,0,1,350,121)">
+        <text x="-34.463px" y="0px" style="font-family:'Helvetica';font-size:10px;fill:rgb(100,116,139);">React Frontend</text>
+    </g>
+    <path d="M660,90L660,126C660,131.519 655.519,136 650,136L530,136C524.481,136 520,131.519 520,126L520,90C520,84.481 524.481,80 530,80L650,80C655.519,80 660,84.481 660,90Z" style="fill:rgb(56,189,248);fill-opacity:0.12;stroke:rgb(56,189,248);stroke-width:1.5px;"/>
+    <g transform="matrix(1,0,0,1,590,111)">
+        <text x="-18.415px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:13px;fill:rgb(56,189,248);">Agent</text>
+    </g>
+    <path d="M180,108L272,108" style="fill:none;fill-rule:nonzero;stroke:rgb(100,116,139);stroke-width:1.5px;"/>
+    <path d="M268,103L276,108L268,113" style="fill:none;fill-rule:nonzero;stroke:rgb(100,116,139);stroke-width:1.5px;"/>
+    <path d="M420,108L512,108" style="fill:none;fill-rule:nonzero;stroke:rgb(100,116,139);stroke-width:1.5px;"/>
+    <path d="M508,103L516,108L508,113" style="fill:none;fill-rule:nonzero;stroke:rgb(100,116,139);stroke-width:1.5px;"/>
+    <circle cx="226" cy="108" r="10" style="fill:rgb(129,140,248);"/>
+    <g transform="matrix(1,0,0,1,226,112)">
+        <text x="-2.503px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:9px;fill:white;">1</text>
+    </g>
+    <circle cx="466" cy="108" r="10" style="fill:rgb(129,140,248);"/>
+    <g transform="matrix(1,0,0,1,466,112)">
+        <text x="-2.503px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:9px;fill:white;">2</text>
+    </g>
+    <g transform="matrix(1,0,0,1,466,92)">
+        <text x="-19.384px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(148,163,184);">+ UI state</text>
+    </g>
+    <g transform="matrix(1,0,0,0.923077,-65,20.461538)">
+        <path d="M660,125.167L660.078,155.04L590,156.437L590,175" style="fill:none;fill-rule:nonzero;stroke:rgb(100,116,139);stroke-width:1.5px;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,-65,7)">
+        <path d="M584,170L590,178L596,170" style="fill:none;fill-rule:nonzero;stroke:rgb(100,116,139);stroke-width:1.5px;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,-65,7)">
+        <path d="M590,185L630,210L590,235L550,210L590,185Z" style="fill:rgb(251,191,36);fill-opacity:0.1;fill-rule:nonzero;stroke:rgb(251,191,36);stroke-width:1.5px;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,525,221)">
+        <text x="-13.237px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:10px;fill:rgb(251,191,36);">T<tspan x="-7.866px -1.758px " y="0px 0px ">oo</tspan>l?</text>
+    </g>
+    <g transform="matrix(1,0,0,1,-27,-2)">
+        <circle cx="590" cy="165" r="10" style="fill:rgb(129,140,248);"/>
+    </g>
+    <g transform="matrix(1,0,0,1,563,167)">
+        <text x="-2.503px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:9px;fill:white;">3</text>
+    </g>
+    <g transform="matrix(1,0,0,1,-65,7)">
+        <path d="M550,210L340,210" style="fill:none;fill-rule:nonzero;stroke:rgb(251,191,36);stroke-width:1.5px;stroke-dasharray:6,3;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,-65,7)">
+        <path d="M347,204L339,210L347,216" style="fill:none;fill-rule:nonzero;stroke:rgb(251,191,36);stroke-width:1.5px;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,380,207)">
+        <text x="-23.008px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(251,191,36);">Server-side</text>
+    </g>
+    <g transform="matrix(1,0,0,1,-65,7)">
+        <path d="M340,193L340,227C340,231.415 336.415,235 332,235L208,235C203.585,235 200,231.415 200,227L200,193C200,188.585 203.585,185 208,185L332,185C336.415,185 340,188.585 340,193Z" style="fill:rgb(251,191,36);fill-opacity:0.08;stroke:rgb(251,191,36);stroke-width:1.5px;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,205,214)">
+        <text x="-32.569px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:12px;fill:rgb(251,191,36);">Server T<tspan x="14.575px 21.905px " y="0px 0px ">oo</tspan>l</text>
+    </g>
+    <g transform="matrix(1,0,0,1,205,230)">
+        <g transform="matrix(9,0,0,9,36.777832,0)">
+        </g>
+        <g transform="matrix(9,0,0,9,39.27832,0)">
+        </g>
+        <text x="-54.277px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(148,163,184);">get_weather(), get_proﬁle()</text>
+    </g>
+    <g transform="matrix(0.927273,0,0,1,-46.181818,7)">
+        <path d="M663.431,210L740,210" style="fill:none;fill-rule:nonzero;stroke:rgb(52,211,153);stroke-width:1.5px;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,-100,7)">
+        <path d="M733,204L741,210L733,216" style="fill:none;fill-rule:nonzero;stroke:rgb(52,211,153);stroke-width:1.5px;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,593,207)">
+        <text x="-21.259px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(52,211,153);">Client-side</text>
+    </g>
+    <g transform="matrix(1,0,0,1,-99,7)">
+        <path d="M880,193L880,227C880,231.415 876.415,235 872,235L748,235C743.585,235 740,231.415 740,227L740,193C740,188.585 743.585,185 748,185L872,185C876.415,185 880,188.585 880,193Z" style="fill:rgb(16,185,129);fill-opacity:0.08;stroke:rgb(52,211,153);stroke-width:1.5px;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,711.155273,211.759766)">
+        <text x="-30.554px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:12px;fill:rgb(52,211,153);">Client T<tspan x="12.56px 19.89px " y="0px 0px ">oo</tspan>l</text>
+    </g>
+    <g transform="matrix(1,0,0,1,711.422852,227)">
+        <text x="-50.524px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(148,163,184);">toggle_sidebar(), theme()</text>
+    </g>
+    <g transform="matrix(1,0,0,1,-65,7)">
+        <path d="M270,235L270,290" style="fill:none;fill-rule:nonzero;stroke:rgb(251,191,36);stroke-width:1.5px;stroke-dasharray:6,3;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,-65,7)">
+        <path d="M264,284L270,292L276,284" style="fill:none;fill-rule:nonzero;stroke:rgb(251,191,36);stroke-width:1.5px;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,225,275)">
+        <text x="0px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(148,163,184);">data</text>
+    </g>
+    <g transform="matrix(1,0,0,1,-65,7)">
+        <circle cx="270" cy="255" r="10" style="fill:rgb(251,191,36);"/>
+    </g>
+    <g transform="matrix(1,0,0,1,205,266)">
+        <text x="-5.005px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:9px;fill:white;">4a</text>
+    </g>
+    <g transform="matrix(1,0,0,1,-99,7)">
+        <path d="M810,235L810,290" style="fill:none;fill-rule:nonzero;stroke:rgb(52,211,153);stroke-width:1.5px;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,-99,5)">
+        <path d="M804,284L810,292L816,284" style="fill:none;fill-rule:nonzero;stroke:rgb(52,211,153);stroke-width:1.5px;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,720.709961,278.618164)">
+        <text x="0px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(148,163,184);">setState</text>
+    </g>
+    <g transform="matrix(1,0,0,1,-99,7)">
+        <circle cx="810" cy="255" r="10" style="fill:rgb(52,211,153);"/>
+    </g>
+    <g transform="matrix(1,0,0,1,711,266)">
+        <text x="-5.251px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:9px;fill:white;">4b</text>
+    </g>
+    <g transform="matrix(1,0,0,1,-65,7)">
+        <path d="M360,303L360,337C360,341.415 356.415,345 352,345L168,345C163.585,345 160,341.415 160,337L160,303C160,298.585 163.585,295 168,295L352,295C356.415,295 360,298.585 360,303Z" style="fill:rgb(129,140,248);fill-opacity:0.1;stroke:rgb(129,140,248);stroke-width:1.5px;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,195,324)">
+        <text x="-59.329px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:12px;fill:rgb(165,180,252);">Pre-built Component</text>
+    </g>
+    <g transform="matrix(1,0,0,1,195,340)">
+        <g transform="matrix(9,0,0,9,25.934326,0)">
+        </g>
+        <g transform="matrix(9,0,0,9,28.434814,0)">
+        </g>
+        <text x="-64.703px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(100,116,139);">&lt;W<tspan x="-51.111px -46.105px " y="0px 0px ">ea</tspan>therCard/&gt;, &lt;ProﬁleCard/&gt;</text>
+    </g>
+    <g transform="matrix(1,0,0,1,-92,7)">
+        <path d="M880,303L880,337C880,341.415 876.415,345 872,345L708,345C703.585,345 700,341.415 700,337L700,303C700,298.585 703.585,295 708,295L872,295C876.415,295 880,298.585 880,303Z" style="fill:rgb(16,185,129);fill-opacity:0.08;stroke:rgb(52,211,153);stroke-width:1.5px;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,701,323)">
+        <text x="-54.683px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:12px;fill:rgb(52,211,153);">React State Update</text>
+    </g>
+    <g transform="matrix(1,0,0,1,701,339)">
+        <text x="-35.347px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(100,116,139);">Instant (~10ms)</text>
+        <text x="29.929px" y="0px" style="font-family:'Menlo-Regular', 'Menlo', monospace;font-size:9px;fill:rgb(100,116,139);">⚡</text>
+    </g>
+    <g transform="matrix(1,0,0,1,-65,7)">
+        <path d="M260,345L260,385" style="fill:none;fill-rule:nonzero;stroke:rgb(129,140,248);stroke-width:1.5px;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,-65,7)">
+        <path d="M254,379L260,387L266,379" style="fill:none;fill-rule:nonzero;stroke:rgb(129,140,248);stroke-width:1.5px;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,-89,9)">
+        <path d="M790,345L790,385" style="fill:none;fill-rule:nonzero;stroke:rgb(52,211,153);stroke-width:1.5px;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,-89,9)">
+        <path d="M784,379L790,387L796,379" style="fill:none;fill-rule:nonzero;stroke:rgb(52,211,153);stroke-width:1.5px;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,-65,7)">
+        <path d="M840,400L840,430C840,435.519 835.519,440 830,440L170,440C164.481,440 160,435.519 160,430L160,400C160,394.481 164.481,390 170,390L830,390C835.519,390 840,394.481 840,400Z" style="fill:rgb(192,132,252);fill-opacity:0.08;stroke:rgb(192,132,252);stroke-width:1.5px;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,435,420)">
+        <text x="-78.625px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:13px;fill:rgb(192,132,252);">UI Renders Updated V<tspan x="57.672px 61.283px " y="0px 0px ">ie</tspan>w</text>
+    </g>
+    <g transform="matrix(1,0,0,1,435,436)">
+        <text x="-112.144px" y="0px" style="font-family:'Helvetica';font-size:10px;fill:rgb(100,116,139);">User sees interactive components + state changes</text>
+    </g>
+    <g transform="matrix(1,0,0,1,-65,7)">
+        <circle cx="500" cy="375" r="10" style="fill:rgb(192,132,252);"/>
+    </g>
+    <g transform="matrix(1,0,0,1,435,386)">
+        <text x="-2.503px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:9px;fill:white;">5</text>
+    </g>
+    <g transform="matrix(1,0,0,1,-65,7)">
+        <path d="M840,415L884.391,414.484L884,100L726,101" style="fill:none;fill-rule:nonzero;stroke:rgb(148,163,184);stroke-width:1px;stroke-dasharray:4,3;"/>
+    </g>
+    <path d="M667,103L659,108L667,113" style="fill:none;fill-rule:nonzero;stroke:rgb(148,163,184);stroke-width:1.5px;"/>
+    <g transform="matrix(-0,1,-1,-0,826,231.385742)">
+        <text x="0px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(100,116,139);">useCopilotReadable</text>
+    </g>
+    <path d="M370,468L370,497C370,501.415 366.415,505 362,505L38,505C33.585,505 30,501.415 30,497L30,468C30,463.585 33.585,460 38,460L362,460C366.415,460 370,463.585 370,468Z" style="fill:rgb(30,41,59);fill-opacity:0.6;stroke:rgb(99,102,241);stroke-opacity:0.15;stroke-width:1px;"/>
+    <path d="M50,480L80,480" style="fill:none;fill-rule:nonzero;stroke:rgb(251,191,36);stroke-width:1.5px;stroke-dasharray:6,3;"/>
+    <g transform="matrix(1,0,0,1,85,484)">
+        <text x="0px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(148,163,184);">Server path (500ms–2s)</text>
+    </g>
+    <path d="M200,480L230,480" style="fill:none;fill-rule:nonzero;stroke:rgb(52,211,153);stroke-width:1.5px;"/>
+    <g transform="matrix(1,0,0,1,235,484)">
+        <text x="0px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(148,163,184);">Client path (~10ms)</text>
+    </g>
+    <path d="M50,495L80,495" style="fill:none;fill-rule:nonzero;stroke:rgb(148,163,184);stroke-width:1px;stroke-dasharray:4,3;"/>
+    <g transform="matrix(1,0,0,1,85,499)">
+        <text x="0px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(148,163,184);">State feedback loop</text>
+    </g>
+</svg>

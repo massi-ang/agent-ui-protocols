@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connecting UI to AI Agents: AG-UI, A2UI & MCP Apps</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', () => hljs.highlightAll());</script>
     <style>
         * {
             margin: 0;
@@ -177,14 +180,21 @@
         }
 
         .code-block {
-            background: #2d3748;
-            color: #68d391;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: 0.85em;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            margin: 0;
             padding: 20px;
             border-radius: 10px;
-            font-family: 'Courier New', monospace;
-            overflow-x: auto;
-            margin: 20px 0;
-            font-size: 0.95em;
+        }
+
+        .code-block code {
+            font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
         }
 
         .architecture-diagram {
@@ -252,6 +262,60 @@
             margin: 5px;
         }
 
+        .nav-bar {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 420px;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            z-index: 1000;
+        }
+
+        .nav-bar button {
+            background: #667eea;
+            color: white;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .nav-bar button:hover {
+            background: #764ba2;
+        }
+
+        .nav-bar button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .nav-bar span {
+            font-size: 0.85em;
+            color: #555;
+            font-weight: 600;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         @media (max-width: 768px) {
             .slide {
                 padding: 30px 20px;
@@ -286,7 +350,7 @@
     <div class="presentation">
         
         <!-- Slide 1: Title -->
-        <div class="slide">
+        <div class="slide" id="slide-1">
             <h1>🤖 Connecting UI to AI Agents</h1>
             <p class="subtitle">Understanding AG-UI, A2UI, and MCP Apps Protocols</p>
             <div class="architecture-diagram">
@@ -298,7 +362,7 @@
         </div>
 
         <!-- Slide 2: The Problem -->
-        <div class="slide">
+        <div class="slide" id="slide-2">
             <h2>🎯 The Core Problem</h2>
             
             <div class="problem-box">
@@ -326,7 +390,7 @@
         </div>
 
         <!-- Slide 3: The Solution Landscape -->
-        <div class="slide">
+        <div class="slide" id="slide-3">
             <h2>🌟 Solution Landscape: Three Approaches</h2>
             
             <p style="font-size: 1.2em; margin-bottom: 30px;">Three major protocols have emerged to solve the agent-to-UI communication challenge, each with different trade-offs:</p>
@@ -360,7 +424,7 @@
         </div>
 
         <!-- Slide 4: AG-UI Protocol -->
-        <div class="slide">
+        <div class="slide" id="slide-4">
             <h2>1️⃣ AG-UI (Agent-User Interaction Protocol)</h2>
             
             <div class="protocol-card">
@@ -376,64 +440,55 @@
                 </div>
             </div>
 
-            <h3>🔧 Two Types of Tools</h3>
+            <h3 id="agui-tools">🔧 Two Types of Tools</h3>
             
             <div style="background: #e8f4f8; padding: 25px; border-radius: 12px; margin: 25px 0;">
                 <h4 style="color: #0984e3; margin-bottom: 15px;">📊 Server-Side Data Tools</h4>
-                <div class="code-block">
-// Fetch external data and render components
+                <p style="margin-bottom: 15px;">Fetch external data and render pre-built React components:</p>
+                <div class="code-block"><pre><code class="language-typescript">// Define a tool that fetches data and renders a component
 useFrontendTool({
   name: "get_weather",
   description: "Display weather information",
   parameters: z.object({ location: z.string() }),
-  render: ({ status, args, result }) => {
-    if (status === "executing") {
-      return &lt;WeatherLoadingState /&gt;;
-    }
-    return &lt;WeatherCard data={result} /&gt;;
+  render: ({ status, result }) => {
+    if (status === "executing") return <Spinner />;
+    return <WeatherCard data={result} />;
   }
-});
-
-// Agent calls: get_weather({ location: "San Francisco" })
-// UI automatically renders the WeatherCard component
+});</code></pre></div>
+                <div style="margin-top: 15px; padding: 15px; background: white; border-radius: 8px; border-left: 4px solid #0984e3;">
+                    <p style="margin: 0;"><strong>User:</strong> "Show me the weather in San Francisco"</p>
+                    <p style="margin: 5px 0 0 0; color: #666;">→ Agent calls <code>get_weather({ location: "San Francisco" })</code><br>
+                    → UI renders <code>&lt;WeatherCard&gt;</code> with live data</p>
                 </div>
             </div>
 
             <div style="background: #f3e8ff; padding: 25px; border-radius: 12px; margin: 25px 0;">
                 <h4 style="color: #6c5ce7; margin-bottom: 15px;">🎮 Client-Side UI Tools (Instant Updates!)</h4>
-                <div class="code-block">
-// Manipulate local UI state directly
+                <p style="margin-bottom: 15px;">Manipulate local React state directly — no server round-trip:</p>
+                <div class="code-block"><pre><code class="language-typescript">// 1. Define UI state
 const [uiState, setUiState] = useState({
-  sidebarOpen: true,
-  theme: 'light',
-  counter: 0
+  sidebarOpen: true, theme: 'light', counter: 0
 });
 
-// Make state readable by agent
-useCopilotReadable({
-  description: 'Current UI state',
-  value: uiState
-});
+// 2. Let agent READ the state
+useCopilotReadable({ description: 'Current UI state', value: uiState });
 
-// Create client-side tool
+// 3. Let agent MODIFY the state
 useCopilotAction({
   name: "toggle_sidebar",
-  description: "Toggle sidebar open/closed",
   handler: async ({ open }) => {
     setUiState(prev => ({ ...prev, sidebarOpen: open }));
     return `Sidebar ${open ? 'opened' : 'closed'}`;
   }
-});
-
-// Agent: "Close sidebar" → Instant UI update! ⚡
-// No server round-trip: ~10-50ms vs ~500ms-2s
+});</code></pre></div>
+                <div style="margin-top: 15px; padding: 15px; background: white; border-radius: 8px; border-left: 4px solid #6c5ce7;">
+                    <p style="margin: 0;"><strong>User:</strong> "Close the sidebar"</p>
+                    <p style="margin: 5px 0 0 0; color: #666;">→ Agent calls <code>toggle_sidebar({ open: false })</code><br>
+                    → React setState fires → UI updates in <strong>~10ms</strong> ⚡</p>
                 </div>
-                <p style="margin-top: 15px; color: #6c5ce7; font-weight: 600;">
-                    💡 Client-side tools enable instant UI updates without server latency!
-                </p>
             </div>
 
-            <h3>🎯 Client-Side Tool Examples</h3>
+            <h3 id="agui-client-examples">🎯 Client-Side Tool Examples</h3>
             <div style="background: #fff3cd; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #ffc107;">
                 <ul style="margin-left: 20px;">
                     <li><strong>Sidebar Control:</strong> "Close the sidebar" → Instant toggle</li>
@@ -470,7 +525,7 @@ useCopilotAction({
                 </div>
             </div>
 
-            <div style="background: linear-gradient(135deg, #a8e6cf 0%, #56ab91 100%); padding: 25px; border-radius: 12px; margin: 25px 0; color: white;">
+            <div id="agui-killer" style="background: linear-gradient(135deg, #a8e6cf 0%, #56ab91 100%); padding: 25px; border-radius: 12px; margin: 25px 0; color: white;">
                 <h3 style="color: white; margin-top: 0;">⚡ AG-UI's Killer Feature</h3>
                 <p style="font-size: 1.1em; margin-bottom: 15px; color: white;">
                     <strong>Direct client-side state manipulation</strong> is AG-UI's unique advantage:
@@ -499,7 +554,7 @@ useCopilotAction({
         </div>
 
         <!-- Slide 4.5: AG-UI Client-Side State Deep Dive -->
-        <div class="slide">
+        <div class="slide" id="slide-5">
             <h2>🎮 AG-UI: Client-Side State Control</h2>
             
             <div style="background: linear-gradient(135deg, #a8e6cf 0%, #56ab91 100%); padding: 30px; border-radius: 15px; margin-bottom: 30px; color: white;">
@@ -541,7 +596,7 @@ useCopilotAction({
                 </div>
             </div>
 
-            <h3>💬 Real-World Examples</h3>
+            <h3 id="agui-realworld">💬 Real-World Examples</h3>
             
             <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
                 <h4 style="color: #667eea;">Example 1: Simple Toggle</h4>
@@ -578,7 +633,7 @@ useCopilotAction({
                 <p style="color: #28a745; font-weight: 600;">✓ Chained actions feel instant!</p>
             </div>
 
-            <h3>🔄 Bidirectional Flow</h3>
+            <h3 id="agui-bidir">🔄 Bidirectional Flow</h3>
             
             <div class="architecture-diagram">
                 <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; align-items: center;">
@@ -624,7 +679,7 @@ useCopilotAction({
         </div>
 
         <!-- Slide 5: A2UI Protocol -->
-        <div class="slide">
+        <div class="slide" id="slide-6">
             <h2>2️⃣ A2UI (Agent-to-UI Protocol)</h2>
             
             <div class="protocol-card">
@@ -640,29 +695,27 @@ useCopilotAction({
                 </div>
             </div>
 
-            <h3>🔧 How It Works</h3>
-            <div class="code-block">
-// Agent streams A2UI messages (JSONL format):
-
+            <h3 id="a2ui-howitworks">🔧 How It Works</h3>
+            <p style="margin-bottom: 15px;">Agent streams JSONL messages describing UI structure. Renderer interprets and displays:</p>
+            <div class="code-block"><pre><code class="language-json">// Message 1: Define components
 {"surfaceUpdate": {
-  "surfaceId": "weather-ui",
+  "surfaceId": "contact-form",
   "components": [
-    {
-      "id": "weather-card",
-      "component": {
-        "Column": {
-          "children": ["title", "temperature", "conditions"]
-        }
-      }
-    },
-    {"id": "title", "component": {"Text": {"text": "San Francisco"}}},
-    {"id": "temperature", "component": {"Text": {"text": "72°F"}}}
+    {"id": "root",  "component": {"Column": {"children": ["title","name","email","submit"]}}},
+    {"id": "title", "component": {"Text": {"text": "Contact Us", "usageHint": "h2"}}},
+    {"id": "name",  "component": {"TextField": {"label": "Name", "placeholder": "Your name"}}},
+    {"id": "email", "component": {"TextField": {"label": "Email"}}},
+    {"id": "submit","component": {"Button": {"label": "Send"}}}
   ]
 }}
-{"dataModelUpdate": {...}}  // State updates
-{"beginRendering": {...}}   // Signal to render
 
-// Renderer interprets and displays the UI
+// Message 2: Bind data model
+{"dataModelUpdate": {"surfaceId": "contact-form", "path": "/", "contents": {}}}
+
+// Message 3: Signal to render
+{"beginRendering": {"surfaceId": "contact-form", "root": "root"}}</code></pre></div>
+            <div style="margin-top: 15px; padding: 15px; background: #f0f4ff; border-radius: 8px; border-left: 4px solid #667eea;">
+                <p style="margin: 0;"><strong>Result:</strong> Renderer receives these 3 messages and displays a fully interactive contact form with text inputs and a submit button — all from JSON, no HTML.</p>
             </div>
 
             <div class="pros-cons">
@@ -689,7 +742,7 @@ useCopilotAction({
                 </div>
             </div>
 
-            <h3>📦 A2UI Component Set</h3>
+            <h3 id="a2ui-components">📦 A2UI Component Set</h3>
             <div style="background: #f8f9fa; padding: 25px; border-radius: 12px; margin: 25px 0;">
                 <p style="margin-bottom: 15px;">A2UI includes ~22 primitive components:</p>
                 <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px;">
@@ -718,10 +771,39 @@ useCopilotAction({
                     <li><strong>Moderate Flexibility:</strong> Balance between control and freedom</li>
                 </ul>
             </div>
+
+            <div id="a2ui-bidir" style="background: #d4edda; padding: 25px; border-radius: 12px; margin: 25px 0; border-left: 5px solid #28a745;">
+                <h4 style="color: #155724; margin-bottom: 10px;">🔄 A2UI Bidirectional Communication</h4>
+                <p style="color: #155724; margin-bottom: 15px;">
+                    A2UI has <strong>built-in bidirectional support</strong> through its data model and action system:
+                </p>
+                <ul style="color: #155724; margin-bottom: 15px;">
+                    <li><strong>Agent → UI:</strong> <code>updateComponents</code> + <code>updateDataModel</code> messages stream UI and state to the renderer</li>
+                    <li><strong>UI → Agent:</strong> Components declare <code>actions</code> with events. When a user clicks a button or submits a form, the renderer fires the event with <code>context</code> containing bound data model values back to the agent</li>
+                    <li><strong>Data Binding:</strong> Components bind to paths in the data model (e.g., <code>/form/email</code>). User input updates the model locally; on submit, the full state is sent back</li>
+                </ul>
+                <div class="code-block"><pre><code class="language-json">// Button with action — sends data back to agent on click
+{
+  "id": "submit-btn",
+  "component": "Button",
+  "action": {
+    "event": {
+      "name": "form_submit",
+      "context": {
+        "email": {"path": "/form/email"},
+        "name": {"path": "/form/name"}
+      }
+    }
+  }
+}</code></pre></div>
+                <p style="color: #155724; font-size: 0.95em; margin-top: 10px;">
+                    <strong>vs MCP Apps:</strong> A2UI's bidirectional flow is part of the protocol spec and works today. MCP Apps relies on <code>postMessage</code> which most clients don't yet relay back to the agent.
+                </p>
+            </div>
         </div>
 
         <!-- Slide 6: MCP Apps Protocol -->
-        <div class="slide">
+        <div class="slide" id="slide-7">
             <h2>3️⃣ MCP Apps (Model Context Protocol Apps)</h2>
             
             <div class="protocol-card">
@@ -737,25 +819,23 @@ useCopilotAction({
                 </div>
             </div>
 
-            <h3>🔧 How It Works</h3>
-            <div class="code-block">
-// MCP Server exposes a tool with UI resource
-{
-  "tool": "create_diagram",
-  "_meta": {
-    "ui": {
-      "resourceUri": "ui://excalidraw-view"
-    }
-  }
-}
+            <h3 id="mcp-howitworks">🔧 How It Works</h3>
+            <p style="margin-bottom: 15px;">MCP server exposes tools that return full interactive web apps:</p>
+            <div class="code-block"><pre><code class="language-python"># 1. MCP Server declares a tool with a UI resource
+@server.tool()
+def create_chart(data: list, chart_type: str):
+    """Create an interactive chart visualization"""
+    return ToolResult(
+        content="Chart created successfully",
+        ui=UIResource(uri="ui://chart-view")  # ← full HTML app
+    )
 
-// Agent calls tool, returns result
-// Host fetches ui:// resource → HTML page
-// Renders in sandboxed iframe within chat
-
-// App communicates via postMessage
-app.send("tools/call", { tool: "update_data", params: {...} });
-host.send("ui/data-update", { newData: {...} });
+# 2. Host fetches the UI resource → gets complete HTML/JS
+# 3. Renders in sandboxed iframe within the chat
+# 4. App can communicate back via postMessage:
+# app.send("tools/call", { tool: "update_data", params: {...} })</code></pre></div>
+            <div style="margin-top: 15px; padding: 15px; background: #f0f4ff; border-radius: 8px; border-left: 4px solid #667eea;">
+                <p style="margin: 0;"><strong>Result:</strong> A fully interactive D3.js chart appears inline in Claude Desktop or VS Code — with zoom, hover tooltips, and the ability to request new data from the agent.</p>
             </div>
 
             <div class="pros-cons">
@@ -767,7 +847,7 @@ host.send("ui/data-update", { newData: {...} });
                         <li><strong>Existing Ecosystems:</strong> Use Three.js, D3, any JS library</li>
                         <li><strong>No Limits:</strong> Any UI that works in a browser</li>
                         <li><strong>Context Preservation:</strong> UI stays in conversation</li>
-                        <li><strong>Bidirectional:</strong> App can call back to MCP server</li>
+                        <li><strong>Bidirectional (spec):</strong> Spec defines postMessage for app↔host communication</li>
                     </ul>
                 </div>
                 <div class="cons">
@@ -779,22 +859,49 @@ host.send("ui/data-update", { newData: {...} });
                         <li><strong>Complexity:</strong> Requires building full web apps</li>
                         <li><strong>Limited Portability:</strong> Web-only, doesn't work on native mobile</li>
                         <li><strong>Client Support:</strong> Requires MCP Apps-capable host</li>
+                        <li><strong>Bidirectional Gap:</strong> Most clients (VS Code, Claude Desktop) don't yet relay user input from the iframe back to the agent conversation</li>
                     </ul>
                 </div>
             </div>
 
-            <h3>🎨 Real-World Example: Excalidraw MCP App</h3>
+            <div id="mcp-limitations" style="background: #fff3cd; padding: 25px; border-radius: 12px; margin: 25px 0; border-left: 5px solid #ffc107;">
+                <h4 style="color: #856404; margin-bottom: 10px;">⚠️ Bidirectional Communication: Current Reality</h4>
+                <p style="color: #856404; margin-bottom: 15px;">
+                    The MCP Apps spec defines <code>postMessage</code> for app↔host communication, but in practice:
+                </p>
+                <ul style="color: #856404; margin-bottom: 15px;">
+                    <li><strong>Agent → UI:</strong> ✅ Works — agent calls tool, server returns HTML, client renders it</li>
+                    <li><strong>UI → Agent:</strong> ❌ Not yet supported — user interactions in the iframe (form submissions, button clicks) cannot feed back into the agent conversation in most clients</li>
+                </ul>
+                <p style="color: #856404; font-size: 0.95em;">
+                    <strong>Result:</strong> MCP Apps are currently best for <em>displaying</em> rich interactive content, not for <em>collecting</em> user input that the agent can act on. The user must communicate choices back via text.
+                </p>
+            </div>
+
+            <h3 id="mcp-excalidraw">🎨 Real-World Example: Excalidraw MCP App</h3>
             <div style="background: #f8f9fa; padding: 25px; border-radius: 12px; margin: 25px 0;">
                 <p style="font-size: 1.1em; margin-bottom: 15px;"><strong>Use case:</strong> AI-powered diagramming</p>
                 <ol style="margin-left: 20px;">
                     <li>User: "Create a system architecture diagram for a microservices app"</li>
                     <li>Agent calls <code>create_view</code> tool with Excalidraw JSON elements</li>
-                    <li>MCP server returns fully interactive Excalidraw canvas</li>
-                    <li>Renders in Claude Desktop as iframe</li>
-                    <li>User can edit, save, export diagram directly in chat</li>
-                    <li>Agent can update diagram via further tool calls</li>
+                    <li>MCP server returns fully interactive Excalidraw canvas as HTML</li>
+                    <li>Renders in Claude Desktop as sandboxed iframe</li>
+                    <li>User can edit the diagram directly in the canvas</li>
+                    <li>User: "Add a database" → Agent calls tool again with updated elements → <strong>new iframe replaces the old one</strong></li>
                 </ol>
-                <p style="margin-top: 20px; color: #667eea; font-weight: 600;">Result: Full-featured diagramming app embedded in conversational AI interface</p>
+            </div>
+
+            <div style="background: #f8d7da; padding: 25px; border-radius: 12px; margin: 25px 0; border-left: 5px solid #dc3545;">
+                <h4 style="color: #721c24; margin-bottom: 10px;">⚠️ The Update & State Problem</h4>
+                <p style="color: #721c24; margin-bottom: 15px;">
+                    <strong>How does the agent "update" the diagram?</strong> It doesn't push into the iframe — it calls the tool again, generating a <em>completely new</em> HTML page. The client replaces the old iframe with the new one.
+                </p>
+                <p style="color: #721c24; margin-bottom: 15px;">
+                    <strong>What if the user edits the diagram in the UI?</strong> Those edits are <em>invisible to the agent</em>. They live only in the iframe's local JavaScript state. If the agent calls the tool again, user edits are lost (overwritten by the new render).
+                </p>
+                <p style="color: #721c24; font-size: 0.95em;">
+                    <strong>Workaround:</strong> The iframe app could persist state back to the MCP server via direct HTTP calls (e.g., <code>fetch('/save')</code>), so the server can merge user edits with agent updates on the next tool call. But this requires custom implementation — it's not part of the MCP Apps protocol.
+                </p>
             </div>
 
             <div class="use-case-box">
@@ -810,7 +917,7 @@ host.send("ui/data-update", { newData: {...} });
         </div>
 
         <!-- Slide 7: Comparison Table -->
-        <div class="slide">
+        <div class="slide" id="slide-8">
             <h2>⚖️ Side-by-Side Comparison</h2>
             
             <table class="comparison-table">
@@ -896,10 +1003,10 @@ host.send("ui/data-update", { newData: {...} });
                         <td>🟢 Yes (any JS)</td>
                     </tr>
                     <tr>
-                        <td><strong>Client-Side State</strong></td>
-                        <td>🟢 Direct manipulation</td>
-                        <td>🔴 Limited/indirect</td>
-                        <td>🟡 Via postMessage</td>
+                        <td><strong>Bidirectional (UI→Agent)</strong></td>
+                        <td>🟢 Direct (useCopilotReadable)</td>
+                        <td>🟢 Built-in (actions + events)</td>
+                        <td>🔴 Spec exists, clients lack support</td>
                     </tr>
                     <tr>
                         <td><strong>UI Update Latency</strong></td>
@@ -927,7 +1034,7 @@ host.send("ui/data-update", { newData: {...} });
         </div>
 
         <!-- Slide 8: Relationship to MCP and A2A -->
-        <div class="slide">
+        <div class="slide" id="slide-9">
             <h2>🔗 How They Relate: MCP & A2A</h2>
             
             <div style="background: linear-gradient(135deg, #a8e6cf 0%, #56ab91 100%); padding: 40px; border-radius: 15px; margin-bottom: 40px; color: white;">
@@ -1006,65 +1113,58 @@ host.send("ui/data-update", { newData: {...} });
         </div>
 
         <!-- Slide 9: Integration Examples -->
-        <div class="slide">
+        <div class="slide" id="slide-10">
             <h2>🎨 How They Work Together</h2>
             
-            <div class="relationship-grid">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 30px 0;">
                 <div class="relationship-card">
-                    <h3 style="color: #667eea;">🔧 MCP + MCP Apps</h3>
-                    <p><strong>Scenario:</strong> An agent uses MCP to access your calendar data, then returns an MCP App that renders an interactive schedule viewer.</p>
-                    <div class="code-block" style="font-size: 0.85em; margin-top: 15px;">
-1. Agent calls MCP tool: get_calendar()
-2. MCP server returns event data
-3. Agent processes data
-4. Agent returns MCP App with UI
-5. User views/interacts with calendar UI
-                    </div>
+                    <h3 style="color: #667eea; font-size: 1.3em;">🔧 MCP + MCP Apps</h3>
+                    <p><strong>Scenario:</strong> Agent accesses your calendar, then renders an interactive schedule viewer.</p>
+                    <ol style="margin-top: 12px; margin-left: 18px; font-size: 0.95em; line-height: 1.8;">
+                        <li>Agent calls MCP tool: <code>get_calendar()</code></li>
+                        <li>MCP server returns event data</li>
+                        <li>Agent processes and formats data</li>
+                        <li>Agent returns MCP App with interactive UI</li>
+                        <li>User views and interacts with calendar</li>
+                    </ol>
                 </div>
 
                 <div class="relationship-card">
-                    <h3 style="color: #667eea;">🤖 A2A + A2UI</h3>
-                    <p><strong>Scenario:</strong> A coordinator agent delegates to specialized agents, each returning A2UI components that combine into one interface.</p>
-                    <div class="code-block" style="font-size: 0.85em; margin-top: 15px;">
-1. User asks for financial report
-2. Coordinator agent (A2A) asks:
-   - Data agent for numbers
-   - Chart agent for visualization
-3. Each returns A2UI components
-4. Coordinator combines them
-5. User sees unified dashboard
-                    </div>
+                    <h3 style="color: #667eea; font-size: 1.3em;">🤖 A2A + A2UI</h3>
+                    <p><strong>Scenario:</strong> Coordinator delegates to specialized agents, each returning A2UI components.</p>
+                    <ol style="margin-top: 12px; margin-left: 18px; font-size: 0.95em; line-height: 1.8;">
+                        <li>User asks for a financial report</li>
+                        <li>Coordinator (A2A) delegates to sub-agents</li>
+                        <li>Data agent returns numbers, Chart agent returns visuals</li>
+                        <li>Each returns A2UI components</li>
+                        <li>Coordinator combines → unified dashboard</li>
+                    </ol>
                 </div>
 
                 <div class="relationship-card">
-                    <h3 style="color: #667eea;">🎯 MCP + AG-UI</h3>
-                    <p><strong>Scenario:</strong> An agent uses MCP to fetch data and triggers pre-built AG-UI components to display it consistently.</p>
-                    <div class="code-block" style="font-size: 0.85em; margin-top: 15px;">
-1. Agent calls MCP tool: get_user_data()
-2. MCP returns structured data
-3. Agent calls AG-UI tool: 
-   render_profile_card(data)
-4. Frontend renders pre-built 
-   ProfileCard component
-5. Consistent, type-safe UI
-                    </div>
+                    <h3 style="color: #667eea; font-size: 1.3em;">🎯 MCP + AG-UI</h3>
+                    <p><strong>Scenario:</strong> Agent fetches data via MCP, then triggers pre-built AG-UI components.</p>
+                    <ol style="margin-top: 12px; margin-left: 18px; font-size: 0.95em; line-height: 1.8;">
+                        <li>Agent calls MCP tool: <code>get_user_data()</code></li>
+                        <li>MCP returns structured data</li>
+                        <li>Agent calls AG-UI: <code>render_profile_card(data)</code></li>
+                        <li>Frontend renders pre-built ProfileCard</li>
+                        <li>Consistent, type-safe UI every time</li>
+                    </ol>
                 </div>
 
                 <div class="relationship-card">
-                    <h3 style="color: #667eea;">🌐 Full Stack Example</h3>
-                    <p><strong>Scenario:</strong> Multi-agent system with comprehensive UI generation.</p>
-                    <div class="code-block" style="font-size: 0.85em; margin-top: 15px;">
-User → Coordinator Agent
-  ↓ (A2A) → Research Agent
-     ↓ (MCP) → Web Search API
-     ↓ Returns A2UI summary card
-  ↓ (A2A) → Viz Agent
-     ↓ (MCP) → Data warehouse
-     ↓ Returns MCP App (D3 chart)
-  ↓ (AG-UI) → Render action buttons
-
-Result: Rich multi-source dashboard
-                    </div>
+                    <h3 style="color: #667eea; font-size: 1.3em;">🌐 Full Stack Example</h3>
+                    <p><strong>Scenario:</strong> Multi-agent system combining all protocols.</p>
+                    <ol style="margin-top: 12px; margin-left: 18px; font-size: 0.95em; line-height: 1.8;">
+                        <li>User → Coordinator Agent</li>
+                        <li>↳ <strong>A2A</strong> → Research Agent → <strong>MCP</strong> → Web Search</li>
+                        <li>↳ Returns <strong>A2UI</strong> summary card</li>
+                        <li>↳ <strong>A2A</strong> → Viz Agent → <strong>MCP</strong> → Data warehouse</li>
+                        <li>↳ Returns <strong>MCP App</strong> (D3 chart)</li>
+                        <li>↳ <strong>AG-UI</strong> renders action buttons</li>
+                    </ol>
+                    <p style="margin-top: 10px; font-weight: 600; color: #667eea;">Result: Rich multi-source dashboard</p>
                 </div>
             </div>
 
@@ -1085,7 +1185,7 @@ Result: Rich multi-source dashboard
         </div>
 
         <!-- Slide 10: Future & Conclusion -->
-        <div class="slide">
+        <div class="slide" id="slide-11">
             <h2>🚀 The Future of Agent-UI Communication</h2>
             
             <h3>🔮 Emerging Trends</h3>
@@ -1158,5 +1258,122 @@ Result: Rich multi-source dashboard
         </div>
     </div>
 
+    <div class="nav-bar">
+        <button onclick="navigate(-1)" id="nav-prev">←</button>
+        <span id="nav-label" style="cursor: pointer;" onclick="toggleToc()">1 / 22</span>
+        <button onclick="navigate(1)" id="nav-next">→</button>
+    </div>
+
+    <div id="toc" style="display:none; position:fixed; bottom:80px; left:50%; transform:translateX(-50%); background:rgba(255,255,255,0.97); backdrop-filter:blur(10px); padding:20px; border-radius:16px; box-shadow:0 8px 30px rgba(0,0,0,0.3); z-index:1001; max-height:60vh; overflow-y:auto; width:360px;">
+        <div style="font-weight:700; margin-bottom:10px; font-size:0.9em; color:#667eea;">📑 Table of Contents</div>
+        <div id="toc-list" style="font-size:0.82em; line-height:2;"></div>
+    </div>
+
+    <script>
+        const stops = [
+            { id: 'slide-1', label: 'Title' },
+            { id: 'slide-2', label: 'The Problem' },
+            { id: 'slide-3', label: 'Solution Landscape' },
+            { id: 'slide-4', label: 'AG-UI: Overview' },
+            { id: 'agui-tools', label: 'AG-UI: Two Types of Tools' },
+            { id: 'agui-client-examples', label: 'AG-UI: Client-Side Examples' },
+            { id: 'agui-killer', label: 'AG-UI: Killer Feature' },
+            { id: 'slide-5', label: 'AG-UI: State Deep Dive' },
+            { id: 'agui-realworld', label: 'AG-UI: Real-World Examples' },
+            { id: 'agui-bidir', label: 'AG-UI: Bidirectional Flow' },
+            { id: 'slide-6', label: 'A2UI: Overview' },
+            { id: 'a2ui-howitworks', label: 'A2UI: How It Works' },
+            { id: 'a2ui-components', label: 'A2UI: Component Set' },
+            { id: 'a2ui-bidir', label: 'A2UI: Bidirectional Comm' },
+            { id: 'slide-7', label: 'MCP Apps: Overview' },
+            { id: 'mcp-howitworks', label: 'MCP Apps: How It Works' },
+            { id: 'mcp-limitations', label: 'MCP Apps: Bidirectional Gap' },
+            { id: 'mcp-excalidraw', label: 'MCP Apps: Update & State Problem' },
+            { id: 'slide-8', label: 'Comparison Table' },
+            { id: 'slide-9', label: 'Protocol Stack: MCP & A2A' },
+            { id: 'slide-10', label: 'Integration Examples' },
+            { id: 'slide-11', label: 'Future & Conclusion' },
+        ];
+
+        let currentStop = 0;
+
+        function navigate(dir) {
+            const currentEl = document.getElementById(stops[currentStop].id);
+            const rect = currentEl ? currentEl.getBoundingClientRect() : null;
+            const atTop = rect && Math.abs(rect.top) < 50;
+
+            if (!atTop && dir === 1) {
+                // First click: align current section to top
+                currentEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                // Already at top (or going back): move to next/prev
+                currentStop = Math.max(0, Math.min(stops.length - 1, currentStop + dir));
+                document.getElementById(stops[currentStop].id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            updateNav();
+        }
+
+        function updateNav() {
+            document.getElementById('nav-label').textContent = (currentStop + 1) + ' / ' + stops.length + '  ' + stops[currentStop].label;
+            document.getElementById('nav-prev').disabled = currentStop === 0;
+            document.getElementById('nav-next').disabled = currentStop === stops.length - 1;
+            // Update TOC highlight
+            document.querySelectorAll('.toc-item').forEach((el, i) => {
+                el.style.fontWeight = i === currentStop ? '700' : '400';
+                el.style.color = i === currentStop ? '#667eea' : '#333';
+            });
+        }
+
+        function toggleToc() {
+            const toc = document.getElementById('toc');
+            toc.style.display = toc.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function goToStop(i) {
+            currentStop = i;
+            document.getElementById(stops[i].id).scrollIntoView({ behavior: 'smooth' });
+            updateNav();
+            document.getElementById('toc').style.display = 'none';
+        }
+
+        // Build TOC
+        const tocList = document.getElementById('toc-list');
+        stops.forEach((s, i) => {
+            const div = document.createElement('div');
+            div.className = 'toc-item';
+            div.style.cursor = 'pointer';
+            div.style.padding = '2px 8px';
+            div.style.borderRadius = '4px';
+            div.textContent = (i + 1) + '. ' + s.label;
+            div.onmouseover = () => div.style.background = '#f0f0ff';
+            div.onmouseout = () => div.style.background = '';
+            div.onclick = () => goToStop(i);
+            tocList.appendChild(div);
+        });
+
+        // Track scroll position
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const idx = stops.findIndex(s => s.id === entry.target.id);
+                    if (idx >= 0) { currentStop = idx; updateNav(); }
+                }
+            });
+        }, { threshold: 0.3 });
+
+        stops.forEach(s => {
+            const el = document.getElementById(s.id);
+            if (el) observer.observe(el);
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); navigate(1); }
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); navigate(-1); }
+            if (e.key === 'Escape') document.getElementById('toc').style.display = 'none';
+        });
+
+        updateNav();
+    </script>
 </body>
 </html>
