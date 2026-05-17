@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connecting UI to AI Agents: AG-UI, A2UI & MCP Apps</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-snap-type: y mandatory; overflow-y: scroll; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #333; }
+
+        .slide {
+            scroll-snap-align: start;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px 60px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .slide-inner {
+            background: white;
+            border-radius: 16px;
+            padding: 40px 50px;
+            box-shadow: 0 16px 50px rgba(0,0,0,0.3);
+            max-height: 90vh;
+            overflow: hidden;
+        }
+
+        h1 { font-size: 2.4em; color: #667eea; text-align: center; margin-bottom: 10px; }
+        h2 { font-size: 1.7em; color: #764ba2; margin-bottom: 16px; border-bottom: 2px solid #667eea; padding-bottom: 6px; }
+        h3 { font-size: 1.2em; color: #667eea; margin: 12px 0 6px; }
+        p, li { font-size: 0.92em; line-height: 1.6; margin-bottom: 6px; color: #444; }
+        ul { margin-left: 20px; }
+        .subtitle { text-align: center; font-size: 1.1em; color: #666; margin-bottom: 20px; }
+
+        .badge { display: inline-block; background: #667eea; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.75em; margin: 2px; }
+        .highlight { background: linear-gradient(120deg, #ffeaa7 0%, #fdcb6e 100%); padding: 1px 5px; border-radius: 3px; font-weight: 600; }
+
+        .stack { display: flex; flex-direction: column; gap: 8px; margin: 16px auto; max-width: 600px; }
+        .stack-layer { padding: 14px; border-radius: 8px; text-align: center; font-weight: 600; font-size: 0.9em; border: 2px solid #667eea; }
+        .flow-arrow { text-align: center; font-size: 1.2em; color: #667eea; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 12px 0; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 12px 0; }
+        .card { background: #f8f9fa; padding: 14px; border-radius: 10px; border-left: 4px solid #667eea; }
+        .card h4 { font-size: 0.95em; color: #667eea; margin-bottom: 4px; }
+        .card p { font-size: 0.82em; margin: 0; }
+
+        .pros { background: #d4edda; padding: 14px; border-radius: 10px; border-left: 4px solid #28a745; }
+        .cons { background: #f8d7da; padding: 14px; border-radius: 10px; border-left: 4px solid #dc3545; }
+        .pros h4 { color: #155724; font-size: 0.95em; margin-bottom: 6px; }
+        .cons h4 { color: #721c24; font-size: 0.95em; margin-bottom: 6px; }
+        .pros li, .cons li { font-size: 0.82em; line-height: 1.5; }
+
+        .comparison-table { width: 100%; border-collapse: collapse; font-size: 0.78em; margin: 10px 0; }
+        .comparison-table th { background: #667eea; color: white; padding: 8px; text-align: left; }
+        .comparison-table td { padding: 6px 8px; border-bottom: 1px solid #eee; }
+        .comparison-table tr:nth-child(even) { background: #f8f9fa; }
+
+        .cta { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-top: 16px; }
+        .cta a { background: white; color: #667eea; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9em; border: 2px solid #667eea; }
+
+        .nav-bar {
+            position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+            padding: 8px 16px; border-radius: 30px; box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+            display: flex; align-items: center; gap: 12px; z-index: 1000;
+        }
+        .nav-bar button { background: #667eea; color: white; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 0.9em; }
+        .nav-bar button:disabled { background: #ccc; cursor: not-allowed; }
+        .nav-bar span { font-size: 0.8em; color: #555; font-weight: 600; min-width: 140px; text-align: center; }
+
+        @media (max-width: 768px) {
+            .slide { padding: 20px; }
+            .slide-inner { padding: 24px; }
+            h1 { font-size: 1.8em; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 1: Title -->
+<div class="slide" id="slide-1"><div class="slide-inner">
+    <h1>🤖 Connecting UI to AI Agents</h1>
+    <p class="subtitle">AG-UI, A2UI, and MCP Apps Protocols</p>
+    <div style="text-align:center; font-size:2.5em; margin:30px 0;">🧠 Agent ↔️ 🖥️ Interface</div>
+    <p style="text-align:center; color:#667eea; font-weight:600;">The Evolution of Agent-UI Communication</p>
+</div></div>
+
+<!-- 2: The Problem -->
+<div class="slide" id="slide-2"><div class="slide-inner">
+    <h2>🎯 The Core Problem</h2>
+    <div style="background:#fff3cd; padding:16px; border-radius:10px; border-left:4px solid #e17055; margin-bottom:14px;">
+        <h3 style="color:#e17055;">Traditional AI agents respond with plain text</h3>
+        <ul>
+            <li>❌ Complex data (charts, forms) can't be expressed as text</li>
+            <li>❌ Poor UX — users parse long text instead of interacting with UI</li>
+            <li>❌ No real-time interactive interfaces</li>
+            <li>❌ No standardization across agent frameworks</li>
+        </ul>
+    </div>
+    <div style="background:#e8f4f8; padding:16px; border-radius:10px;">
+        <p style="font-weight:600; color:#0984e3;">💡 We need a standardized protocol for agents to:</p>
+        <ul>
+            <li>✅ Generate rich, interactive UIs</li>
+            <li>✅ Stream updates in real-time</li>
+            <li>✅ Maintain bidirectional communication</li>
+            <li>✅ Work across platforms with security/sandboxing</li>
+        </ul>
+    </div>
+</div></div>
+
+<!-- 3: Solution Landscape -->
+<div class="slide" id="slide-3"><div class="slide-inner">
+    <h2>🌟 Three Approaches</h2>
+    <div class="stack">
+        <div class="stack-layer" style="background:linear-gradient(135deg,#ffeaa7,#fdcb6e);">
+            <strong>AG-UI</strong> — Controlled Generative UI<br><span style="font-size:0.8em;font-weight:normal;">High Control | Pre-built Components | Type-Safe</span>
+        </div>
+        <div class="flow-arrow">↕️</div>
+        <div class="stack-layer" style="background:linear-gradient(135deg,#74b9ff,#0984e3);color:white;">
+            <strong>A2UI</strong> — Declarative Generative UI<br><span style="font-size:0.8em;font-weight:normal;">Balanced | JSON-based | Streaming</span>
+        </div>
+        <div class="flow-arrow">↕️</div>
+        <div class="stack-layer" style="background:linear-gradient(135deg,#a29bfe,#6c5ce7);color:white;">
+            <strong>MCP Apps</strong> — Open-ended Generative UI<br><span style="font-size:0.8em;font-weight:normal;">High Freedom | Full HTML/JS | Sandboxed</span>
+        </div>
+    </div>
+    <p style="text-align:center; margin-top:16px; color:#666;">
+        From most <span class="highlight">controlled</span> (AG-UI) to most <span class="highlight">flexible</span> (MCP Apps)
+    </p>
+</div></div>
+
+<!-- 4: AG-UI -->
+<div class="slide" id="slide-4"><div class="slide-inner">
+    <h2>1️⃣ AG-UI Protocol</h2>
+    <p><strong>Controlled generative UI</strong> — developers pre-build components, agent selects & provides data. Supports server-side data AND client-side state manipulation.</p>
+    <div style="margin:10px 0;"><span class="badge">Type-Safe</span><span class="badge">Bidirectional</span><span class="badge">Client-Side State</span><span class="badge">React</span></div>
+    <div class="grid-2">
+        <div class="card">
+            <h4>📊 Server-Side Tools</h4>
+            <p>Fetch external data → render pre-built components<br>Latency: 500ms–2s</p>
+            <p style="font-size:0.8em;color:#666;margin-top:4px;">"Show weather" → <code>get_weather()</code> → <code>&lt;WeatherCard/&gt;</code></p>
+        </div>
+        <div class="card" style="border-left-color:#6c5ce7;">
+            <h4 style="color:#6c5ce7;">🎮 Client-Side Tools</h4>
+            <p>Manipulate React state directly — no server round-trip<br>Latency: 10–50ms ⚡</p>
+            <p style="font-size:0.8em;color:#666;margin-top:4px;">"Close sidebar" → <code>toggle_sidebar()</code> → instant</p>
+        </div>
+    </div>
+    <div class="grid-2" style="margin-top:10px;">
+        <div class="pros">
+            <h4>✅ Advantages</h4>
+            <ul><li>Full developer control & type safety</li><li>Instant client-side updates (~10ms)</li><li>Bidirectional state (read + modify)</li><li>Offline capable, secure</li></ul>
+        </div>
+        <div class="cons">
+            <h4>⚠️ Limitations</h4>
+            <ul><li>Agent limited to pre-built components</li><li>Upfront component development needed</li><li>Not truly generative</li></ul>
+        </div>
+    </div>
+</div></div>
+
+<!-- 5: AG-UI State Deep Dive -->
+<div class="slide" id="slide-5"><div class="slide-inner">
+    <h2>🎮 AG-UI: Client-Side State</h2>
+    <p style="margin-bottom:12px;">AG-UI exposes <strong>local tools</strong> that the model can invoke to manipulate client-side state, and <strong>shares local state</strong> with the server so the model has full context.</p>
+    <div class="grid-3">
+        <div class="card"><h4>Simple Toggle</h4><p>"Close sidebar" → model calls local tool → <code>setState</code> ⚡</p></div>
+        <div class="card"><h4>Context-Aware</h4><p>"If counter > 10, reset" → model reads shared state, decides, acts</p></div>
+        <div class="card"><h4>Chained Actions</h4><p>"Close sidebar + dark theme + increment" → sequential local tool calls</p></div>
+    </div>
+    <div style="background:#f8f9fa; padding:14px; border-radius:10px; margin:12px 0; text-align:center;">
+        <strong>Agent (Bedrock)</strong> ↔️ <strong>UI State (React)</strong><br>
+        <span style="font-size:0.82em;color:#666;">State sync → client shares local state with agent | Local tools → agent invokes actions executed client-side</span>
+    </div>
+    <div style="background:linear-gradient(135deg,#a8e6cf,#56ab91); padding:14px; border-radius:10px; color:white;">
+        <h3 style="color:white; margin:0 0 6px;">⚡ AG-UI's Killer Feature</h3>
+        <ul style="color:white; font-size:0.88em;">
+            <li><strong>A2UI</strong>: Must regenerate JSON and stream full UI update (slower)</li>
+            <li><strong>MCP Apps</strong>: Requires postMessage through iframe (complex)</li>
+            <li><strong>AG-UI</strong>: Model invokes local tools → execution is client-side (fast!)</li>
+        </ul>
+    </div>
+</div></div>
+
+<!-- 6: A2UI -->
+<div class="slide" id="slide-6"><div class="slide-inner">
+    <h2>2️⃣ A2UI Protocol</h2>
+    <p><strong>Declarative generative UI</strong> (Google) — agent returns structured JSON describing components, frontend renders them.</p>
+    <div style="margin:8px 0;"><span class="badge">Google-backed</span><span class="badge">JSONL Streaming</span><span class="badge">Cross-Platform</span><span class="badge">~22 Components</span></div>
+    <div class="card" style="margin:12px 0;">
+        <h4>How It Works</h4>
+        <p>Agent streams 3 JSONL messages: <code>surfaceUpdate</code> (components) → <code>dataModelUpdate</code> (data) → <code>beginRendering</code> (render signal)</p>
+        <p style="font-size:0.82em;color:#666;">Result: Interactive form/card/dashboard from pure JSON — no HTML needed.</p>
+    </div>
+    <div class="grid-2">
+        <div class="pros">
+            <h4>✅ Advantages</h4>
+            <ul><li>True generative UI — agent creates structure</li><li>Cross-platform (iOS, Android, Web)</li><li>Built-in bidirectional (actions + events)</li><li>Streaming support</li></ul>
+        </div>
+        <div class="cons">
+            <h4>⚠️ Limitations</h4>
+            <ul><li>Only ~22 built-in components</li><li>Renderer required per platform</li><li>Less styling control</li><li>Complex state management</li></ul>
+        </div>
+    </div>
+    <p style="font-size:0.85em; background:#d4edda; padding:10px; border-radius:6px; margin-top:8px;">
+        <strong>Bidirectional:</strong> Components declare actions with events. User clicks → renderer fires event with bound data back to agent.
+    </p>
+</div></div>
+
+<!-- 7: MCP Apps -->
+<div class="slide" id="slide-7"><div class="slide-inner">
+    <h2>3️⃣ MCP Apps</h2>
+    <p><strong>Open-ended generative UI</strong> — complete HTML/CSS/JS apps rendered in sandboxed iframes within MCP hosts (Claude Desktop, VS Code).</p>
+    <div style="margin:8px 0;"><span class="badge">Full HTML/JS</span><span class="badge">Sandboxed</span><span class="badge">Claude/VS Code</span><span class="badge">Max Freedom</span></div>
+    <div class="card" style="margin:12px 0;">
+        <h4>How It Works</h4>
+        <p>MCP server tool returns <code>UIResource(uri="ui://chart-view")</code> → host fetches full HTML → renders in sandboxed iframe inline in chat.</p>
+    </div>
+    <div class="grid-2">
+        <div class="pros">
+            <h4>✅ Advantages</h4>
+            <ul><li>Maximum flexibility — full web platform</li><li>Use any JS library (D3, Three.js)</li><li>Rich interactivity (3D, video, animations)</li><li>Context preserved in conversation</li></ul>
+        </div>
+        <div class="cons">
+            <h4>⚠️ Limitations</h4>
+            <ul><li>Security: must sandbox untrusted code</li><li>UI→Agent not yet supported in most clients</li><li>Updates replace entire iframe (state lost)</li><li>Web-only, no native mobile</li></ul>
+        </div>
+    </div>
+    <p style="font-size:0.85em; background:#fff3cd; padding:10px; border-radius:6px; margin-top:8px;">
+        <strong>⚠️ Current gap:</strong> Agent→UI works. UI→Agent (postMessage) spec exists but clients don't relay it back yet. Best for <em>displaying</em> rich content, not collecting input.
+    </p>
+</div></div>
+
+<!-- 8: Comparison -->
+<div class="slide" id="slide-8"><div class="slide-inner">
+    <h2>⚖️ Comparison</h2>
+    <table class="comparison-table">
+        <thead><tr><th>Aspect</th><th>AG-UI</th><th>A2UI</th><th>MCP Apps</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Control</strong></td><td>🟢 High (Dev)</td><td>🟡 Medium</td><td>🔴 Low (Agent)</td></tr>
+            <tr><td><strong>Agent Freedom</strong></td><td>🔴 Low</td><td>🟡 Medium</td><td>🟢 High</td></tr>
+            <tr><td><strong>UI Definition</strong></td><td>Pre-built Components</td><td>JSON Spec</td><td>Full HTML/JS</td></tr>
+            <tr><td><strong>Type Safety</strong></td><td>🟢 Full</td><td>🟡 Partial</td><td>🔴 None</td></tr>
+            <tr><td><strong>Security</strong></td><td>🟢 Very Safe</td><td>🟢 Safe</td><td>🟡 Sandboxing needed</td></tr>
+            <tr><td><strong>Platform</strong></td><td>Web-focused</td><td>🟢 Cross-platform</td><td>Web-only</td></tr>
+            <tr><td><strong>Bidirectional</strong></td><td>🟢 Direct</td><td>🟢 Built-in</td><td>🔴 Not yet in clients</td></tr>
+            <tr><td><strong>Update Latency</strong></td><td>🟢 ~10ms</td><td>🟡 ~100-500ms</td><td>🔴 ~500ms-2s</td></tr>
+            <tr><td><strong>Dev Effort</strong></td><td>🟡 Medium</td><td>🟢 Low</td><td>🔴 High</td></tr>
+        </tbody>
+    </table>
+    <div style="background:#e8f4f8; padding:14px; border-radius:10px; margin-top:10px;">
+        <ul style="font-size:0.9em;">
+            <li><strong>AG-UI</strong> → need control, consistency, type safety</li>
+            <li><strong>A2UI</strong> → need cross-platform, streaming</li>
+            <li><strong>MCP Apps</strong> → need max flexibility, rich interactivity</li>
+        </ul>
+    </div>
+</div></div>
+
+<!-- 9: Protocol Stack -->
+<div class="slide" id="slide-9"><div class="slide-inner">
+    <h2>🔗 The Protocol Stack</h2>
+    <div class="grid-2" style="margin-bottom:14px;">
+        <div class="card">
+            <h4>📚 MCP (Model Context Protocol)</h4>
+            <p>Foundation — connects agents to tools, data, and resources. MCP Apps extends it with UI rendering.</p>
+        </div>
+        <div class="card">
+            <h4>🤝 A2A (Agent-to-Agent)</h4>
+            <p>Agents talk to other agents. Task delegation, secure communication, decentralized.</p>
+        </div>
+    </div>
+    <div class="stack">
+        <div class="stack-layer" style="background:#667eea;color:white;padding:10px;"><strong>UI Layer</strong> — AG-UI | A2UI | MCP Apps</div>
+        <div class="flow-arrow">⬇️</div>
+        <div class="stack-layer" style="background:#764ba2;color:white;padding:10px;"><strong>Agent Runtime</strong> — LangGraph | CrewAI | Strands | Custom</div>
+        <div class="flow-arrow">⬇️</div>
+        <div class="stack-layer" style="background:#0984e3;color:white;padding:10px;"><strong>Protocols</strong> — MCP (Agent↔Tools) | A2A (Agent↔Agent)</div>
+        <div class="flow-arrow">⬇️</div>
+        <div class="stack-layer" style="background:#56ab91;color:white;padding:10px;"><strong>External Systems</strong> — DBs | APIs | Files | Other Agents</div>
+    </div>
+</div></div>
+
+<!-- 10: Integration -->
+<div class="slide" id="slide-10"><div class="slide-inner">
+    <h2>🎨 How They Work Together</h2>
+    <div class="grid-2">
+        <div class="card">
+            <h4>🔧 MCP + MCP Apps</h4>
+            <p>Agent calls MCP tool → gets data → returns interactive HTML app (e.g., calendar viewer)</p>
+        </div>
+        <div class="card">
+            <h4>🤖 A2A + A2UI</h4>
+            <p>Coordinator delegates to sub-agents → each returns A2UI components → unified dashboard</p>
+        </div>
+        <div class="card">
+            <h4>🎯 MCP + AG-UI</h4>
+            <p>Agent fetches data via MCP → triggers pre-built AG-UI component → consistent, type-safe UI</p>
+        </div>
+        <div class="card">
+            <h4>🌐 Full Stack</h4>
+            <p>A2A delegates → MCP fetches → A2UI/MCP Apps render → AG-UI for actions. Mix & match!</p>
+        </div>
+    </div>
+    <div style="background:#fff3cd; padding:14px; border-radius:10px; margin-top:14px; border-left:4px solid #ffc107;">
+        <p style="font-size:0.9em; margin:0;"><strong>💡 Key:</strong> MCP = tools/data access | A2A = agent collaboration | AG-UI/A2UI/MCP Apps = human presentation. Composable — use all three in one app.</p>
+    </div>
+</div></div>
+
+<!-- 11: Future -->
+<div class="slide" id="slide-11"><div class="slide-inner">
+    <h2>🚀 Future & Conclusion</h2>
+    <div class="grid-2" style="margin-bottom:14px;">
+        <div class="card"><h4>📱 Cross-Platform Convergence</h4><p>A2UI on web, AG-UI patterns on mobile</p></div>
+        <div class="card"><h4>🤝 Hybrid Approaches</h4><p>AG-UI for critical flows + MCP Apps for rich content</p></div>
+        <div class="card"><h4>🔐 Enhanced Security</h4><p>Better sandboxing & permissions for agent-generated UI</p></div>
+        <div class="card"><h4>🎨 AI-Native Design Systems</h4><p>Design systems built for agent interfaces</p></div>
+    </div>
+    <div style="background:#f8f9fa; padding:14px; border-radius:10px; margin-bottom:14px; font-size:0.88em;">
+        <strong>Adoption (2026):</strong> MCP in 50+ clients | MCP Apps in Claude/VS Code | A2UI growing (React, Swift, C++) | AG-UI via CopilotKit | A2A at Linux Foundation
+    </div>
+    <div style="text-align:center; background:linear-gradient(135deg,#667eea,#764ba2); padding:20px; border-radius:12px; color:white;">
+        <p style="color:white; font-size:1em; margin-bottom:12px;"><strong>Best apps will use all three:</strong> AG-UI for critical flows, A2UI for dynamic content, MCP Apps for rich experiences.</p>
+        <div class="cta">
+            <a href="https://github.com/ag-ui-protocol/ag-ui" style="color:#667eea;">AG-UI →</a>
+            <a href="https://github.com/google/A2UI" style="color:#667eea;">A2UI →</a>
+            <a href="https://modelcontextprotocol.io/extensions/apps/overview" style="color:#667eea;">MCP Apps →</a>
+            <a href="https://github.com/EponaLab/agent-ui-protocols" style="color:#667eea;">📦 Samples →</a>
+        </div>
+    </div>
+</div></div>
+
+<div class="nav-bar">
+    <button onclick="navigate(-1)" id="nav-prev">←</button>
+    <span id="nav-label">1 / 11</span>
+    <button onclick="navigate(1)" id="nav-next">→</button>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+let current = 0;
+
+function navigate(dir) {
+    current = Math.max(0, Math.min(slides.length - 1, current + dir));
+    slides[current].scrollIntoView({ behavior: 'smooth' });
+    updateNav();
+}
+
+function updateNav() {
+    document.getElementById('nav-label').textContent = `${current + 1} / ${slides.length}`;
+    document.getElementById('nav-prev').disabled = current === 0;
+    document.getElementById('nav-next').disabled = current === slides.length - 1;
+}
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            current = [...slides].indexOf(e.target);
+            updateNav();
+        }
+    });
+}, { threshold: 0.5 });
+
+slides.forEach(s => observer.observe(s));
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); navigate(1); }
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); navigate(-1); }
+});
+
+updateNav();
+</script>
+</body>
+</html>
