@@ -71,6 +71,12 @@
         .cta a:hover { background: rgba(99, 102, 241, 0.3); border-color: #818cf8; }
 
         .callout { padding: 16px; border-radius: 12px; margin: 12px 0; }
+
+        .diagram { display: flex; flex-direction: column; align-items: center; gap: 0; margin: 16px 0; }
+        .diagram-row { display: flex; align-items: center; gap: 12px; }
+        .diagram-box { padding: 12px 20px; border-radius: 10px; font-size: 0.88em; font-weight: 600; text-align: center; border: 1px solid rgba(255,255,255,0.1); min-width: 140px; }
+        .diagram-arrow { color: #64748b; display: flex; align-items: center; justify-content: center; padding: 4px 0; }
+        .diagram-label { font-size: 0.75em; color: #64748b; font-weight: 400; margin-top: 2px; }
         .callout-warn { background: rgba(250, 204, 21, 0.08); border: 1px solid rgba(250, 204, 21, 0.2); }
         .callout-info { background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); }
         .callout-success { background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.2); }
@@ -354,9 +360,115 @@
     </div>
 </div></div>
 
+<!-- 12: AG-UI Flow Diagram -->
+<div class="slide" id="slide-12"><div class="slide-inner">
+    <h2><i data-lucide="git-pull-request" style="width:24px;height:24px;"></i> AG-UI Flow</h2>
+    <p style="margin-bottom:16px; color:#64748b;">How pre-built components and client-side state work together</p>
+    <div class="diagram">
+        <div class="diagram-row">
+            <div class="diagram-box" style="background:rgba(129,140,248,0.15); border-color:rgba(129,140,248,0.3); color:#a5b4fc;"><i data-lucide="user" style="width:14px;height:14px;display:inline;vertical-align:middle;"></i> User</div>
+            <div class="diagram-arrow"><i data-lucide="arrow-right" style="width:20px;height:20px;"></i></div>
+            <div class="diagram-box" style="background:rgba(192,132,252,0.15); border-color:rgba(192,132,252,0.3); color:#c084fc;"><i data-lucide="message-square" style="width:14px;height:14px;display:inline;vertical-align:middle;"></i> Chat Input</div>
+            <div class="diagram-arrow"><i data-lucide="arrow-right" style="width:20px;height:20px;"></i></div>
+            <div class="diagram-box" style="background:rgba(56,189,248,0.15); border-color:rgba(56,189,248,0.3); color:#38bdf8;"><i data-lucide="brain" style="width:14px;height:14px;display:inline;vertical-align:middle;"></i> Agent (Bedrock)</div>
+        </div>
+        <div class="diagram-arrow"><i data-lucide="arrow-down" style="width:20px;height:20px;"></i></div>
+        <div class="diagram-row" style="gap:24px;">
+            <div style="text-align:center;">
+                <div class="diagram-box" style="background:rgba(251,191,36,0.12); border-color:rgba(251,191,36,0.3); color:#fbbf24;"><i data-lucide="database" style="width:14px;height:14px;display:inline;vertical-align:middle;"></i> Server Tool Call</div>
+                <div class="diagram-label">get_weather(), get_profile()</div>
+            </div>
+            <div style="color:#64748b; font-size:0.85em; font-weight:500;">OR</div>
+            <div style="text-align:center;">
+                <div class="diagram-box" style="background:rgba(16,185,129,0.12); border-color:rgba(16,185,129,0.3); color:#34d399;"><i data-lucide="gamepad-2" style="width:14px;height:14px;display:inline;vertical-align:middle;"></i> Client Tool Call</div>
+                <div class="diagram-label">toggle_sidebar(), change_theme()</div>
+            </div>
+        </div>
+        <div class="diagram-arrow"><i data-lucide="arrow-down" style="width:20px;height:20px;"></i></div>
+        <div class="diagram-row">
+            <div class="diagram-box" style="background:rgba(129,140,248,0.15); border-color:rgba(129,140,248,0.3); color:#a5b4fc; min-width:300px;"><i data-lucide="component" style="width:14px;height:14px;display:inline;vertical-align:middle;"></i> Pre-built React Component Renders</div>
+        </div>
+        <div class="diagram-arrow"><i data-lucide="arrow-down" style="width:20px;height:20px;"></i></div>
+        <div class="diagram-row">
+            <div class="diagram-box" style="background:rgba(192,132,252,0.1); border-color:rgba(192,132,252,0.2); color:#c084fc; min-width:300px;"><i data-lucide="eye" style="width:14px;height:14px;display:inline;vertical-align:middle;"></i> useCopilotReadable → Agent sees updated state</div>
+        </div>
+    </div>
+    <div class="grid-2" style="margin-top:12px;">
+        <div class="callout callout-info" style="margin:0;"><p style="font-size:0.85em;margin:0;"><i data-lucide="clock" style="width:12px;height:12px;display:inline;vertical-align:middle;color:#38bdf8;"></i> <strong style="color:#38bdf8;">Server path:</strong> 500ms–2s (network + API)</p></div>
+        <div class="callout callout-success" style="margin:0;"><p style="font-size:0.85em;margin:0;"><i data-lucide="zap" style="width:12px;height:12px;display:inline;vertical-align:middle;color:#34d399;"></i> <strong style="color:#34d399;">Client path:</strong> ~10ms (local setState)</p></div>
+    </div>
+</div></div>
+
+<!-- 13: A2UI Flow Diagram -->
+<div class="slide" id="slide-13"><div class="slide-inner">
+    <h2><i data-lucide="git-pull-request" style="width:24px;height:24px;"></i> A2UI Flow</h2>
+    <p style="margin-bottom:16px; color:#64748b;">How declarative JSON becomes interactive UI</p>
+    <div class="diagram">
+        <div class="diagram-row">
+            <div class="diagram-box" style="background:rgba(129,140,248,0.15); border-color:rgba(129,140,248,0.3); color:#a5b4fc;"><i data-lucide="user" style="width:14px;height:14px;display:inline;vertical-align:middle;"></i> User Request</div>
+            <div class="diagram-arrow"><i data-lucide="arrow-right" style="width:20px;height:20px;"></i></div>
+            <div class="diagram-box" style="background:rgba(56,189,248,0.15); border-color:rgba(56,189,248,0.3); color:#38bdf8;"><i data-lucide="brain" style="width:14px;height:14px;display:inline;vertical-align:middle;"></i> ADK Agent</div>
+        </div>
+        <div class="diagram-arrow"><i data-lucide="arrow-down" style="width:20px;height:20px;"></i></div>
+        <div style="display:flex; gap:8px; align-items:stretch;">
+            <div class="diagram-box" style="background:rgba(251,191,36,0.12); border-color:rgba(251,191,36,0.3); color:#fbbf24; font-size:0.8em;"><i data-lucide="layout" style="width:12px;height:12px;display:inline;vertical-align:middle;"></i> surfaceUpdate<br><span style="font-weight:400;font-size:0.85em;color:#94a3b8;">Components</span></div>
+            <div class="diagram-box" style="background:rgba(16,185,129,0.12); border-color:rgba(16,185,129,0.3); color:#34d399; font-size:0.8em;"><i data-lucide="database" style="width:12px;height:12px;display:inline;vertical-align:middle;"></i> dataModelUpdate<br><span style="font-weight:400;font-size:0.85em;color:#94a3b8;">Bound Data</span></div>
+            <div class="diagram-box" style="background:rgba(192,132,252,0.12); border-color:rgba(192,132,252,0.3); color:#c084fc; font-size:0.8em;"><i data-lucide="play" style="width:12px;height:12px;display:inline;vertical-align:middle;"></i> beginRendering<br><span style="font-weight:400;font-size:0.85em;color:#94a3b8;">Render Signal</span></div>
+        </div>
+        <div class="diagram-arrow"><i data-lucide="arrow-down" style="width:20px;height:20px;"></i></div>
+        <div class="diagram-row">
+            <div class="diagram-box" style="background:rgba(129,140,248,0.15); border-color:rgba(129,140,248,0.3); color:#a5b4fc; min-width:280px;"><i data-lucide="monitor" style="width:14px;height:14px;display:inline;vertical-align:middle;"></i> A2UI Renderer (Svelte/React/Swift)</div>
+        </div>
+        <div class="diagram-arrow"><i data-lucide="arrow-down" style="width:20px;height:20px;"></i></div>
+        <div class="diagram-row">
+            <div class="diagram-box" style="background:rgba(16,185,129,0.12); border-color:rgba(16,185,129,0.3); color:#34d399; min-width:280px;"><i data-lucide="layout-grid" style="width:14px;height:14px;display:inline;vertical-align:middle;"></i> Interactive Form / Card / Dashboard</div>
+        </div>
+        <div class="diagram-arrow"><i data-lucide="arrow-up" style="width:20px;height:20px;color:#fb7185;"></i></div>
+        <div class="diagram-row">
+            <div class="diagram-box" style="background:rgba(244,63,94,0.1); border-color:rgba(244,63,94,0.2); color:#fb7185;"><i data-lucide="mouse-pointer-click" style="width:14px;height:14px;display:inline;vertical-align:middle;"></i> User Action → Event fired back to Agent</div>
+        </div>
+    </div>
+    <div class="callout callout-info" style="margin-top:12px;"><p style="font-size:0.85em;margin:0;"><i data-lucide="info" style="width:12px;height:12px;display:inline;vertical-align:middle;color:#38bdf8;"></i> Agent generates structure from ~22 primitives (TextInput, Button, DataTable, Card, etc.) — renderer handles platform-specific styling.</p></div>
+</div></div>
+
+<!-- 14: MCP Apps Flow Diagram -->
+<div class="slide" id="slide-14"><div class="slide-inner">
+    <h2><i data-lucide="git-pull-request" style="width:24px;height:24px;"></i> MCP Apps Flow</h2>
+    <p style="margin-bottom:16px; color:#64748b;">How full HTML apps are served and rendered in MCP hosts</p>
+    <div class="diagram">
+        <div class="diagram-row">
+            <div class="diagram-box" style="background:rgba(129,140,248,0.15); border-color:rgba(129,140,248,0.3); color:#a5b4fc;"><i data-lucide="user" style="width:14px;height:14px;display:inline;vertical-align:middle;"></i> User Prompt</div>
+            <div class="diagram-arrow"><i data-lucide="arrow-right" style="width:20px;height:20px;"></i></div>
+            <div class="diagram-box" style="background:rgba(56,189,248,0.15); border-color:rgba(56,189,248,0.3); color:#38bdf8;"><i data-lucide="brain" style="width:14px;height:14px;display:inline;vertical-align:middle;"></i> LLM (Host)</div>
+            <div class="diagram-arrow"><i data-lucide="arrow-right" style="width:20px;height:20px;"></i></div>
+            <div class="diagram-box" style="background:rgba(192,132,252,0.15); border-color:rgba(192,132,252,0.3); color:#c084fc;"><i data-lucide="wrench" style="width:14px;height:14px;display:inline;vertical-align:middle;"></i> MCP Tool Call</div>
+        </div>
+        <div class="diagram-arrow"><i data-lucide="arrow-down" style="width:20px;height:20px;"></i></div>
+        <div class="diagram-row">
+            <div class="diagram-box" style="background:rgba(251,191,36,0.12); border-color:rgba(251,191,36,0.3); color:#fbbf24; min-width:320px;"><i data-lucide="server" style="width:14px;height:14px;display:inline;vertical-align:middle;"></i> MCP Server returns UIResource(uri="ui://app")</div>
+        </div>
+        <div class="diagram-arrow"><i data-lucide="arrow-down" style="width:20px;height:20px;"></i></div>
+        <div class="diagram-row">
+            <div class="diagram-box" style="background:rgba(16,185,129,0.12); border-color:rgba(16,185,129,0.3); color:#34d399; min-width:320px;"><i data-lucide="globe" style="width:14px;height:14px;display:inline;vertical-align:middle;"></i> Host fetches HTML/CSS/JS from server</div>
+        </div>
+        <div class="diagram-arrow"><i data-lucide="arrow-down" style="width:20px;height:20px;"></i></div>
+        <div class="diagram-row">
+            <div class="diagram-box" style="background:rgba(129,140,248,0.15); border-color:rgba(129,140,248,0.3); color:#a5b4fc; min-width:320px; position:relative;">
+                <i data-lucide="shield" style="width:14px;height:14px;display:inline;vertical-align:middle;"></i> Sandboxed iframe in chat
+                <div class="diagram-label">D3 charts, 3D scenes, interactive tables, full web apps</div>
+            </div>
+        </div>
+        <div class="diagram-arrow" style="opacity:0.5;"><i data-lucide="arrow-up" style="width:20px;height:20px;color:#fb7185;"></i></div>
+        <div class="diagram-row">
+            <div class="diagram-box" style="background:rgba(244,63,94,0.08); border-color:rgba(244,63,94,0.15); color:#fb7185; opacity:0.6; font-size:0.82em;"><i data-lucide="message-circle" style="width:12px;height:12px;display:inline;vertical-align:middle;"></i> postMessage (spec exists, not yet relayed by clients)</div>
+        </div>
+    </div>
+    <div class="callout callout-warn" style="margin-top:12px;"><p style="font-size:0.85em;margin:0;"><i data-lucide="alert-triangle" style="width:12px;height:12px;display:inline;vertical-align:middle;color:#fbbf24;"></i> Updates replace the entire iframe — no incremental DOM patching. Best for self-contained visualizations.</p></div>
+</div></div>
+
 <div class="nav-bar">
     <button onclick="navigate(-1)" id="nav-prev"><i data-lucide="chevron-left" style="width:16px;height:16px;"></i></button>
-    <span id="nav-label">1 / 11</span>
+    <span id="nav-label">1 / 14</span>
     <button onclick="navigate(1)" id="nav-next"><i data-lucide="chevron-right" style="width:16px;height:16px;"></i></button>
     <span style="width:1px;height:20px;background:rgba(255,255,255,0.1);margin:0 4px;"></span>
     <button onclick="zoom(-1)"><i data-lucide="zoom-out" style="width:16px;height:16px;"></i></button>
