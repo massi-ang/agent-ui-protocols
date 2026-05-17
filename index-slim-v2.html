@@ -93,6 +93,14 @@
         .nav-bar button:disabled { background: rgba(255,255,255,0.05); color: #475569; border-color: rgba(255,255,255,0.05); cursor: not-allowed; }
         .nav-bar span { font-size: 0.94em; color: #64748b; font-weight: 500; min-width: 80px; text-align: center; }
 
+        .src-section { margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .src-section:last-child { border-bottom: none; }
+        .src-list { list-style: none; margin: 0; padding: 0; }
+        .src-list li { padding: 4px 0; font-size: 0.92em; display: flex; align-items: baseline; gap: 6px; }
+        .src-list li::before { content: "→"; color: #64748b; flex-shrink: 0; }
+        .src-list a { color: #a5b4fc; text-decoration: none; }
+        .src-list a:hover { text-decoration: underline; color: #c4b5fd; }
+
         @media (max-width: 768px) {
             .slide { padding: 16px; }
             .slide-inner { padding: 28px; border-radius: 16px; }
@@ -222,7 +230,7 @@
 <div class="slide" id="slide-6"><div class="slide-inner">
     <h2><i data-lucide="file-json" style="width:24px;height:24px;"></i> A2UI Protocol</h2>
     <p style="margin-bottom:8px;"><strong style="color:#e2e8f0;">Declarative generative UI</strong> (Google) — agent returns structured JSON describing components, frontend renders them.</p>
-    <div style="margin:8px 0;"><span class="badge">Google-backed</span><span class="badge">JSONL Streaming</span><span class="badge">Cross-Platform</span><span class="badge">~22 Components</span></div>
+    <div style="margin:8px 0;"><span class="badge">Google-backed</span><span class="badge">JSONL Streaming</span><span class="badge">Cross-Platform</span><span class="badge">~16 Components</span></div>
     <div class="card" style="margin:12px 0;">
         <h4><i data-lucide="workflow" style="width:14px;height:14px;"></i> How It Works</h4>
         <p>Agent streams 3 JSONL messages: <code style="color:#a5b4fc;">surfaceUpdate</code> (components) → <code style="color:#a5b4fc;">dataModelUpdate</code> (data) → <code style="color:#a5b4fc;">beginRendering</code> (render signal)</p>
@@ -235,7 +243,7 @@
         </div>
         <div class="cons">
             <h4><i data-lucide="alert-circle" style="width:14px;height:14px;"></i> Limitations</h4>
-            <ul><li>Only ~22 built-in components</li><li>Renderer required per platform</li><li>Less styling control</li><li>Complex state management</li></ul>
+            <ul><li>Only ~16 built-in components</li><li>Renderer required per platform</li><li>Less styling control</li><li>Complex state management</li></ul>
         </div>
     </div>
     <div class="callout callout-success" style="margin-top:8px;">
@@ -365,7 +373,7 @@
         <div class="card"><h4><i data-lucide="palette" style="width:14px;height:14px;"></i> AI-Native Design Systems</h4><p>Design systems built for agent interfaces</p></div>
     </div>
     <div style="background:rgba(30,41,59,0.6); padding:14px; border-radius:12px; margin-bottom:14px; font-size:0.85em; border:1px solid rgba(99,102,241,0.15); color:#94a3b8;">
-        <strong style="color:#e2e8f0;">Adoption (2026):</strong> MCP in 50+ clients | MCP Apps in Claude/VS Code | A2UI growing (React, Swift, C++) | AG-UI via CopilotKit | A2A at Linux Foundation
+        <strong style="color:#e2e8f0;">Adoption (2026):</strong> MCP in 300+ clients | MCP Apps in Claude/VS Code | A2UI growing (React, Angular, Flutter) | AG-UI via CopilotKit | A2A at Linux Foundation
     </div>
     <div style="text-align:center; background:linear-gradient(135deg, rgba(129,140,248,0.15), rgba(192,132,252,0.15)); padding:20px; border-radius:16px; border:1px solid rgba(129,140,248,0.3);">
         <p style="color:#e2e8f0; font-size:0.95em; margin-bottom:12px;"><strong>Best apps will use all three:</strong> AG-UI for critical flows, A2UI for dynamic content, MCP Apps for rich experiences.</p>
@@ -414,6 +422,75 @@
     <span style="width:1px;height:20px;background:rgba(255,255,255,0.1);margin:0 4px;"></span>
     <button onclick="zoom(-1)"><i data-lucide="zoom-out" style="width:16px;height:16px;"></i></button>
     <button onclick="zoom(1)"><i data-lucide="zoom-in" style="width:16px;height:16px;"></i></button>
+    <span style="width:1px;height:20px;background:rgba(255,255,255,0.1);margin:0 4px;"></span>
+    <button onclick="toggleSources()" title="Sources"><i data-lucide="book-open" style="width:16px;height:16px;"></i></button>
+</div>
+
+<!-- Sources Modal -->
+<div id="sources-modal" style="display:none; position:fixed; inset:0; z-index:2000; background:rgba(0,0,0,0.7); backdrop-filter:blur(4px); overflow-y:auto;" onclick="if(event.target===this)toggleSources()">
+    <div style="max-width:720px; margin:40px auto; background:rgba(30,30,50,0.98); border:1px solid rgba(99,102,241,0.3); border-radius:20px; padding:36px; box-shadow:0 24px 80px rgba(0,0,0,0.6); max-height:calc(100vh - 80px); overflow-y:auto;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+            <h2 style="margin:0; font-size:1.5em;"><i data-lucide="book-open" style="width:22px;height:22px;color:#818cf8;display:inline;vertical-align:middle;margin-right:8px;"></i>Sources & Validation</h2>
+            <button onclick="toggleSources()" style="background:rgba(99,102,241,0.2); border:1px solid rgba(99,102,241,0.3); color:#a5b4fc; width:32px; height:32px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center;"><i data-lucide="x" style="width:16px;height:16px;"></i></button>
+        </div>
+        <div style="font-size:0.82em; color:#64748b; margin-bottom:20px;">Research validated May 2026. All claims verified and corrected.</div>
+
+        <div class="src-section">
+            <h3 style="color:#fbbf24; font-size:1.05em; margin-bottom:8px;">Slide 4 — AG-UI Protocol</h3>
+            <ul class="src-list">
+                <li><a href="https://www.copilotkit.ai/blog/introducing-ag-ui-the-protocol-where-agents-meet-users" target="_blank">CopilotKit — Introducing AG-UI</a></li>
+                <li><a href="https://copilotkit.ai/ag-ui" target="_blank">AG-UI Protocol Overview</a></li>
+                <li><a href="https://strandsagents.com/docs/community/integrations/ag-ui/" target="_blank">Strands Agents — AG-UI Integration</a></li>
+            </ul>
+        </div>
+
+        <div class="src-section">
+            <h3 style="color:#38bdf8; font-size:1.05em; margin-bottom:8px;">Slide 6 — A2UI Protocol</h3>
+            <ul class="src-list">
+                <li><a href="https://developers.googleblog.com/introducing-a2ui-an-open-project-for-agent-driven-interfaces/" target="_blank">Google — Introducing A2UI</a></li>
+                <li><a href="https://a2ui.org/reference/components/" target="_blank">A2UI Component Gallery (16 components in standard catalog)</a></li>
+                <li><a href="https://a2ui.org/specification/v0.9-a2ui/" target="_blank">A2UI v0.9 Specification</a></li>
+                <li><a href="https://a2ui.org/reference/renderers/" target="_blank">A2UI Renderers — React, Lit, Angular, Flutter (SwiftUI planned)</a></li>
+            </ul>
+        </div>
+
+        <div class="src-section">
+            <h3 style="color:#c084fc; font-size:1.05em; margin-bottom:8px;">Slide 7 — MCP Apps</h3>
+            <ul class="src-list">
+                <li><a href="https://modelcontextprotocol.io/extensions/apps/overview" target="_blank">MCP Apps — Official Overview</a></li>
+                <li><a href="https://blog.modelcontextprotocol.io/posts/2026-01-26-mcp-apps/" target="_blank">MCP Apps Launch Announcement (Jan 2026)</a></li>
+                <li><a href="https://workos.com/blog/2026-01-27-mcp-apps" target="_blank">WorkOS — Rendering Interactive UIs in AI Clients</a></li>
+            </ul>
+        </div>
+
+        <div class="src-section">
+            <h3 style="color:#a5b4fc; font-size:1.05em; margin-bottom:8px;">Slide 9 — Protocol Stack (MCP & A2A)</h3>
+            <ul class="src-list">
+                <li><a href="https://www.anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation" target="_blank">Anthropic — MCP donated to Agentic AI Foundation (Linux Foundation)</a></li>
+                <li><a href="https://www.linuxfoundation.org/press/linux-foundation-launches-the-agent2agent-protocol-project-to-enable-secure-intelligent-communication-between-ai-agents" target="_blank">Linux Foundation — A2A Protocol Launch (June 2025)</a></li>
+                <li><a href="https://a2a-protocol.org/latest/" target="_blank">A2A Protocol — Official Site</a></li>
+            </ul>
+        </div>
+
+        <div class="src-section">
+            <h3 style="color:#34d399; font-size:1.05em; margin-bottom:8px;">Slide 11 — Adoption Claims</h3>
+            <ul class="src-list">
+                <li><a href="https://guptadeepak.com/research/mcp-enterprise-guide-2025/" target="_blank">MCP Enterprise Guide — 300+ clients, 5800+ servers</a></li>
+                <li><a href="https://www.linuxfoundation.org/press/a2a-protocol-surpasses-150-organizations-lands-in-major-cloud-platforms-and-sees-enterprise-production-use-in-first-year" target="_blank">A2A at Linux Foundation — 150+ organizations</a></li>
+                <li><a href="https://developers.googleblog.com/a2ui-v0-9-generative-ui/" target="_blank">A2UI v0.9 — Google Blog</a></li>
+            </ul>
+        </div>
+
+        <div class="src-section">
+            <h3 style="color:#fbbf24; font-size:1.05em; margin-bottom:8px;">Slide 12 — Call to Action</h3>
+            <ul class="src-list">
+                <li><a href="https://dojo.ag-ui.com" target="_blank">AG-UI Dojo</a></li>
+                <li><a href="https://docs.aws.amazon.com/bedrock-agentcore/" target="_blank">Amazon Bedrock AgentCore Docs</a></li>
+                <li><a href="https://github.com/ag-ui-protocol/ag-ui" target="_blank">AG-UI GitHub</a></li>
+                <li><a href="https://github.com/google/A2UI" target="_blank">A2UI GitHub</a></li>
+            </ul>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -421,6 +498,12 @@ let fontScale = 100;
 function zoom(dir) {
     fontScale += dir * 20;
     document.documentElement.style.fontSize = fontScale + '%';
+}
+
+function toggleSources() {
+    const m = document.getElementById('sources-modal');
+    m.style.display = m.style.display === 'none' ? 'flex' : 'none';
+    lucide.createIcons();
 }
 
 lucide.createIcons();
