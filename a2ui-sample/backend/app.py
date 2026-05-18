@@ -23,15 +23,44 @@ schema_manager = A2uiSchemaManager(
 )
 
 _a2ui_instruction = schema_manager.generate_system_prompt(
-    role_description="You are a UI generation assistant. Generate rich interactive UIs based on user requests.",
-    workflow_description="Analyze the user's request and return A2UI JSON for forms, cards, or surveys.",
+    role_description="You are a helpful assistant that generates rich interactive UIs.",
+    workflow_description="Analyze the user's request and return A2UI JSON for forms, cards, or data displays.",
     ui_description="Use TextField for inputs, Card for profiles, Column/Row for layout, Button for actions, Text for labels.",
     include_schema=True,
     include_examples=True,
 )
 
 # Use a simple instruction for ADK (no curly braces) and prepend the A2UI schema as a user context
-instruction = "You are a UI generation assistant. Follow the A2UI schema provided in the conversation to generate valid A2UI JSON."
+instruction = "You are a helpful assistant with access to tools. Use get_weather and get_bank_account to fetch real data, then generate A2UI JSON to display it visually. Follow the A2UI schema provided in the conversation. IMPORTANT: Always wrap your A2UI JSON output in <a2ui-json> and </a2ui-json> tags."
+
+
+def get_weather(city: str) -> str:
+    """Get current weather for a city including temperature, conditions, humidity, wind, and 3-day forecast."""
+    import json as j
+    data = {
+        "london": {"temp": 14, "conditions": "Partly Cloudy", "humidity": 72, "wind": "12 km/h SW", "forecast": [{"day": "Tue", "high": 16, "low": 11}, {"day": "Wed", "high": 18, "low": 12}, {"day": "Thu", "high": 15, "low": 10}]},
+        "tokyo": {"temp": 26, "conditions": "Sunny", "humidity": 55, "wind": "8 km/h E", "forecast": [{"day": "Tue", "high": 28, "low": 22}, {"day": "Wed", "high": 27, "low": 21}, {"day": "Thu", "high": 29, "low": 23}]},
+        "new york": {"temp": 22, "conditions": "Clear", "humidity": 45, "wind": "15 km/h NW", "forecast": [{"day": "Tue", "high": 24, "low": 18}, {"day": "Wed", "high": 21, "low": 16}, {"day": "Thu", "high": 23, "low": 17}]},
+    }
+    weather = data.get(city.lower(), {"temp": 20, "conditions": "Fair", "humidity": 60, "wind": "10 km/h", "forecast": [{"day": "Tue", "high": 22, "low": 15}, {"day": "Wed", "high": 21, "low": 14}, {"day": "Thu", "high": 23, "low": 16}]})
+    return j.dumps({"city": city, **weather})
+
+
+def get_bank_account() -> str:
+    """Get bank account summary including balances, recent transactions, and spending breakdown."""
+    import json as j
+    return j.dumps({
+        "accounts": [
+            {"name": "Checking", "balance": 4285.50, "number": "****4821"},
+            {"name": "Savings", "balance": 12740.00, "number": "****3390", "apy": "4.25%"},
+        ],
+        "recent_transactions": [
+            {"date": "2024-06-05", "description": "Grocery Store", "amount": -82.40},
+            {"date": "2024-06-04", "description": "Salary Deposit", "amount": 3500.00},
+            {"date": "2024-06-03", "description": "Electric Bill", "amount": -145.00},
+        ],
+        "monthly_spending": {"Housing": 1200, "Food": 380, "Transport": 145, "Entertainment": 210},
+    })
 
 # --- ADK Agent with Bedrock (Claude) ---
 model_id = os.getenv("BEDROCK_MODEL", "global.anthropic.claude-sonnet-4-6")
@@ -43,6 +72,7 @@ agent = LlmAgent(
     name="a2ui_agent",
     description="An agent that generates A2UI interfaces",
     instruction=instruction,
+    tools=[get_weather, get_bank_account],
 )
 
 # --- Runner ---
@@ -121,7 +151,9 @@ async def health():
 
 
 # Serve static frontend files
-frontend_path = os.path.join(os.path.dirname(__file__), "../frontend/dist")
+frontend_path = os.path.join(os.path.dirname(__file__), "static")
+if not os.path.exists(frontend_path):
+    frontend_path = os.path.join(os.path.dirname(__file__), "../frontend/out")
 if os.path.exists(frontend_path):
     app.mount("/", StaticFiles(directory=frontend_path, html=True), name="static")
 

@@ -1,13 +1,8 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
-import {
-  Renderer,
-  StateProvider,
-  ActionProvider,
-  ValidationProvider,
-  VisibilityProvider,
-} from "@json-render/react";
+import remarkGfm from "remark-gfm";
+import { NextAppProvider, PageRenderer } from "@json-render/next";
 import { registry } from "@/lib/registry";
 
 const AGENT_URL = process.env.NEXT_PUBLIC_AGENT_URL || "http://localhost:8081";
@@ -27,7 +22,6 @@ interface Message {
 
 function deriveInitialState(spec: Spec): Record<string, unknown> {
   const state: Record<string, unknown> = (spec as any).state || {};
-  // Extract defaultValue from Tabs components to seed state
   for (const el of Object.values(spec.elements)) {
     if (el.type === "Tabs" && el.props) {
       const bindState = (el.props.value as any)?.$bindState;
@@ -41,6 +35,27 @@ function deriveInitialState(spec: Spec): Record<string, unknown> {
   return state;
 }
 
+function injectTabVisibility(spec: Spec): Spec {
+  const elements = { ...spec.elements };
+  for (const [id, el] of Object.entries(elements)) {
+    if (el.type === "Tabs" && el.props && el.children) {
+      const bindState = (el.props.value as any)?.$bindState as string | undefined;
+      const tabs = el.props.tabs as Array<{ label: string; value: string }> | undefined;
+      if (bindState && tabs && el.children.length === tabs.length) {
+        el.children.forEach((childId, i) => {
+          if (elements[childId] && !(elements[childId] as any).visible) {
+            elements[childId] = {
+              ...elements[childId],
+              visible: { $state: bindState, eq: tabs[i].value },
+            } as any;
+          }
+        });
+      }
+    }
+  }
+  return { ...spec, elements };
+}
+
 export default function Home() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
@@ -48,6 +63,8 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
   const [streamingText, setStreamingText] = useState("");
+  const [showSpec, setShowSpec] = useState(false);
+  const lastSpecRef = useRef("");
   const [sidebarWidth, setSidebarWidth] = useState(380);
   const resizing = useRef(false);
 
@@ -121,6 +138,7 @@ export default function Home() {
                 setStreamingText(data.text);
               } else if (eventType === "spec") {
                 const parsed = JSON.parse(data.spec) as Spec;
+                lastSpecRef.current = data.spec;
                 setSpec(parsed);
               } else if (eventType === "done") {
                 if (textContent) {
@@ -218,14 +236,14 @@ export default function Home() {
                     : "bg-zinc-100 text-zinc-700 rounded-bl-md"
                 }`}
               >
-                <div className="prose prose-sm prose-zinc max-w-none [&>p]:m-0 [&>ul]:m-0"><ReactMarkdown>{m.content}</ReactMarkdown></div>
+                <div className={`prose prose-sm max-w-none [&>p]:m-0 [&>ul]:m-0 ${m.role === "user" ? "prose-invert" : "prose-zinc"}`}><ReactMarkdown remarkPlugins={[remarkGfm]}>{m.content}</ReactMarkdown></div>
               </div>
             </div>
           ))}
           {streamingText && (
             <div className="flex justify-start">
               <div className="max-w-[85%] px-3.5 py-2 rounded-2xl rounded-bl-md bg-zinc-100 text-zinc-700 text-sm">
-                <div className="prose prose-sm prose-zinc max-w-none [&>p]:m-0"><ReactMarkdown>{streamingText}</ReactMarkdown></div>
+                <div className="prose prose-sm prose-zinc max-w-none [&>p]:m-0"><ReactMarkdown remarkPlugins={[remarkGfm]}>{streamingText}</ReactMarkdown></div>
                 <span className="animate-pulse">▍</span>
               </div>
             </div>
@@ -283,19 +301,28 @@ export default function Home() {
       />
 
       {/* Canvas */}
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto flex flex-col">
         {spec ? (
-          <div className="max-w-3xl mx-auto p-10">
-            <StateProvider initialState={deriveInitialState(spec)}>
-              <VisibilityProvider>
-                <ActionProvider>
-                  <ValidationProvider>
-                    <Renderer spec={spec as any} registry={registry} />
-                  </ValidationProvider>
-                </ActionProvider>
-              </VisibilityProvider>
-            </StateProvider>
-          </div>
+          <>
+            <div className="flex items-center justify-between px-6 py-3 border-b border-zinc-200 bg-white sticky top-0 z-10">
+              <div className="flex gap-1 bg-zinc-100 rounded-lg p-0.5">
+                <button onClick={() => setShowSpec(false)} className={`px-3 py-1.5 text-xs font-medium rounded-md transition ${!showSpec ? "bg-white shadow-sm text-zinc-900" : "text-zinc-500"}`}>UI</button>
+                <button onClick={() => setShowSpec(true)} className={`px-3 py-1.5 text-xs font-medium rounded-md transition ${showSpec ? "bg-white shadow-sm text-zinc-900" : "text-zinc-500"}`}>Spec</button>
+              </div>
+              {showSpec && (
+                <button onClick={() => { navigator.clipboard.writeText(JSON.stringify(JSON.parse(lastSpecRef.current), null, 2)); }} className="px-3 py-1.5 text-xs font-medium text-zinc-600 bg-zinc-100 hover:bg-zinc-200 rounded-md transition">Copy</button>
+              )}
+            </div>
+            {showSpec ? (
+              <pre className="flex-1 p-6 text-xs font-mono text-zinc-700 bg-zinc-50 overflow-auto whitespace-pre-wrap">{JSON.stringify(spec, null, 2)}</pre>
+            ) : (
+              <div className="max-w-3xl mx-auto p-10 w-full">
+                <NextAppProvider registry={registry}>
+                  <PageRenderer spec={injectTabVisibility(spec) as any} initialState={deriveInitialState(spec)} />
+                </NextAppProvider>
+              </div>
+            )}
+          </>
         ) : (
           <div className="flex items-center justify-center h-full">
             <div className="text-center space-y-3">

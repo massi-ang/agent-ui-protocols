@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent-UI Protocols — Demos</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif; background: #0f0f1a; color: #e2e8f0; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .container { max-width: 800px; width: 100%; padding: 40px; }
+        h1 { font-size: 2em; font-weight: 800; background: linear-gradient(135deg, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px; }
+        .subtitle { color: #64748b; margin-bottom: 40px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .card { background: rgba(30,30,50,0.85); border: 1px solid rgba(99,102,241,0.2); border-radius: 16px; padding: 24px; text-decoration: none; transition: all 0.2s; display: block; }
+        .card:hover { border-color: rgba(99,102,241,0.5); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+        .card h2 { font-size: 1.1em; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+        .card p { font-size: 0.85em; color: #94a3b8; line-height: 1.5; }
+        .card .port { font-size: 0.75em; color: #64748b; margin-top: 10px; font-family: monospace; }
+        .badge { display: inline-block; font-size: 0.7em; padding: 2px 8px; border-radius: 10px; font-weight: 500; }
+        .ag-ui .badge { background: rgba(251,191,36,0.15); color: #fbbf24; }
+        .a2ui .badge { background: rgba(56,189,248,0.15); color: #38bdf8; }
+        .json-render .badge { background: rgba(16,185,129,0.15); color: #34d399; }
+        .mcp .badge { background: rgba(192,132,252,0.15); color: #c084fc; }
+        .slides { margin-top: 24px; text-align: center; }
+        .slides a { color: #a5b4fc; text-decoration: none; font-size: 0.9em; padding: 10px 20px; border: 1px solid rgba(99,102,241,0.3); border-radius: 10px; display: inline-block; transition: all 0.2s; }
+        .slides a:hover { background: rgba(99,102,241,0.15); border-color: #818cf8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Agent-UI Protocols</h1>
+        <p class="subtitle">Select a demo to open in a new window</p>
+        <div class="grid">
+            <a class="card ag-ui" href="http://localhost:3001" target="_blank">
+                <h2><span class="badge">AG-UI</span> CopilotKit + Strands</h2>
+                <p>Controlled generative UI with pre-built React components, client-side state, and bidirectional tools.</p>
+                <div class="port">localhost:3001</div>
+            </a>
+            <a class="card a2ui" href="http://localhost:3002" target="_blank">
+                <h2><span class="badge">A2UI</span> Google ADK + Svelte</h2>
+                <p>Declarative generative UI with JSON streaming, cross-platform components, and data binding.</p>
+                <div class="port">localhost:3002</div>
+            </a>
+            <a class="card json-render" href="http://localhost:3004" target="_blank">
+                <h2><span class="badge">json-render</span> Strands + shadcn/ui</h2>
+                <p>Schema-constrained generative UI with Zod catalog, Bedrock agent, and 36 predefined components.</p>
+                <div class="port">localhost:3004</div>
+            </a>
+            <a class="card mcp" href="http://localhost:3003/mcp" target="_blank">
+                <h2><span class="badge">MCP Apps</span> MCP Server</h2>
+                <p>Open-ended generative UI with full HTML/JS apps in sandboxed iframes. Connect via VS Code or Claude.</p>
+                <div class="port">localhost:3003/mcp (SSE)</div>
+            </a>
+        </div>
+        <div class="slides">
+            <a href="index-slim-v2.html" target="_blank">📊 Open Presentation Slides</a>
+        </div>
+    </div>
+</body>
+</html>
