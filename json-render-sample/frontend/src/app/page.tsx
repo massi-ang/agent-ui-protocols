@@ -39,22 +39,12 @@ export default function Home() {
       const res = await fetch(`${AGENT_URL}/api/generate`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt, previousSpec: spec }),
+        body: JSON.stringify({ prompt }),
       });
 
-      const reader = res.body?.getReader();
-      const decoder = new TextDecoder();
-      let buffer = "";
-
-      if (reader) {
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          buffer += decoder.decode(value, { stream: true });
-        }
-      }
-
-      const jsonMatch = buffer.match(/\{[\s\S]*\}/);
+      const data = await res.json();
+      const specStr = typeof data.spec === "string" ? data.spec : JSON.stringify(data.spec);
+      const jsonMatch = specStr.match(/\{[\s\S]*\}/);
       if (jsonMatch) {
         setSpec(JSON.parse(jsonMatch[0]) as Spec);
         setMessages((m) => [...m, { role: "assistant", content: "UI updated" }]);

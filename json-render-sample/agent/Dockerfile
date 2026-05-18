@@ -1,7 +1,8 @@
-FROM python:3.12-slim
+FROM node:20-alpine
 WORKDIR /app
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-COPY server.py .
+COPY package.json ./
+RUN npm install --legacy-peer-deps
+COPY . .
 EXPOSE 8081
-CMD ["uvicorn", "server:app", "--host", "0.0.0.0", "--port", "8081"]
+ENV PORT=8081
+CMD ["npx", "tsx", "src/agent.ts"]

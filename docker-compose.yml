@@ -63,6 +63,7 @@ services:
       - AWS_CONTAINER_CREDENTIALS_FULL_URI=http://169.254.170.2:8000/credentials
       - AWS_REGION=${AWS_REGION:-us-east-1}
       - BEDROCK_MODEL=${BEDROCK_MODEL:-global.anthropic.claude-sonnet-4-6}
+      - PORT=8081
     restart: unless-stopped
     networks:
       - credentials_provider_network

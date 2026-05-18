@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 900 490" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;">
+    <path d="M900,12L900,478C900,484.623 894.623,490 888,490L12,490C5.377,490 0,484.623 0,478L0,12C0,5.377 5.377,0 12,0L888,0C894.623,0 900,5.377 900,12Z" style="fill:rgb(15,15,26);"/>
+    <g transform="matrix(1,0,0,1,450,35)">
+        <text x="-115.014px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:18px;fill:rgb(192,132,252);">MCP<tspan x="-75.331px -70.989px -57.99px " y="0px 0px 0px "> Ap</tspan>ps Communication</text>
+    </g>
+    <g transform="matrix(1,0,0,1,450,53)">
+        <text x="-167.554px" y="0px" style="font-family:'Helvetica';font-size:11px;fill:rgb(148,163,184);">Agent</text>
+        <text x="-135.752px" y="0px" style="font-family:'LucidaGrande', 'Lucida Grande', sans-serif;font-weight:500;font-size:11px;fill:rgb(148,163,184);">→</text>
+        <text x="-121.696px" y="0px" style="font-family:'Helvetica';font-size:11px;fill:rgb(148,163,184);">UI works | UI</text>
+        <text x="-55.889px" y="0px" style="font-family:'LucidaGrande', 'Lucida Grande', sans-serif;font-weight:500;font-size:11px;fill:rgb(148,163,184);">→</text>
+        <text x="-42.434px" y="0px" style="font-family:'Helvetica';font-size:11px;fill:rgb(148,163,184);"><tspan x="-42.434px -35.097px " y="0px 0px ">Ag</tspan>ent spec exists but clients don&apos;t relay yet</text>
+    </g>
+    <path d="M180,80L180,104C180,108.415 176.415,112 172,112L68,112C63.585,112 60,108.415 60,104L60,80C60,75.585 63.585,72 68,72L172,72C176.415,72 180,75.585 180,80Z" style="fill:rgb(192,132,252);fill-opacity:0.12;stroke:rgb(192,132,252);stroke-width:1.5px;"/>
+    <g transform="matrix(1,0,0,1,120,96)">
+        <text x="-36.375px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:13px;fill:rgb(192,132,252);">MCP<tspan x="-7.716px -4.104px " y="0px 0px "> S</tspan>erver</text>
+    </g>
+    <path d="M440,80L440,104C440,108.415 436.415,112 432,112L308,112C303.585,112 300,108.415 300,104L300,80C300,75.585 303.585,72 308,72L432,72C436.415,72 440,75.585 440,80Z" style="fill:rgb(56,189,248);fill-opacity:0.12;stroke:rgb(56,189,248);stroke-width:1.5px;"/>
+    <g transform="matrix(1,0,0,1,370,96)">
+        <text x="-42.25px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:13px;fill:rgb(56,189,248);">Host (Claude)</text>
+    </g>
+    <path d="M700,80L700,104C700,108.415 696.415,112 692,112L568,112C563.585,112 560,108.415 560,104L560,80C560,75.585 563.585,72 568,72L692,72C696.415,72 700,75.585 700,80Z" style="fill:rgb(250,204,21);fill-opacity:0.12;stroke:rgb(251,191,36);stroke-width:1.5px;"/>
+    <g transform="matrix(1,0,0,1,630,96)">
+        <text x="-56.348px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:13px;fill:rgb(251,191,36);">Sandboxed iframe</text>
+    </g>
+    <path d="M850,80L850,104C850,108.415 846.415,112 842,112L778,112C773.585,112 770,108.415 770,104L770,80C770,75.585 773.585,72 778,72L842,72C846.415,72 850,75.585 850,80Z" style="fill:rgb(129,140,248);fill-opacity:0.12;stroke:rgb(129,140,248);stroke-width:1.5px;"/>
+    <g transform="matrix(1,0,0,1,810,96)">
+        <text x="-14.454px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:13px;fill:rgb(165,180,252);">User</text>
+    </g>
+    <clipPath id="_clip1">
+        <path d="M119.25,112L120.75,112L120.75,118L119.25,118L119.25,112ZM119.25,122L120.75,122L120.75,128L119.25,128L119.25,122ZM119.25,132L120.75,132L120.75,138L119.25,138L119.25,132ZM119.25,142L120.75,142L120.75,148L119.25,148L119.25,142ZM119.25,152L120.75,152L120.75,158L119.25,158L119.25,152ZM119.25,162L120.75,162L120.75,168L119.25,168L119.25,162ZM119.25,172L120.75,172L120.75,178L119.25,178L119.25,172ZM119.25,182L120.75,182L120.75,188L119.25,188L119.25,182ZM119.25,192L120.75,192L120.75,198L119.25,198L119.25,192ZM119.25,202L120.75,202L120.75,208L119.25,208L119.25,202ZM119.25,212L120.75,212L120.75,218.001L119.25,218.001L119.25,212ZM119.25,222.001L120.75,222.001L120.75,228.001L119.25,228.001L119.25,222.001ZM119.25,232.001L120.75,232.001L120.75,238.001L119.25,238.001L119.25,232.001ZM119.25,242.001L120.75,242.001L120.75,248.001L119.25,248.001L119.25,242.001ZM119.25,252.001L120.75,252.001L120.75,258.001L119.25,258.001L119.25,252.001ZM119.25,262.001L120.75,262.001L120.75,268.001L119.25,268.001L119.25,262.001ZM119.25,272.001L120.75,272.001L120.75,278.001L119.25,278.001L119.25,272.001ZM119.25,282.001L120.75,282.001L120.75,288.001L119.25,288.001L119.25,282.001ZM119.25,292.001L120.75,292.001L120.75,298.001L119.25,298.001L119.25,292.001ZM119.25,302.001L120.75,302.001L120.75,308.002L119.25,308.002L119.25,302.001ZM119.25,312.002L120.75,312.002L120.75,318.002L119.25,318.002L119.25,312.002ZM119.25,322.002L120.75,322.002L120.75,328.002L119.25,328.002L119.25,322.002ZM119.25,332.002L120.75,332.002L120.75,338.002L119.25,338.002L119.25,332.002ZM119.25,342.002L120.75,342.002L120.75,348.001L119.25,348.001L119.25,342.002ZM119.25,352.001L120.75,352.001L120.75,358.001L119.25,358.001L119.25,352.001ZM119.25,362.001L120.75,362.001L120.75,368.001L119.25,368.001L119.25,362.001ZM119.25,372.001L120.75,372.001L120.75,378.001L119.25,378.001L119.25,372.001ZM119.25,382.001L120.75,382.001L120.75,388.001L119.25,388.001L119.25,382.001ZM119.25,392.001L120.75,392.001L120.75,398.001L119.25,398.001L119.25,392.001ZM119.25,402.001L120.75,402.001L120.75,408.001L119.25,408.001L119.25,402.001ZM119.25,412.001L120.75,412.001L120.75,418.001L119.25,418.001L119.25,412.001ZM119.25,422.001L120.75,422.001L120.75,428.001L119.25,428.001L119.25,422.001ZM119.25,432.001L120.75,432.001L120.75,438.001L119.25,438.001L119.25,432.001ZM119.25,442.001L120.75,442.001L120.75,448.001L119.25,448.001L119.25,442.001ZM119.25,452.001L120.75,452.001L120.75,458.001L119.25,458.001L119.25,452.001Z"/>
+    </clipPath>
+    <g clip-path="url(#_clip1)">
+        <use xlink:href="#_Image2" x="119.25" y="112" width="2px" height="347px"/>
+    </g>
+    <clipPath id="_clip3">
+        <path d="M369.25,112L370.75,112L370.75,118L369.25,118L369.25,112ZM369.25,122L370.75,122L370.75,128L369.25,128L369.25,122ZM369.25,132L370.75,132L370.75,138L369.25,138L369.25,132ZM369.25,142L370.75,142L370.75,148L369.25,148L369.25,142ZM369.25,152L370.75,152L370.75,158L369.25,158L369.25,152ZM369.25,162L370.75,162L370.75,168L369.25,168L369.25,162ZM369.25,172L370.75,172L370.75,178L369.25,178L369.25,172ZM369.25,182L370.75,182L370.75,188L369.25,188L369.25,182ZM369.25,192L370.75,192L370.75,198L369.25,198L369.25,192ZM369.25,202L370.75,202L370.75,208L369.25,208L369.25,202ZM369.25,212L370.75,212L370.75,218.001L369.25,218.001L369.25,212ZM369.25,222.001L370.75,222.001L370.75,228.001L369.25,228.001L369.25,222.001ZM369.25,232.001L370.75,232.001L370.75,238.001L369.25,238.001L369.25,232.001ZM369.25,242.001L370.75,242.001L370.75,248.001L369.25,248.001L369.25,242.001ZM369.25,252.001L370.75,252.001L370.75,258.001L369.25,258.001L369.25,252.001ZM369.25,262.001L370.75,262.001L370.75,268.001L369.25,268.001L369.25,262.001ZM369.25,272.001L370.75,272.001L370.75,278.001L369.25,278.001L369.25,272.001ZM369.25,282.001L370.75,282.001L370.75,288.001L369.25,288.001L369.25,282.001ZM369.25,292.001L370.75,292.001L370.75,298.001L369.25,298.001L369.25,292.001ZM369.25,302.001L370.75,302.001L370.75,308.002L369.25,308.002L369.25,302.001ZM369.25,312.002L370.75,312.002L370.75,318.002L369.25,318.002L369.25,312.002ZM369.25,322.002L370.75,322.002L370.75,328.002L369.25,328.002L369.25,322.002ZM369.25,332.002L370.75,332.002L370.75,338.002L369.25,338.002L369.25,332.002ZM369.25,342.002L370.75,342.002L370.75,348.001L369.25,348.001L369.25,342.002ZM369.25,352.001L370.75,352.001L370.75,358.001L369.25,358.001L369.25,352.001ZM369.25,362.001L370.75,362.001L370.75,368.001L369.25,368.001L369.25,362.001ZM369.25,372.001L370.75,372.001L370.75,378.001L369.25,378.001L369.25,372.001ZM369.25,382.001L370.75,382.001L370.75,388.001L369.25,388.001L369.25,382.001ZM369.25,392.001L370.75,392.001L370.75,398.001L369.25,398.001L369.25,392.001ZM369.25,402.001L370.75,402.001L370.75,408.001L369.25,408.001L369.25,402.001ZM369.25,412.001L370.75,412.001L370.75,418.001L369.25,418.001L369.25,412.001ZM369.25,422.001L370.75,422.001L370.75,428.001L369.25,428.001L369.25,422.001ZM369.25,432.001L370.75,432.001L370.75,438.001L369.25,438.001L369.25,432.001ZM369.25,442.001L370.75,442.001L370.75,448.001L369.25,448.001L369.25,442.001ZM369.25,452.001L370.75,452.001L370.75,458.001L369.25,458.001L369.25,452.001Z"/>
+    </clipPath>
+    <g clip-path="url(#_clip3)">
+        <use xlink:href="#_Image4" x="369.25" y="112" width="2px" height="347px"/>
+    </g>
+    <clipPath id="_clip5">
+        <path d="M629.25,112L630.75,112L630.75,118L629.25,118L629.25,112ZM629.25,122L630.75,122L630.75,128L629.25,128L629.25,122ZM629.25,132L630.75,132L630.75,138L629.25,138L629.25,132ZM629.25,142L630.75,142L630.75,148L629.25,148L629.25,142ZM629.25,152L630.75,152L630.75,158L629.25,158L629.25,152ZM629.25,162L630.75,162L630.75,168L629.25,168L629.25,162ZM629.25,172L630.75,172L630.75,178L629.25,178L629.25,172ZM629.25,182L630.75,182L630.75,188L629.25,188L629.25,182ZM629.25,192L630.75,192L630.75,198L629.25,198L629.25,192ZM629.25,202L630.75,202L630.75,208L629.25,208L629.25,202ZM629.25,212L630.75,212L630.75,218.001L629.25,218.001L629.25,212ZM629.25,222.001L630.75,222.001L630.75,228.001L629.25,228.001L629.25,222.001ZM629.25,232.001L630.75,232.001L630.75,238.001L629.25,238.001L629.25,232.001ZM629.25,242.001L630.75,242.001L630.75,248.001L629.25,248.001L629.25,242.001ZM629.25,252.001L630.75,252.001L630.75,258.001L629.25,258.001L629.25,252.001ZM629.25,262.001L630.75,262.001L630.75,268.001L629.25,268.001L629.25,262.001ZM629.25,272.001L630.75,272.001L630.75,278.001L629.25,278.001L629.25,272.001ZM629.25,282.001L630.75,282.001L630.75,288.001L629.25,288.001L629.25,282.001ZM629.25,292.001L630.75,292.001L630.75,298.001L629.25,298.001L629.25,292.001ZM629.25,302.001L630.75,302.001L630.75,308.002L629.25,308.002L629.25,302.001ZM629.25,312.002L630.75,312.002L630.75,318.002L629.25,318.002L629.25,312.002ZM629.25,322.002L630.75,322.002L630.75,328.002L629.25,328.002L629.25,322.002ZM629.25,332.002L630.75,332.002L630.75,338.002L629.25,338.002L629.25,332.002ZM629.25,342.002L630.75,342.002L630.75,348.001L629.25,348.001L629.25,342.002ZM629.25,352.001L630.75,352.001L630.75,358.001L629.25,358.001L629.25,352.001ZM629.25,362.001L630.75,362.001L630.75,368.001L629.25,368.001L629.25,362.001ZM629.25,372.001L630.75,372.001L630.75,378.001L629.25,378.001L629.25,372.001ZM629.25,382.001L630.75,382.001L630.75,388.001L629.25,388.001L629.25,382.001ZM629.25,392.001L630.75,392.001L630.75,398.001L629.25,398.001L629.25,392.001ZM629.25,402.001L630.75,402.001L630.75,408.001L629.25,408.001L629.25,402.001ZM629.25,412.001L630.75,412.001L630.75,418.001L629.25,418.001L629.25,412.001ZM629.25,422.001L630.75,422.001L630.75,428.001L629.25,428.001L629.25,422.001ZM629.25,432.001L630.75,432.001L630.75,438.001L629.25,438.001L629.25,432.001ZM629.25,442.001L630.75,442.001L630.75,448.001L629.25,448.001L629.25,442.001ZM629.25,452.001L630.75,452.001L630.75,458.001L629.25,458.001L629.25,452.001Z"/>
+    </clipPath>
+    <g clip-path="url(#_clip5)">
+        <use xlink:href="#_Image6" x="629.25" y="112" width="2px" height="347px"/>
+    </g>
+    <clipPath id="_clip7">
+        <path d="M809.25,112L810.75,112L810.75,118L809.25,118L809.25,112ZM809.25,122L810.75,122L810.75,128L809.25,128L809.25,122ZM809.25,132L810.75,132L810.75,138L809.25,138L809.25,132ZM809.25,142L810.75,142L810.75,148L809.25,148L809.25,142ZM809.25,152L810.75,152L810.75,158L809.25,158L809.25,152ZM809.25,162L810.75,162L810.75,168L809.25,168L809.25,162ZM809.25,172L810.75,172L810.75,178L809.25,178L809.25,172ZM809.25,182L810.75,182L810.75,188L809.25,188L809.25,182ZM809.25,192L810.75,192L810.75,198L809.25,198L809.25,192ZM809.25,202L810.75,202L810.75,208L809.25,208L809.25,202ZM809.25,212L810.75,212L810.75,218.001L809.25,218.001L809.25,212ZM809.25,222.001L810.75,222.001L810.75,228.001L809.25,228.001L809.25,222.001ZM809.25,232.001L810.75,232.001L810.75,238.001L809.25,238.001L809.25,232.001ZM809.25,242.001L810.75,242.001L810.75,248.001L809.25,248.001L809.25,242.001ZM809.25,252.001L810.75,252.001L810.75,258.001L809.25,258.001L809.25,252.001ZM809.25,262.001L810.75,262.001L810.75,268.001L809.25,268.001L809.25,262.001ZM809.25,272.001L810.75,272.001L810.75,278.001L809.25,278.001L809.25,272.001ZM809.25,282.001L810.75,282.001L810.75,288.001L809.25,288.001L809.25,282.001ZM809.25,292.001L810.75,292.001L810.75,298.001L809.25,298.001L809.25,292.001ZM809.25,302.001L810.75,302.001L810.75,308.002L809.25,308.002L809.25,302.001ZM809.25,312.002L810.75,312.002L810.75,318.002L809.25,318.002L809.25,312.002ZM809.25,322.002L810.75,322.002L810.75,328.002L809.25,328.002L809.25,322.002ZM809.25,332.002L810.75,332.002L810.75,338.002L809.25,338.002L809.25,332.002ZM809.25,342.002L810.75,342.002L810.75,348.001L809.25,348.001L809.25,342.002ZM809.25,352.001L810.75,352.001L810.75,358.001L809.25,358.001L809.25,352.001ZM809.25,362.001L810.75,362.001L810.75,368.001L809.25,368.001L809.25,362.001ZM809.25,372.001L810.75,372.001L810.75,378.001L809.25,378.001L809.25,372.001ZM809.25,382.001L810.75,382.001L810.75,388.001L809.25,388.001L809.25,382.001ZM809.25,392.001L810.75,392.001L810.75,398.001L809.25,398.001L809.25,392.001ZM809.25,402.001L810.75,402.001L810.75,408.001L809.25,408.001L809.25,402.001ZM809.25,412.001L810.75,412.001L810.75,418.001L809.25,418.001L809.25,412.001ZM809.25,422.001L810.75,422.001L810.75,428.001L809.25,428.001L809.25,422.001ZM809.25,432.001L810.75,432.001L810.75,438.001L809.25,438.001L809.25,432.001ZM809.25,442.001L810.75,442.001L810.75,448.001L809.25,448.001L809.25,442.001ZM809.25,452.001L810.75,452.001L810.75,458.001L809.25,458.001L809.25,452.001Z"/>
+    </clipPath>
+    <g clip-path="url(#_clip7)">
+        <use xlink:href="#_Image8" x="809.25" y="112" width="2px" height="347px"/>
+    </g>
+    <path d="M120,145L362,145" style="fill:none;fill-rule:nonzero;stroke:rgb(192,132,252);stroke-width:1.5px;"/>
+    <path d="M358,140L366,145L358,150" style="fill:none;fill-rule:nonzero;stroke:rgb(192,132,252);stroke-width:1.5px;"/>
+    <circle cx="60" cy="145" r="10" style="fill:rgb(192,132,252);"/>
+    <g transform="matrix(1,0,0,1,60,149)">
+        <text x="-2.503px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:9px;fill:white;">1</text>
+    </g>
+    <g transform="matrix(1,0,0,1,240,138)">
+        <text x="-58.674px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:10px;fill:rgb(192,132,252);">T<tspan x="-53.303px -47.195px " y="0px 0px ">oo</tspan>l result + UIResource</text>
+    </g>
+    <g transform="matrix(1,0,0,1,240,160)">
+        <text x="-38.454px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(148,163,184);">uri: &quot;ui://chart-view&quot;</text>
+    </g>
+    <path d="M370,195L128,195" style="fill:none;fill-rule:nonzero;stroke:rgb(56,189,248);stroke-width:1.5px;"/>
+    <path d="M132,190L124,195L132,200" style="fill:none;fill-rule:nonzero;stroke:rgb(56,189,248);stroke-width:1.5px;"/>
+    <circle cx="60" cy="195" r="10" style="fill:rgb(56,189,248);"/>
+    <g transform="matrix(1,0,0,1,60,199)">
+        <text x="-2.503px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:9px;fill:white;">2</text>
+    </g>
+    <g transform="matrix(1,0,0,1,248,188)">
+        <text x="-45.286px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:10px;fill:rgb(56,189,248);">GET ui://chart-view</text>
+    </g>
+    <path d="M120,235L362,235" style="fill:none;fill-rule:nonzero;stroke:rgb(192,132,252);stroke-width:1.5px;"/>
+    <path d="M358,230L366,235L358,240" style="fill:none;fill-rule:nonzero;stroke:rgb(192,132,252);stroke-width:1.5px;"/>
+    <circle cx="60" cy="235" r="10" style="fill:rgb(192,132,252);"/>
+    <g transform="matrix(1,0,0,1,60,239)">
+        <text x="-2.503px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:9px;fill:white;">3</text>
+    </g>
+    <g transform="matrix(1,0,0,1,240,228)">
+        <text x="-53.613px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:10px;fill:rgb(192,132,252);">Full HTML/CSS/JS app</text>
+    </g>
+    <path d="M370,280L622,280" style="fill:none;fill-rule:nonzero;stroke:rgb(56,189,248);stroke-width:1.5px;"/>
+    <path d="M618,275L626,280L618,285" style="fill:none;fill-rule:nonzero;stroke:rgb(56,189,248);stroke-width:1.5px;"/>
+    <circle cx="60" cy="280" r="10" style="fill:rgb(56,189,248);"/>
+    <g transform="matrix(1,0,0,1,60,284)">
+        <text x="-2.503px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:9px;fill:white;">4</text>
+    </g>
+    <g transform="matrix(1,0,0,1,496,273)">
+        <text x="-45.007px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:10px;fill:rgb(56,189,248);">Render in sandbox</text>
+    </g>
+    <g transform="matrix(1,0,0,1,496,295)">
+        <text x="-42.275px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(148,163,184);">Inline in conversation</text>
+    </g>
+    <path d="M810,325L638,325" style="fill:none;fill-rule:nonzero;stroke:rgb(129,140,248);stroke-width:1.5px;"/>
+    <path d="M642,320L634,325L642,330" style="fill:none;fill-rule:nonzero;stroke:rgb(129,140,248);stroke-width:1.5px;"/>
+    <circle cx="60" cy="325" r="10" style="fill:rgb(129,140,248);"/>
+    <g transform="matrix(1,0,0,1,60,329)">
+        <text x="-2.503px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:9px;fill:white;">5</text>
+    </g>
+    <g transform="matrix(1,0,0,1,720,318)">
+        <text x="-42.507px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:10px;fill:rgb(165,180,252);">Interacts with app</text>
+    </g>
+    <path d="M630,370L378,370" style="fill:none;fill-rule:nonzero;stroke:rgb(251,113,133);stroke-width:1.5px;stroke-dasharray:6,3;"/>
+    <path d="M382,365L374,370L382,375" style="fill:none;fill-rule:nonzero;stroke:rgb(251,113,133);stroke-width:1.5px;"/>
+    <circle cx="60" cy="370" r="10" style="fill:rgb(251,113,133);"/>
+    <g transform="matrix(1,0,0,1,60,374)">
+        <text x="-2.503px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:9px;fill:white;">6</text>
+    </g>
+    <g transform="matrix(1,0,0,1,504,363)">
+        <text x="-52.036px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:10px;fill:rgb(251,113,133);">postMessage (spec&apos;d)</text>
+    </g>
+    <g transform="matrix(1,0,0,1,504,385)">
+        <text x="-75.109px" y="0px" style="font-family:'Menlo-Regular', 'Menlo', monospace;font-size:9px;fill:rgb(251,113,133);">⚠</text>
+        <text x="-67.19px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(251,113,133);">Clients don&apos;t relay back to agent yet</text>
+    </g>
+    <g transform="matrix(1,0,0,1.163636,0,-67.090909)">
+        <path d="M650,416.875L650,458.125C650,461.919 646.415,465 642,465L258,465C253.585,465 250,461.919 250,458.125L250,416.875C250,413.081 253.585,410 258,410L642,410C646.415,410 650,413.081 650,416.875Z" style="fill:rgb(92,10,24);fill-opacity:0.84;stroke:rgb(244,63,94);stroke-opacity:0.4;stroke-width:1px;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,450,432)">
+        <text x="-45.012px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:10px;fill:rgb(251,113,133);">Current Gap (2026)</text>
+    </g>
+    <g transform="matrix(1,0,0,1,450,450)">
+        <text x="-133.336px" y="0px" style="font-family:'Helvetica';font-size:9.9px;fill:rgb(226,232,240);">Agent</text>
+        <text x="-107.464px" y="0px" style="font-family:'LucidaGrande', 'Lucida Grande', sans-serif;font-weight:500;font-size:9.9px;fill:rgb(226,232,240);">→</text>
+        <text x="-97.564px" y="0px" style="font-family:'Helvetica';font-size:9.9px;fill:rgb(226,232,240);">UI</text>
+        <text x="-84.914px" y="0px" style="font-family:'AppleColorEmoji', 'Apple Color Emoji';font-size:9.9px;fill:rgb(226,232,240);">✅</text>
+        <text x="-72.263px" y="0px" style="font-family:'Helvetica';font-size:9.9px;fill:rgb(226,232,240);">works | UI</text>
+        <text x="-28.438px" y="0px" style="font-family:'LucidaGrande', 'Lucida Grande', sans-serif;font-weight:500;font-size:9.9px;fill:rgb(226,232,240);">→</text>
+        <text x="-18.538px" y="0px" style="font-family:'Helvetica';font-size:9.9px;fill:rgb(226,232,240);">Agent</text>
+        <text x="10.084px" y="0px" style="font-family:'AppleColorEmoji', 'Apple Color Emoji';font-size:9.9px;fill:rgb(226,232,240);">❌</text>
+        <text x="22.734px" y="0px" style="font-family:'Helvetica';font-size:9.9px;fill:rgb(226,232,240);">postMessage spec exists</text>
+    </g>
+    <g transform="matrix(1,0,0,1,450,463)">
+        <text x="-121.466px" y="0px" style="font-family:'Helvetica';font-size:9.9px;fill:rgb(226,232,240);">but Claude/VS Code don&apos;t relay it back to the model yet</text>
+    </g>
+    <defs>
+        <image id="_Image2" width="2px" height="347px" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAFbCAYAAAD/QF+vAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAKklEQVRIie3GMREAIAwEsC/aUYQChDF06aEimVJ3v5MkK0NEREREROSnAX8SBahYvqAGAAAAAElFTkSuQmCC"/>
+        <image id="_Image4" width="2px" height="347px" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAFbCAYAAAD/QF+vAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAKUlEQVRIie3GoREAIAwEsC9TMTeevZA1PaZIVGrfd5JkZYiIiIiIiPw0im8FVWpr6eMAAAAASUVORK5CYII="/>
+        <image id="_Image6" width="2px" height="347px" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAFbCAYAAAD/QF+vAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAKklEQVRIie3GMREAIAwEsC9a8D9gAGEsXXqoSKbUu/skycoQERERERH5adUYBUb56TYGAAAAAElFTkSuQmCC"/>
+        <image id="_Image8" width="2px" height="347px" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAFbCAYAAAD/QF+vAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAKUlEQVRIie3GoREAIAwEsC+b45mG6ZA1PaZIVGqfd5NkZYiIiIiIiPw0r18FbTQRPCgAAAAASUVORK5CYII="/>
+    </defs>
+</svg>

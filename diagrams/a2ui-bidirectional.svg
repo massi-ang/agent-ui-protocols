@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 900 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;">
+    <path d="M900,12L900,488C900,494.623 894.623,500 888,500L12,500C5.377,500 0,494.623 0,488L0,12C0,5.377 5.377,0 12,0L888,0C894.623,0 900,5.377 900,12Z" style="fill:rgb(15,15,26);"/>
+    <g transform="matrix(1,0,0,1,450,35)">
+        <text x="-148.017px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:18px;fill:rgb(56,189,248);">A2UI Bidirectional Communication</text>
+    </g>
+    <g transform="matrix(1,0,0,1,450,53)">
+        <text x="-128.05px" y="0px" style="font-family:'Helvetica';font-size:11px;fill:rgb(203,213,225);">Agent</text>
+        <text x="-96.247px" y="0px" style="font-family:'Menlo-Regular', 'Menlo', monospace;font-size:11px;fill:rgb(203,213,225);">↔</text>
+        <text x="-86.569px" y="0px" style="font-family:'Helvetica';font-size:11px;fill:rgb(203,213,225);">Renderer — <tspan x="-24.199px -16.863px " y="0px 0px ">Ac</tspan>tions, Events &amp; Data Binding</text>
+    </g>
+    <path d="M200,80L200,104C200,108.415 196.415,112 192,112L108,112C103.585,112 100,108.415 100,104L100,80C100,75.585 103.585,72 108,72L192,72C196.415,72 200,75.585 200,80Z" style="fill:rgb(192,132,252);fill-opacity:0.12;stroke:rgb(192,132,252);stroke-width:1.5px;"/>
+    <g transform="matrix(1,0,0,1,150,96)">
+        <text x="-18.415px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:13px;fill:rgb(192,132,252);">Agent</text>
+    </g>
+    <path d="M500,80L500,104C500,108.415 496.415,112 492,112L388,112C383.585,112 380,108.415 380,104L380,80C380,75.585 383.585,72 388,72L492,72C496.415,72 500,75.585 500,80Z" style="fill:rgb(56,189,248);fill-opacity:0.12;stroke:rgb(56,189,248);stroke-width:1.5px;"/>
+    <g transform="matrix(1,0,0,1,440,96)">
+        <text x="-28.539px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:13px;fill:rgb(56,189,248);">Renderer</text>
+    </g>
+    <path d="M760,80L760,104C760,108.415 756.415,112 752,112L668,112C663.585,112 660,108.415 660,104L660,80C660,75.585 663.585,72 668,72L752,72C756.415,72 760,75.585 760,80Z" style="fill:rgb(129,140,248);fill-opacity:0.12;stroke:rgb(129,140,248);stroke-width:1.5px;"/>
+    <g transform="matrix(1,0,0,1,710,96)">
+        <text x="-14.454px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:13px;fill:rgb(165,180,252);">User</text>
+    </g>
+    <clipPath id="_clip1">
+        <path d="M149.25,112L150.75,112L150.75,118L149.25,118L149.25,112ZM149.25,122L150.75,122L150.75,128L149.25,128L149.25,122ZM149.25,132L150.75,132L150.75,138L149.25,138L149.25,132ZM149.25,142L150.75,142L150.75,148L149.25,148L149.25,142ZM149.25,152L150.75,152L150.75,158L149.25,158L149.25,152ZM149.25,162L150.75,162L150.75,168.001L149.25,168.001L149.25,162ZM149.25,172.001L150.75,172.001L150.75,178.001L149.25,178.001L149.25,172.001ZM149.25,182.001L150.75,182.001L150.75,188.001L149.25,188.001L149.25,182.001ZM149.25,192.001L150.75,192.001L150.75,198.001L149.25,198.001L149.25,192.001ZM149.25,202.001L150.75,202.001L150.75,208.001L149.25,208.001L149.25,202.001ZM149.25,212.001L150.75,212.001L150.75,218.001L149.25,218.001L149.25,212.001ZM149.25,222.001L150.75,222.001L150.75,228.001L149.25,228.001L149.25,222.001ZM149.25,232.001L150.75,232.001L150.75,238.001L149.25,238.001L149.25,232.001ZM149.25,242.001L150.75,242.001L150.75,248.001L149.25,248.001L149.25,242.001ZM149.25,252.001L150.75,252.001L150.75,258.001L149.25,258.001L149.25,252.001ZM149.25,262.001L150.75,262.001L150.75,268.001L149.25,268.001L149.25,262.001ZM149.25,272.001L150.75,272.001L150.75,278.001L149.25,278.001L149.25,272.001ZM149.25,282.001L150.75,282.001L150.75,288.002L149.25,288.002L149.25,282.001ZM149.25,292.002L150.75,292.002L150.75,298.001L149.25,298.001L149.25,292.002ZM149.25,302.001L150.75,302.001L150.75,308.001L149.25,308.001L149.25,302.001ZM149.25,312.001L150.75,312.001L150.75,318.001L149.25,318.001L149.25,312.001ZM149.25,322.001L150.75,322.001L150.75,328.001L149.25,328.001L149.25,322.001ZM149.25,332.001L150.75,332.001L150.75,338.001L149.25,338.001L149.25,332.001ZM149.25,342.001L150.75,342.001L150.75,348.001L149.25,348.001L149.25,342.001ZM149.25,352.001L150.75,352.001L150.75,358.001L149.25,358.001L149.25,352.001ZM149.25,362.001L150.75,362.001L150.75,368.001L149.25,368.001L149.25,362.001ZM149.25,372.001L150.75,372.001L150.75,378.001L149.25,378.001L149.25,372.001ZM149.25,382.001L150.75,382.001L150.75,388.001L149.25,388.001L149.25,382.001ZM149.25,392.001L150.75,392.001L150.75,398.001L149.25,398.001L149.25,392.001ZM149.25,402.002L150.75,402.002L150.75,408.002L149.25,408.002L149.25,402.002ZM149.25,412.002L150.75,412.002L150.75,418.002L149.25,418.002L149.25,412.002ZM149.25,422.002L150.75,422.002L150.75,428.002L149.25,428.002L149.25,422.002ZM149.25,432.002L150.75,432.002L150.75,438.002L149.25,438.002L149.25,432.002ZM149.25,442.002L150.75,442.002L150.75,448.002L149.25,448.002L149.25,442.002ZM149.25,452.002L150.75,452.002L150.75,458.002L149.25,458.002L149.25,452.002ZM149.25,462.002L150.75,462.002L150.75,468.002L149.25,468.002L149.25,462.002Z"/>
+    </clipPath>
+    <g clip-path="url(#_clip1)">
+        <use xlink:href="#_Image2" x="149.25" y="112" width="2px" height="357px"/>
+    </g>
+    <clipPath id="_clip3">
+        <path d="M439.25,112L440.75,112L440.75,118L439.25,118L439.25,112ZM439.25,122L440.75,122L440.75,128L439.25,128L439.25,122ZM439.25,132L440.75,132L440.75,138L439.25,138L439.25,132ZM439.25,142L440.75,142L440.75,148L439.25,148L439.25,142ZM439.25,152L440.75,152L440.75,158L439.25,158L439.25,152ZM439.25,162L440.75,162L440.75,168.001L439.25,168.001L439.25,162ZM439.25,172.001L440.75,172.001L440.75,178.001L439.25,178.001L439.25,172.001ZM439.25,182.001L440.75,182.001L440.75,188.001L439.25,188.001L439.25,182.001ZM439.25,192.001L440.75,192.001L440.75,198.001L439.25,198.001L439.25,192.001ZM439.25,202.001L440.75,202.001L440.75,208.001L439.25,208.001L439.25,202.001ZM439.25,212.001L440.75,212.001L440.75,218.001L439.25,218.001L439.25,212.001ZM439.25,222.001L440.75,222.001L440.75,228.001L439.25,228.001L439.25,222.001ZM439.25,232.001L440.75,232.001L440.75,238.001L439.25,238.001L439.25,232.001ZM439.25,242.001L440.75,242.001L440.75,248.001L439.25,248.001L439.25,242.001ZM439.25,252.001L440.75,252.001L440.75,258.001L439.25,258.001L439.25,252.001ZM439.25,262.001L440.75,262.001L440.75,268.001L439.25,268.001L439.25,262.001ZM439.25,272.001L440.75,272.001L440.75,278.001L439.25,278.001L439.25,272.001ZM439.25,282.001L440.75,282.001L440.75,288.002L439.25,288.002L439.25,282.001ZM439.25,292.002L440.75,292.002L440.75,298.001L439.25,298.001L439.25,292.002ZM439.25,302.001L440.75,302.001L440.75,308.001L439.25,308.001L439.25,302.001ZM439.25,312.001L440.75,312.001L440.75,318.001L439.25,318.001L439.25,312.001ZM439.25,322.001L440.75,322.001L440.75,328.001L439.25,328.001L439.25,322.001ZM439.25,332.001L440.75,332.001L440.75,338.001L439.25,338.001L439.25,332.001ZM439.25,342.001L440.75,342.001L440.75,348.001L439.25,348.001L439.25,342.001ZM439.25,352.001L440.75,352.001L440.75,358.001L439.25,358.001L439.25,352.001ZM439.25,362.001L440.75,362.001L440.75,368.001L439.25,368.001L439.25,362.001ZM439.25,372.001L440.75,372.001L440.75,378.001L439.25,378.001L439.25,372.001ZM439.25,382.001L440.75,382.001L440.75,388.001L439.25,388.001L439.25,382.001ZM439.25,392.001L440.75,392.001L440.75,398.001L439.25,398.001L439.25,392.001ZM439.25,402.002L440.75,402.002L440.75,408.002L439.25,408.002L439.25,402.002ZM439.25,412.002L440.75,412.002L440.75,418.002L439.25,418.002L439.25,412.002ZM439.25,422.002L440.75,422.002L440.75,428.002L439.25,428.002L439.25,422.002ZM439.25,432.002L440.75,432.002L440.75,438.002L439.25,438.002L439.25,432.002ZM439.25,442.002L440.75,442.002L440.75,448.002L439.25,448.002L439.25,442.002ZM439.25,452.002L440.75,452.002L440.75,458.002L439.25,458.002L439.25,452.002ZM439.25,462.002L440.75,462.002L440.75,468.002L439.25,468.002L439.25,462.002Z"/>
+    </clipPath>
+    <g clip-path="url(#_clip3)">
+        <use xlink:href="#_Image4" x="439.25" y="112" width="2px" height="357px"/>
+    </g>
+    <clipPath id="_clip5">
+        <path d="M709.25,112L710.75,112L710.75,118L709.25,118L709.25,112ZM709.25,122L710.75,122L710.75,128L709.25,128L709.25,122ZM709.25,132L710.75,132L710.75,138L709.25,138L709.25,132ZM709.25,142L710.75,142L710.75,148L709.25,148L709.25,142ZM709.25,152L710.75,152L710.75,158L709.25,158L709.25,152ZM709.25,162L710.75,162L710.75,168.001L709.25,168.001L709.25,162ZM709.25,172.001L710.75,172.001L710.75,178.001L709.25,178.001L709.25,172.001ZM709.25,182.001L710.75,182.001L710.75,188.001L709.25,188.001L709.25,182.001ZM709.25,192.001L710.75,192.001L710.75,198.001L709.25,198.001L709.25,192.001ZM709.25,202.001L710.75,202.001L710.75,208.001L709.25,208.001L709.25,202.001ZM709.25,212.001L710.75,212.001L710.75,218.001L709.25,218.001L709.25,212.001ZM709.25,222.001L710.75,222.001L710.75,228.001L709.25,228.001L709.25,222.001ZM709.25,232.001L710.75,232.001L710.75,238.001L709.25,238.001L709.25,232.001ZM709.25,242.001L710.75,242.001L710.75,248.001L709.25,248.001L709.25,242.001ZM709.25,252.001L710.75,252.001L710.75,258.001L709.25,258.001L709.25,252.001ZM709.25,262.001L710.75,262.001L710.75,268.001L709.25,268.001L709.25,262.001ZM709.25,272.001L710.75,272.001L710.75,278.001L709.25,278.001L709.25,272.001ZM709.25,282.001L710.75,282.001L710.75,288.002L709.25,288.002L709.25,282.001ZM709.25,292.002L710.75,292.002L710.75,298.001L709.25,298.001L709.25,292.002ZM709.25,302.001L710.75,302.001L710.75,308.001L709.25,308.001L709.25,302.001ZM709.25,312.001L710.75,312.001L710.75,318.001L709.25,318.001L709.25,312.001ZM709.25,322.001L710.75,322.001L710.75,328.001L709.25,328.001L709.25,322.001ZM709.25,332.001L710.75,332.001L710.75,338.001L709.25,338.001L709.25,332.001ZM709.25,342.001L710.75,342.001L710.75,348.001L709.25,348.001L709.25,342.001ZM709.25,352.001L710.75,352.001L710.75,358.001L709.25,358.001L709.25,352.001ZM709.25,362.001L710.75,362.001L710.75,368.001L709.25,368.001L709.25,362.001ZM709.25,372.001L710.75,372.001L710.75,378.001L709.25,378.001L709.25,372.001ZM709.25,382.001L710.75,382.001L710.75,388.001L709.25,388.001L709.25,382.001ZM709.25,392.001L710.75,392.001L710.75,398.001L709.25,398.001L709.25,392.001ZM709.25,402.002L710.75,402.002L710.75,408.002L709.25,408.002L709.25,402.002ZM709.25,412.002L710.75,412.002L710.75,418.002L709.25,418.002L709.25,412.002ZM709.25,422.002L710.75,422.002L710.75,428.002L709.25,428.002L709.25,422.002ZM709.25,432.002L710.75,432.002L710.75,438.002L709.25,438.002L709.25,432.002ZM709.25,442.002L710.75,442.002L710.75,448.002L709.25,448.002L709.25,442.002ZM709.25,452.002L710.75,452.002L710.75,458.002L709.25,458.002L709.25,452.002ZM709.25,462.002L710.75,462.002L710.75,468.002L709.25,468.002L709.25,462.002Z"/>
+    </clipPath>
+    <g clip-path="url(#_clip5)">
+        <use xlink:href="#_Image6" x="709.25" y="112" width="2px" height="357px"/>
+    </g>
+    <path d="M150,140L432,140" style="fill:none;fill-rule:nonzero;stroke:rgb(192,132,252);stroke-width:1.5px;"/>
+    <path d="M428,135L436,140L428,145" style="fill:none;fill-rule:nonzero;stroke:rgb(192,132,252);stroke-width:1.5px;"/>
+    <circle cx="100" cy="140" r="10" style="fill:rgb(192,132,252);"/>
+    <g transform="matrix(1,0,0,1,100,144)">
+        <text x="-2.503px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:9px;fill:white;">1</text>
+    </g>
+    <g transform="matrix(1,0,0,1,290,133)">
+        <text x="-34.734px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:10px;fill:rgb(192,132,252);">surfaceUpdate</text>
+    </g>
+    <g transform="matrix(1,0,0,1,290,155)">
+        <text x="-86.81px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(203,213,225);">Components + action bindings + data paths</text>
+    </g>
+    <path d="M150,185L432,185" style="fill:none;fill-rule:nonzero;stroke:rgb(192,132,252);stroke-width:1.5px;"/>
+    <path d="M428,180L436,185L428,190" style="fill:none;fill-rule:nonzero;stroke:rgb(192,132,252);stroke-width:1.5px;"/>
+    <circle cx="100" cy="185" r="10" style="fill:rgb(192,132,252);"/>
+    <g transform="matrix(1,0,0,1,100,189)">
+        <text x="-2.503px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:9px;fill:white;">2</text>
+    </g>
+    <g transform="matrix(1,0,0,1,290,178)">
+        <text x="-41.67px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:10px;fill:rgb(192,132,252);">dataModelUpdate</text>
+    </g>
+    <g transform="matrix(1,0,0,1,290,200)">
+        <text x="-70.798px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(203,213,225);">{ &quot;/form/name&quot;: &quot;&quot;, &quot;/form/email&quot;: &quot;&quot; }</text>
+    </g>
+    <path d="M150,230L432,230" style="fill:none;fill-rule:nonzero;stroke:rgb(192,132,252);stroke-width:1.5px;"/>
+    <path d="M428,225L436,230L428,235" style="fill:none;fill-rule:nonzero;stroke:rgb(192,132,252);stroke-width:1.5px;"/>
+    <circle cx="100" cy="230" r="10" style="fill:rgb(192,132,252);"/>
+    <g transform="matrix(1,0,0,1,100,234)">
+        <text x="-2.503px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:9px;fill:white;">3</text>
+    </g>
+    <g transform="matrix(1,0,0,1,290,223)">
+        <text x="-38.057px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:10px;fill:rgb(192,132,252);">beginRendering</text>
+    </g>
+    <path d="M440,260L702,260" style="fill:none;fill-rule:nonzero;stroke:rgb(56,189,248);stroke-width:1.5px;"/>
+    <path d="M698,255L706,260L698,265" style="fill:none;fill-rule:nonzero;stroke:rgb(56,189,248);stroke-width:1.5px;"/>
+    <circle cx="790" cy="260" r="10" style="fill:rgb(56,189,248);"/>
+    <g transform="matrix(1,0,0,1,790,264)">
+        <text x="-2.503px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:9px;fill:white;">4</text>
+    </g>
+    <g transform="matrix(1,0,0,1,570,253)">
+        <text x="-26.396px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:10px;fill:rgb(56,189,248);">Renders UI</text>
+    </g>
+    <g transform="matrix(1,0,0,1,570,275)">
+        <text x="-74.703px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(203,213,225);">Form with <tspan x="-32.858px -28.358px -23.353px " y="0px 0px 0px ">Tex</tspan>tField, Button displayed</text>
+    </g>
+    <path d="M710,305L448,305" style="fill:none;fill-rule:nonzero;stroke:rgb(129,140,248);stroke-width:1.5px;"/>
+    <path d="M452,300L444,305L452,310" style="fill:none;fill-rule:nonzero;stroke:rgb(129,140,248);stroke-width:1.5px;"/>
+    <circle cx="790" cy="305" r="10" style="fill:rgb(129,140,248);"/>
+    <g transform="matrix(1,0,0,1,790,309)">
+        <text x="-2.503px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:9px;fill:white;">5</text>
+    </g>
+    <g transform="matrix(1,0,0,1,580,298)">
+        <text x="-44.741px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:10px;fill:rgb(165,180,252);">User clicks Submit</text>
+    </g>
+    <g transform="matrix(1,0,0,1,580,320)">
+        <text x="-83.863px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(203,213,225);">Data model updated: /form/name = &quot;Alice&quot;</text>
+    </g>
+    <path d="M440,355L158,355" style="fill:none;fill-rule:nonzero;stroke:rgb(52,211,153);stroke-width:1.5px;"/>
+    <path d="M162,350L154,355L162,360" style="fill:none;fill-rule:nonzero;stroke:rgb(52,211,153);stroke-width:1.5px;"/>
+    <circle cx="790" cy="355" r="10" style="fill:rgb(52,211,153);"/>
+    <g transform="matrix(1,0,0,1,790,359)">
+        <text x="-2.503px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:9px;fill:rgb(5,46,22);">6</text>
+    </g>
+    <g transform="matrix(1,0,0,1,295,348)">
+        <text x="-46.396px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:10px;fill:rgb(52,211,153);">event: submit_form</text>
+    </g>
+    <g transform="matrix(1,0,0,1,295,370)">
+        <text x="-123.757px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(203,213,225);">{ name: &quot;Alice&quot;, email: &quot;alice@...&quot; } (resolved from data model)</text>
+    </g>
+    <path d="M150,405L432,405" style="fill:none;fill-rule:nonzero;stroke:rgb(192,132,252);stroke-width:1.5px;"/>
+    <path d="M428,400L436,405L428,410" style="fill:none;fill-rule:nonzero;stroke:rgb(192,132,252);stroke-width:1.5px;"/>
+    <circle cx="100" cy="405" r="10" style="fill:rgb(192,132,252);"/>
+    <g transform="matrix(1,0,0,1,100,409)">
+        <text x="-2.503px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:9px;fill:white;">7</text>
+    </g>
+    <g transform="matrix(1,0,0,1,290,398)">
+        <text x="-34.734px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:10px;fill:rgb(192,132,252);">surfaceUpdate</text>
+    </g>
+    <g transform="matrix(1,0,0,1,290,420)">
+        <g transform="matrix(9,0,0,9,63.28125,0)">
+        </g>
+        <g transform="matrix(9,0,0,9,65.781738,0)">
+        </g>
+        <text x="-93.981px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(203,213,225);">New UI: &quot;Thanks <tspan x="-24.759px -18.756px " y="0px 0px ">Al</tspan>ice! Submission conﬁrmed.&quot;</text>
+    </g>
+    <g transform="matrix(0.703448,0,0,1.133333,213,-52)">
+        <path d="M870,397.059L870,457.941C870,461.837 864.904,465 858.627,465L591.373,465C585.096,465 580,461.837 580,457.941L580,397.059C580,393.163 585.096,390 591.373,390L858.627,390C864.904,390 870,393.163 870,397.059Z" style="fill:rgb(4,41,29);fill-opacity:0.8;stroke:rgb(16,185,129);stroke-opacity:0.3;stroke-width:1px;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,725,412)">
+        <text x="-43.059px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:10px;fill:rgb(52,211,153);">Key: Data Binding</text>
+    </g>
+    <g transform="matrix(1,0,0,1,725,430)">
+        <text x="-79.539px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(203,213,225);">Components bind to paths (/form/name)</text>
+    </g>
+    <g transform="matrix(1,0,0,1,725,445)">
+        <g transform="matrix(9,0,0,9,65.537842,0)">
+        </g>
+        <g transform="matrix(9,0,0,9,68.03833,0)">
+        </g>
+        <text x="-78.04px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(203,213,225);">Renderer resolves values on action ﬁre</text>
+    </g>
+    <g transform="matrix(1,0,0,1,725,460)">
+        <text x="-78.543px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(203,213,225);">Agent gets structured data, not raw text</text>
+    </g>
+    <defs>
+        <image id="_Image2" width="2px" height="357px" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAFlCAYAAADBMDlyAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAKklEQVRIie3GMQEAIAwDsA7tKEIBwjj2TANXcqXufidJVoaIiIiIiMiHNIAeBbxd9HhPAAAAAElFTkSuQmCC"/>
+        <image id="_Image4" width="2px" height="357px" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAFlCAYAAADBMDlyAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAKklEQVRIie3GoQEAIAwDsI6ruBvPX8iZ3YBKVGrfd5JkZYiIiIiIiHxIA25NBWnI0G/8AAAAAElFTkSuQmCC"/>
+        <image id="_Image6" width="2px" height="357px" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAFlCAYAAADBMDlyAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAKklEQVRIie3GoQEAIAwDsI7P8VzDdciZ3YBKVGqfd5NkZYiIiIiIiHxIA5utBYHcTS3wAAAAAElFTkSuQmCC"/>
+    </defs>
+</svg>

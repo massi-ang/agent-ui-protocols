@@ -230,6 +230,12 @@
     <img src="diagrams/ag-ui-flow.svg" alt="AG-UI Protocol Flow Diagram" style="width:100%; max-height:75vh; object-fit:contain; border-radius:12px;"/>
 </div></div>
 
+<!-- AG-UI Bidirectional Sequence Diagram -->
+<div class="slide" id="slide-agui-bidi"><div class="slide-inner" style="padding:24px 32px; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+    <h2 style="margin-bottom:12px;"><i data-lucide="repeat" style="width:24px;height:24px;"></i> AG-UI: Bidirectional Flow</h2>
+    <img src="diagrams/ag-ui-bidirectional.svg" alt="AG-UI Bidirectional Communication Sequence Diagram" style="width:100%; max-height:75vh; object-fit:contain; border-radius:12px;"/>
+</div></div>
+
 <!-- 6: A2UI -->
 <div class="slide" id="slide-6"><div class="slide-inner">
     <h2><i data-lucide="file-json" style="width:24px;height:24px;"></i> A2UI Protocol</h2>
@@ -253,12 +259,47 @@
     <div class="callout callout-success" style="margin-top:8px;">
         <p style="font-size:0.83em; margin:0; display:flex; align-items:center; gap:6px;"><i data-lucide="repeat" style="width:14px;height:14px;color:#34d399;"></i> <strong style="color:#34d399;">Bidirectional:</strong> <span style="color:#94a3b8;">Components declare actions with events. User clicks → renderer fires event with bound data back to agent.</span></p>
     </div>
+    <div style="margin-top:10px; text-align:right;"><button onclick="toggleCode('https://github.com/EponaLab/agent-ui-protocols/blob/main/a2ui-sample/backend/app.py#L19-L35','A2UI — System Prompt Generation')" style="background:rgba(56,189,248,0.15); color:#38bdf8; border:1px solid rgba(56,189,248,0.3); padding:5px 12px; border-radius:8px; font-size:0.8em; cursor:pointer; display:inline-flex; align-items:center; gap:5px;"><i data-lucide="code" style="width:13px;height:13px;"></i> View Agent Prompt</button></div>
 </div></div>
 
 <!-- A2UI Flow Diagram (SVG) -->
 <div class="slide" id="slide-a2ui-diagram"><div class="slide-inner" style="padding:24px 32px; display:flex; flex-direction:column; align-items:center; justify-content:center;">
     <h2 style="margin-bottom:12px;"><i data-lucide="git-pull-request" style="width:24px;height:24px;"></i> A2UI Flow</h2>
     <img src="diagrams/a2ui-flow.svg" alt="A2UI Protocol Flow Diagram" style="width:100%; max-height:75vh; object-fit:contain; border-radius:12px;"/>
+</div></div>
+
+<!-- A2UI Prompt Generation -->
+<div class="slide" id="slide-a2ui-prompt"><div class="slide-inner" style="padding:32px 40px;">
+    <h2 style="margin-bottom:12px;"><i data-lucide="terminal" style="width:24px;height:24px;"></i> A2UI: How the Agent Knows</h2>
+    <p style="margin-bottom:14px; font-size:0.92em;">The <code style="color:#38bdf8;">A2uiSchemaManager</code> generates a system prompt containing the full component schema + examples:</p>
+    <div style="background:#1e1e2e; border-radius:12px; padding:18px; overflow-x:auto; border:1px solid rgba(56,189,248,0.2); font-size:0.72em; line-height:1.6;">
+<pre style="margin:0; color:#e2e8f0; font-family:'JetBrains Mono',monospace;"><span style="color:#c084fc;">import</span> { A2uiSchemaManager } <span style="color:#c084fc;">from</span> <span style="color:#a5b4fc;">"a2ui/schema/manager"</span>;
+<span style="color:#c084fc;">import</span> { BasicCatalog } <span style="color:#c084fc;">from</span> <span style="color:#a5b4fc;">"a2ui/basic_catalog/provider"</span>;
+
+<span style="color:#64748b;">// Initialize with catalog (defines ~16 components)</span>
+<span style="color:#c084fc;">const</span> schema_manager = <span style="color:#c084fc;">new</span> <span style="color:#38bdf8;">A2uiSchemaManager</span>({
+  version: <span style="color:#a5b4fc;">"0.9"</span>,
+  catalogs: [BasicCatalog.<span style="color:#fbbf24;">get_config</span>({ version: <span style="color:#a5b4fc;">"0.9"</span> })],
+});
+
+<span style="color:#64748b;">// Auto-generates system prompt with schema + examples</span>
+<span style="color:#c084fc;">const</span> systemPrompt = schema_manager.<span style="color:#fbbf24;">generate_system_prompt</span>({
+  role_description: <span style="color:#a5b4fc;">"You are a UI generation assistant."</span>,
+  workflow_description: <span style="color:#a5b4fc;">"Return A2UI JSON for forms, cards, surveys."</span>,
+  ui_description: <span style="color:#a5b4fc;">"Use TextField, Card, Column/Row, Button, Text."</span>,
+  include_schema: <span style="color:#34d399;">true</span>,   <span style="color:#64748b;">// ← injects full JSON Schema</span>
+  include_examples: <span style="color:#34d399;">true</span>, <span style="color:#64748b;">// ← injects valid output examples</span>
+});</pre>
+    </div>
+    <div class="callout callout-info" style="margin-top:12px;">
+        <p style="font-size:0.82em; margin:0;"><strong style="color:#38bdf8;">Output:</strong> <span style="color:#94a3b8;">~2000 token system prompt containing the JSON Schema for all components (Row, Column, Text, Button, TextField, Card, etc.), their props, valid values, and 2-3 complete output examples the model can follow.</span></p>
+    </div>
+</div></div>
+
+<!-- A2UI Bidirectional Sequence Diagram -->
+<div class="slide" id="slide-a2ui-bidi"><div class="slide-inner" style="padding:24px 32px; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+    <h2 style="margin-bottom:12px;"><i data-lucide="repeat" style="width:24px;height:24px;"></i> A2UI: Bidirectional Flow</h2>
+    <img src="diagrams/a2ui-bidirectional.svg" alt="A2UI Bidirectional Communication Sequence Diagram" style="width:100%; max-height:75vh; object-fit:contain; border-radius:12px;"/>
 </div></div>
 
 <!-- 7: MCP Apps -->
@@ -291,6 +332,12 @@
     <img src="diagrams/mcp-apps-flow.svg" alt="MCP Apps Protocol Flow Diagram" style="width:100%; max-height:75vh; object-fit:contain; border-radius:12px;"/>
 </div></div>
 
+<!-- MCP Apps Bidirectional Sequence Diagram -->
+<div class="slide" id="slide-mcp-bidi"><div class="slide-inner" style="padding:24px 32px; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+    <h2 style="margin-bottom:12px;"><i data-lucide="repeat" style="width:24px;height:24px;"></i> MCP Apps: Communication Flow</h2>
+    <img src="diagrams/mcp-apps-bidirectional.svg" alt="MCP Apps Communication Sequence Diagram" style="width:100%; max-height:75vh; object-fit:contain; border-radius:12px;"/>
+</div></div>
+
 <!-- json-render -->
 <div class="slide" id="slide-jsonrender"><div class="slide-inner">
     <h2><i data-lucide="braces" style="width:24px;height:24px;"></i> json-render (Vercel)</h2>
@@ -314,31 +361,45 @@
     <div class="callout callout-info" style="margin-top:8px;">
         <p style="font-size:0.83em; margin:0; display:flex; align-items:center; gap:6px;"><i data-lucide="lightbulb" style="width:14px;height:14px;color:#38bdf8;"></i> <strong style="color:#38bdf8;">Hybrid approach:</strong> <span style="color:#94a3b8;">Developer-controlled components (like AG-UI) + agent-generated structure (like A2UI). Best for teams wanting safe generative UI within their existing design system.</span></p>
     </div>
+    <div style="margin-top:10px; text-align:right;"><button onclick="toggleCode('https://github.com/EponaLab/agent-ui-protocols/blob/main/json-render-sample/agent/server.py#L17-L60','json-render — Catalog System Prompt')" style="background:rgba(16,185,129,0.15); color:#34d399; border:1px solid rgba(16,185,129,0.3); padding:5px 12px; border-radius:8px; font-size:0.8em; cursor:pointer; display:inline-flex; align-items:center; gap:5px;"><i data-lucide="code" style="width:13px;height:13px;"></i> View Agent Prompt</button></div>
 </div></div>
 
 <!-- json-render Flow Diagram -->
 <div class="slide" id="slide-jsonrender-diagram"><div class="slide-inner" style="padding:24px 32px; display:flex; flex-direction:column; align-items:center; justify-content:center;">
     <h2 style="margin-bottom:12px;"><i data-lucide="git-pull-request" style="width:24px;height:24px;"></i> json-render Flow</h2>
-    <div class="diagram" style="gap:8px; width:100%; max-width:600px;">
-        <div class="diagram-box" style="background:rgba(99,102,241,0.15); color:#a5b4fc; width:100%;">
-            <strong>1. Define Catalog</strong><br><span class="diagram-label">Zod schemas → components, props, actions, validation</span>
-        </div>
-        <div class="diagram-arrow"><i data-lucide="chevron-down" style="width:20px;height:20px;"></i></div>
-        <div class="diagram-box" style="background:rgba(250,204,21,0.15); color:#fbbf24; width:100%;">
-            <strong>2. User Prompts</strong><br><span class="diagram-label">"Create a dashboard with revenue metrics"</span>
-        </div>
-        <div class="diagram-arrow"><i data-lucide="chevron-down" style="width:20px;height:20px;"></i></div>
-        <div class="diagram-box" style="background:rgba(192,132,252,0.15); color:#c084fc; width:100%;">
-            <strong>3. AI Generates JSON Spec</strong><br><span class="diagram-label">Model outputs structured JSON constrained to catalog</span>
-        </div>
-        <div class="diagram-arrow"><i data-lucide="chevron-down" style="width:20px;height:20px;"></i></div>
-        <div class="diagram-box" style="background:rgba(56,189,248,0.15); color:#38bdf8; width:100%;">
-            <strong>4. Registry Maps → React Components</strong><br><span class="diagram-label">Abstract spec → real UI implementation</span>
-        </div>
-        <div class="diagram-arrow"><i data-lucide="chevron-down" style="width:20px;height:20px;"></i></div>
-        <div class="diagram-box" style="background:rgba(16,185,129,0.15); color:#34d399; width:100%;">
-            <strong>5. Progressive Streaming Render</strong><br><span class="diagram-label">Components appear as JSON streams in — instant feedback</span>
-        </div>
+    <img src="diagrams/json-render-flow.svg" alt="json-render Protocol Flow Diagram" style="width:100%; max-height:75vh; object-fit:contain; border-radius:12px;"/>
+</div></div>
+
+<!-- json-render Prompt Generation -->
+<div class="slide" id="slide-jsonrender-prompt"><div class="slide-inner" style="padding:32px 40px;">
+    <h2 style="margin-bottom:12px;"><i data-lucide="terminal" style="width:24px;height:24px;"></i> json-render: How the Agent Knows</h2>
+    <p style="margin-bottom:14px; font-size:0.92em;"><code style="color:#34d399;">catalog.prompt()</code> auto-generates a system prompt from your Zod schemas. Used with <strong style="color:#e2e8f0;">Strands Agents SDK</strong>:</p>
+    <div style="background:#1e1e2e; border-radius:12px; padding:18px; overflow-x:auto; border:1px solid rgba(16,185,129,0.2); font-size:0.72em; line-height:1.6;">
+<pre style="margin:0; color:#e2e8f0; font-family:'JetBrains Mono',monospace;"><span style="color:#c084fc;">import</span> { Agent } <span style="color:#c084fc;">from</span> <span style="color:#a5b4fc;">"@strands-agents/sdk"</span>;
+<span style="color:#c084fc;">import</span> { defineCatalog } <span style="color:#c084fc;">from</span> <span style="color:#a5b4fc;">"@json-render/core"</span>;
+<span style="color:#c084fc;">import</span> { shadcnComponentDefinitions } <span style="color:#c084fc;">from</span> <span style="color:#a5b4fc;">"@json-render/shadcn/catalog"</span>;
+
+<span style="color:#64748b;">// Define catalog with Zod schemas (guardrails)</span>
+<span style="color:#c084fc;">const</span> catalog = <span style="color:#38bdf8;">defineCatalog</span>(schema, {
+  components: {
+    Card: shadcnComponentDefinitions.<span style="color:#fbbf24;">Card</span>,
+    Stack: shadcnComponentDefinitions.<span style="color:#fbbf24;">Stack</span>,
+    Button: shadcnComponentDefinitions.<span style="color:#fbbf24;">Button</span>,
+    Input: shadcnComponentDefinitions.<span style="color:#fbbf24;">Input</span>,
+    Table: shadcnComponentDefinitions.<span style="color:#fbbf24;">Table</span>,
+    <span style="color:#64748b;">// ... 36 shadcn/ui components available</span>
+  },
+  actions: {},
+});
+
+<span style="color:#64748b;">// One line → full system prompt with all component schemas</span>
+<span style="color:#c084fc;">const</span> systemPrompt = catalog.<span style="color:#fbbf24;">prompt</span>();
+
+<span style="color:#64748b;">// Pass directly to Strands agent</span>
+<span style="color:#c084fc;">const</span> agent = <span style="color:#c084fc;">new</span> <span style="color:#38bdf8;">Agent</span>({ model, systemPrompt });</pre>
+    </div>
+    <div class="callout callout-success" style="margin-top:12px;">
+        <p style="font-size:0.82em; margin:0;"><strong style="color:#34d399;">Output:</strong> <span style="color:#94a3b8;">Auto-generated prompt listing every component name, its Zod-validated props, descriptions, and the expected JSON output format. Model can ONLY produce specs matching the catalog.</span></p>
     </div>
 </div></div>
 
@@ -571,12 +632,17 @@ let fontScale = 100;
 function zoom(dir) {
     fontScale += dir * 20;
     document.documentElement.style.fontSize = fontScale + '%';
+    document.querySelectorAll('.slide').forEach(s => s.style.maxWidth = (1200 * fontScale / 100) + 'px');
 }
 
 function toggleSources() {
     const m = document.getElementById('sources-modal');
     m.style.display = m.style.display === 'none' ? 'flex' : 'none';
     lucide.createIcons();
+}
+
+function toggleCode(url, title) {
+    window.open(url, '_blank');
 }
 
 lucide.createIcons();
