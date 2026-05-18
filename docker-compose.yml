@@ -54,6 +54,32 @@ services:
     networks:
       - credentials_provider_network
 
+  json-render-agent:
+    build:
+      context: ./json-render-sample/agent
+    ports:
+      - "8081:8081"
+    environment:
+      - AWS_CONTAINER_CREDENTIALS_FULL_URI=http://169.254.170.2:8000/credentials
+      - AWS_REGION=${AWS_REGION:-us-east-1}
+      - BEDROCK_MODEL=${BEDROCK_MODEL:-global.anthropic.claude-sonnet-4-6}
+    restart: unless-stopped
+    networks:
+      - credentials_provider_network
+
+  json-render-frontend:
+    build:
+      context: ./json-render-sample/frontend
+    ports:
+      - "3004:3004"
+    environment:
+      - NEXT_PUBLIC_AGENT_URL=http://json-render-agent:8081
+    depends_on:
+      - json-render-agent
+    restart: unless-stopped
+    networks:
+      - credentials_provider_network
+
 networks:
   credentials_provider_network:
     external: true
