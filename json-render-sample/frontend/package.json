@@ -9,11 +9,14 @@
   },
   "dependencies": {
     "@json-render/core": "latest",
+    "@json-render/next": "^0.19.0",
     "@json-render/react": "latest",
     "@json-render/shadcn": "latest",
+    "@tailwindcss/typography": "^0.5.19",
     "next": "^15.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-markdown": "^10.1.0",
     "zod": "^4.0.0"
   },
   "devDependencies": {

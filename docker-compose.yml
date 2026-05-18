@@ -74,7 +74,7 @@ services:
     ports:
       - "3004:3004"
     environment:
-      - NEXT_PUBLIC_AGENT_URL=http://json-render-agent:8081
+      - NEXT_PUBLIC_AGENT_URL=http://localhost:8081
     depends_on:
       - json-render-agent
     restart: unless-stopped

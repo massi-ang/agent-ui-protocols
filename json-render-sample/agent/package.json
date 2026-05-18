@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "@strands-agents/sdk": "latest",
+    "@modelcontextprotocol/sdk": "latest",
+    "@opentelemetry/api": "^1.9.0",
     "@json-render/core": "latest",
     "@json-render/react": "latest",
     "@json-render/shadcn": "latest",
