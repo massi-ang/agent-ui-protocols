@@ -15,7 +15,7 @@ Practical implementations of AG-UI, A2UI, json-render, MCP Apps, and Open Genera
 
 ### 2. A2UI Sample (`a2ui-sample/`)
 - **Frontend**: Svelte + A2UI Renderer
-- **Backend**: Google ADK (Agent Development Kit)
+- **Backend**: Strands Agents + A2UI SDK
 - **Model**: Amazon Bedrock (Claude)
 - **Demo**: Dynamic form generation with declarative UI
 
@@ -233,9 +233,9 @@ docker-compose up mcp-apps-sample
 └─────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────┐
-│  Sample 2: A2UI (Svelte + ADK)                  │
+│  Sample 2: A2UI (Svelte + Strands)              │
 │  ┌──────────────┐         ┌─────────────────┐  │
-│  │ Svelte UI    │ ◄─────► │ ADK Agent       │  │
+│  │ Svelte UI    │ ◄─────► │ Strands Agent   │  │
 │  │ A2UI Renderer│         │ + Bedrock       │  │
 │  └──────────────┘         └─────────────────┘  │
 │  Port 3002                                      │
