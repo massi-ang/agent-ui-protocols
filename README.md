@@ -1,12 +1,12 @@
 # Agent-UI Protocols Samples
 
-Practical implementations of AG-UI, A2UI, and MCP Apps protocols using Amazon Bedrock for inference.
+Practical implementations of AG-UI, A2UI, json-render, MCP Apps, and Open Generative UI protocols using Amazon Bedrock for inference.
 
 ## 📦 What's Included
 
 ### 1. AG-UI Sample (`ag-ui-sample/`)
 - **Frontend**: CopilotKit + Next.js + React
-- **Backend**: Custom Bedrock integration
+- **Backend**: Strands Agents + Bedrock
 - **Model**: Amazon Bedrock (Claude)
 - **Demo**: Controlled generative UI with:
   - 📊 Server-side data tools (weather, profiles, charts)
@@ -19,11 +19,23 @@ Practical implementations of AG-UI, A2UI, and MCP Apps protocols using Amazon Be
 - **Model**: Amazon Bedrock (Claude)
 - **Demo**: Dynamic form generation with declarative UI
 
-### 3. MCP Apps Sample (`mcp-apps-sample/`)
+### 3. json-render Sample (`json-render-sample/`)
+- **Frontend**: React + json-render renderer
+- **Backend**: Strands Agents + Bedrock
+- **Model**: Amazon Bedrock (Claude)
+- **Demo**: Schema-constrained generative UI with Zod catalogs
+
+### 4. MCP Apps Sample (`mcp-apps-sample/`)
 - **Server**: MCP Server with UI resources
 - **Model**: Amazon Bedrock (Claude)
 - **Client**: Use VS Code, Claude Desktop, or any MCP-compatible client
 - **Demo**: Interactive data visualization app
+
+### 5. Open Generative UI Sample (`open-generative-ui-sample/`)
+- **Frontend**: CopilotKit v2 + Next.js + React
+- **Backend**: Strands Agents + Bedrock
+- **Model**: Amazon Bedrock (Claude)
+- **Demo**: Open-ended generative UI — agent generates raw HTML visualizations rendered in sandboxed iframes
 
 ## 🚀 Quick Start
 
@@ -65,6 +77,8 @@ docker-compose up -d --build
 - **AG-UI Sample**: http://localhost:3001
 - **A2UI Sample**: http://localhost:3002
 - **MCP Apps Server**: http://localhost:3003/mcp (SSE endpoint)
+- **Open Generative UI**: http://localhost:3004
+- **json-render Sample**: http://localhost:3005
 
 ### Run Individual Samples
 
@@ -181,6 +195,31 @@ docker-compose up mcp-apps-sample
 "Visualize this data: [1,2,3,4,5]"
 ```
 
+### Open Generative UI Sample
+
+**Open-ended Generative UI** - Agent generates raw HTML/SVG/Canvas visualizations rendered in sandboxed iframes.
+
+**Features:**
+- 🎨 Sandboxed HTML/SVG visualizations (algorithm visualizations, diagrams, simulations)
+- 📊 Agent writes complete self-contained HTML documents
+- 🔧 Data tools (weather, bank account) feed into visualizations
+
+**How it works:**
+1. User sends a prompt via CopilotKit chat UI
+2. Strands Agent decides: text response or render a visualization
+3. Agent calls `widgetRenderer` tool with generated HTML
+4. `useComponent` hook renders HTML in a sandboxed iframe
+5. No pre-built components — agent creates everything from scratch
+
+**Try it:**
+```
+"Show me the weather in Tokyo"
+"Show my bank account summary"
+"Visualize binary search algorithm"
+"Create a pie chart of monthly spending"
+"Show a 3D rotating cube"
+```
+
 ## 🏗️ Architecture
 
 ```
@@ -203,12 +242,30 @@ docker-compose up mcp-apps-sample
 └─────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────┐
-│  Sample 3: MCP Apps (Server Only)               │
+│  Sample 3: json-render (React + Strands)        │
+│  ┌──────────────┐         ┌─────────────────┐  │
+│  │ React UI     │ ◄─────► │ Strands Agent   │  │
+│  │ json-render  │         │ + Bedrock       │  │
+│  └──────────────┘         └─────────────────┘  │
+│  Port 3005                                      │
+└─────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────┐
+│  Sample 4: MCP Apps (Server Only)               │
 │  ┌──────────────┐                               │
 │  │ MCP Server   │ ◄───── Your Client            │
 │  │ + Bedrock    │        (VS Code/Claude)       │
 │  └──────────────┘                               │
 │  Port 3003                                      │
+└─────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────┐
+│  Sample 5: Open Generative UI (CopilotKit v2)   │
+│  ┌──────────────┐         ┌─────────────────┐  │
+│  │ Next.js UI   │ ◄─────► │ Strands Agent   │  │
+│  │ CopilotKit v2│         │ + Bedrock       │  │
+│  └──────────────┘         └─────────────────┘  │
+│  Port 3004                                      │
 └─────────────────────────────────────────────────┘
 ```
 
@@ -283,9 +340,11 @@ lsof -ti:3001 | xargs kill -9
 
 ## 📖 Further Reading
 
-- [AG-UI Protocol](https://github.com/ag-ui-protocol/ag-ui)
-- [A2UI Specification](https://github.com/google/A2UI)
+- [AG-UI Protocol](https://docs.ag-ui.com)
+- [A2UI Specification](https://a2ui.org)
+- [json-render](https://json-render.org)
 - [MCP Apps Documentation](https://modelcontextprotocol.io/extensions/apps/overview)
+- [Open Generative UI](https://docs.copilotkit.ai/generative-ui)
 - [CopilotKit Docs](https://docs.copilotkit.ai)
 - [Google ADK](https://google.github.io/adk-docs/)
 - [Amazon Bedrock](https://aws.amazon.com/bedrock/)
@@ -304,6 +363,6 @@ MIT License - see LICENSE file for details
 
 ---
 
-**Live Presentation**: https://eponalab.github.io/agent-ui-protocols/
+**Live Presentation**: https://eponalab.github.io/agent-ui-protocols/deck-v3.html
 
 **Repository**: https://github.com/EponaLab/agent-ui-protocols
