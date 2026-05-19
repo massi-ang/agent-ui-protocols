@@ -1,0 +1,27 @@
+{
+  "name": "mcp-apps-sample",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build:ui": "APP=weather vite build && APP=bank vite build && APP=recipe vite build",
+    "build:server": "tsc",
+    "build": "npm run build:ui && npm run build:server",
+    "start": "node dist/server.js",
+    "dev": "tsx server.ts"
+  },
+  "dependencies": {
+    "@aws-sdk/client-bedrock-runtime": "^3.1048.0",
+    "@fastify/cors": "^11.2.0",
+    "@modelcontextprotocol/ext-apps": "latest",
+    "@modelcontextprotocol/sdk": "latest",
+    "fastify": "^5.8.5",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.0",
+    "vite": "^6.0.0",
+    "vite-plugin-singlefile": "^2.0.0"
+  }
+}

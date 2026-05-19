@@ -82,4 +82,100 @@ body {
 
   /* Text */
   --a2ui-text-caption-color: #94a3b8;
+  --a2ui-checkbox-background: #ffffff;
+  --a2ui-checkbox-border: 1px solid #e2e8f0;
+  --a2ui-checkbox-color-error: #ef4444;
+  --a2ui-checkbox-label-font-weight: 400;
+  --a2ui-checkbox-margin: 8px 0;
+  --a2ui-datetimeinput-background: #ffffff;
+  --a2ui-datetimeinput-color: #1e293b;
+  --a2ui-datetimeinput-label-font-size: 13px;
+  --a2ui-datetimeinput-label-font-weight: 500;
+  --a2ui-icon-color: #475569;
+  --a2ui-icon-size: 20px;
+  --a2ui-slider-label-font-size: 13px;
+  --a2ui-slider-label-font-weight: 500;
+  --a2ui-border-width: 1px;
+}
+
+/* Element styling overrides */
+
+/* TextField wrapper */
+div:has(> label + input),
+div:has(> label + textarea) {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="tel"],
+textarea {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--a2ui-color-border, #e8e8f0);
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: inherit;
+  background: var(--a2ui-color-input, #fafafe);
+  color: var(--a2ui-color-on-input, #2d2d3a);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--a2ui-color-primary, #6366f1);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.08);
+}
+
+/* Labels */
+label {
+  font-size: var(--a2ui-label-font-size, 13px);
+  font-weight: var(--a2ui-label-font-weight, 500);
+  color: #4b5563;
+}
+
+/* Validation hints */
+div:has(> label) > span {
+  color: #a1a1b5;
+  font-size: 12px;
+}
+
+/* Buttons */
+button {
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+  border: 1px solid var(--a2ui-color-border, #e8e8f0);
+  background: var(--a2ui-color-surface, #fefefe);
+  color: var(--a2ui-color-on-surface, #2d2d3a);
+}
+
+button:hover {
+  background: var(--a2ui-color-secondary, #f5f3ff);
+}
+
+button p { margin: 0; }
+button div { display: contents; }
+
+/* Checkbox */
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--a2ui-color-primary, #6366f1);
+}
+
+/* Slider */
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--a2ui-color-primary, #6366f1);
 }

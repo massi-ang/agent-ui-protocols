@@ -1,10 +1,31 @@
 "use client";
 import { useState, useRef, useEffect, useMemo, useCallback } from "react";
-import { A2uiSurface, basicCatalog } from "@a2ui/react/v0_9";
-import { MessageProcessor, SurfaceModel } from "@a2ui/web_core/v0_9";
+import { A2uiSurface, basicCatalog, MarkdownContext } from "@a2ui/react/v0_9";
+import { MessageProcessor, SurfaceModel, Catalog } from "@a2ui/web_core/v0_9";
 import type { ReactComponentImplementation } from "@a2ui/react/v0_9";
+import { renderMarkdown } from "@a2ui/markdown-it";
+import { WeatherCard, BankAccountCard } from "@/catalog/components";
 
 const AGENT_URL = process.env.NEXT_PUBLIC_AGENT_URL || "";
+
+// Create catalog with the ID the agent references
+const allComponents = [
+  ...Array.from(basicCatalog.components.values()),
+  WeatherCard,
+  BankAccountCard,
+];
+const catalog = new Catalog<ReactComponentImplementation>(
+  "https://a2ui.org/specification/v0_9/basic_catalog.json",
+  allComponents,
+  Array.from(basicCatalog.functions.values()),
+);
+
+// Also register with the custom catalog ID in case agent uses it
+const customCatalogInstance = new Catalog<ReactComponentImplementation>(
+  "urn:a2ui:catalog:custom",
+  allComponents,
+  Array.from(basicCatalog.functions.values()),
+);
 
 export default function Home() {
   const [input, setInput] = useState("");
@@ -16,7 +37,7 @@ export default function Home() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const processor = useMemo(() => {
-    return new MessageProcessor([basicCatalog], (action) => {
+    return new MessageProcessor([catalog, customCatalogInstance], (action) => {
       console.log("A2UI Action:", action);
     });
   }, []);
@@ -139,9 +160,11 @@ export default function Home() {
       <div style={{ flex: 1, overflowY: "auto", padding: 40 }}>
         {surfaces.length > 0 ? (
           <div>
+          <MarkdownContext.Provider value={renderMarkdown}>
             {surfaces.map((surface) => (
               <A2uiSurface key={surface.id} surface={surface} />
             ))}
+          </MarkdownContext.Provider>
           </div>
         ) : (
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", color: "#94a3b8" }}>

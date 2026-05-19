@@ -1,0 +1,30 @@
+[
+  {
+    "version": "v0.9",
+    "createSurface": {
+      "surfaceId": "bank-example",
+      "catalogId": "urn:a2ui:catalog:custom"
+    }
+  },
+  {
+    "version": "v0.9",
+    "updateComponents": {
+      "surfaceId": "bank-example",
+      "components": [
+        {
+          "id": "root",
+          "component": "BankAccountCard",
+          "accounts": [
+            {"name": "Checking", "balance": 4285.50, "number": "****4821"},
+            {"name": "Savings", "balance": 12740.00, "number": "****3390"}
+          ],
+          "transactions": [
+            {"description": "Grocery Store", "amount": -82.40, "date": "2024-06-05"},
+            {"description": "Salary Deposit", "amount": 3500.00, "date": "2024-06-04"},
+            {"description": "Electric Bill", "amount": -145.00, "date": "2024-06-03"}
+          ]
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,62 @@
+{
+  "name": "custom_catalog",
+  "version": "0.9",
+  "components": {
+    "WeatherCard": {
+      "type": "object",
+      "description": "A weather card showing current conditions and 3-day forecast for a city.",
+      "properties": {
+        "city": { "type": "string" },
+        "temperature": { "type": "number" },
+        "conditions": { "type": "string" },
+        "humidity": { "type": "number" },
+        "wind": { "type": "string" },
+        "forecast": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "day": { "type": "string" },
+              "high": { "type": "number" },
+              "low": { "type": "number" },
+              "conditions": { "type": "string" }
+            },
+            "required": ["day", "high", "low"]
+          }
+        }
+      },
+      "required": ["city", "temperature", "conditions"]
+    },
+    "BankAccountCard": {
+      "type": "object",
+      "description": "A bank account summary card showing balances and recent transactions.",
+      "properties": {
+        "accounts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "balance": { "type": "number" },
+              "number": { "type": "string" }
+            },
+            "required": ["name", "balance"]
+          }
+        },
+        "transactions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "date": { "type": "string" },
+              "description": { "type": "string" },
+              "amount": { "type": "number" }
+            },
+            "required": ["description", "amount"]
+          }
+        }
+      },
+      "required": ["accounts"]
+    }
+  }
+}

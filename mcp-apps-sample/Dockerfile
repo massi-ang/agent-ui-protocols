@@ -1,12 +1,15 @@
-FROM python:3.11-slim
+FROM node:22-slim
 
 WORKDIR /app
 
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
+COPY package.json ./
+RUN npm install
 
-COPY . .
+COPY tsconfig.json vite.config.ts server.ts ./
+COPY src/ ./src/
+
+RUN npm run build
 
 EXPOSE 3003
 
-CMD ["python", "server.py"]
+CMD ["node", "dist/server.js"]

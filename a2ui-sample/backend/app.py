@@ -12,26 +12,33 @@ from google.adk.agents.llm_agent import LlmAgent
 from google.adk.runners import Runner
 from google.adk.sessions import InMemorySessionService
 from google.genai import types
-from a2ui.schema.manager import A2uiSchemaManager
+from a2ui.schema.manager import A2uiSchemaManager, CatalogConfig
 from a2ui.basic_catalog.provider import BasicCatalog
 from a2ui.parser.parser import parse_response
 
 # --- A2UI Schema Setup ---
 schema_manager = A2uiSchemaManager(
     version="0.9",
-    catalogs=[BasicCatalog.get_config(version="0.9")],
+    catalogs=[
+        CatalogConfig.from_path(
+            name="custom",
+            catalog_path=os.path.join(os.path.dirname(__file__), "custom_catalog.json"),
+            examples_path=os.path.join(os.path.dirname(__file__), "examples/custom"),
+        ),
+        BasicCatalog.get_config(version="0.9"),
+    ],
 )
 
 _a2ui_instruction = schema_manager.generate_system_prompt(
     role_description="You are a helpful assistant that generates rich interactive UIs.",
-    workflow_description="Analyze the user's request and return A2UI JSON for forms, cards, or data displays.",
-    ui_description="Use TextField for inputs, Card for profiles, Column/Row for layout, Button for actions, Text for labels.",
+    workflow_description="Analyze the user's request. Use get_weather and get_bank_account tools to fetch data, then return A2UI JSON. Use WeatherCard for weather and BankAccountCard for bank data.",
+    ui_description="Use WeatherCard for weather displays, BankAccountCard for bank/finance displays. For other UIs use TextField for inputs, Card for profiles, Column/Row for layout, Button for actions, Text for labels.",
     include_schema=True,
     include_examples=True,
 )
 
 # Use a simple instruction for ADK (no curly braces) and prepend the A2UI schema as a user context
-instruction = "You are a helpful assistant with access to tools. Use get_weather and get_bank_account to fetch real data, then generate A2UI JSON to display it visually. Follow the A2UI schema provided in the conversation. IMPORTANT: Always wrap your A2UI JSON output in <a2ui-json> and </a2ui-json> tags."
+instruction = "You are a helpful assistant with access to tools. Use get_weather and get_bank_account to fetch real data, then generate A2UI JSON to display it visually. Follow the A2UI schema provided in the conversation. Always wrap your A2UI JSON output in <a2ui-json> and </a2ui-json> tags."
 
 
 def get_weather(city: str) -> str:
