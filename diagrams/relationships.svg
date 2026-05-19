@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300">
+<rect x="230" y="10" width="240" height="50" rx="12" fill="rgba(129,140,248,0.12)" stroke="#818cf8" stroke-width="1.5"/>
+<text x="350" y="32" text-anchor="middle" fill="#a5b4fc" font-weight="700" font-size="13" font-family="Inter,sans-serif">AG-UI (wire protocol)</text>
+<text x="350" y="48" text-anchor="middle" fill="#64748b" font-size="10" font-family="Inter,sans-serif">optional — not required by all</text>
+<line x1="280" y1="60" x2="150" y2="100" stroke="#64748b" stroke-width="1" stroke-dasharray="4,3"/>
+<line x1="350" y1="60" x2="350" y2="100" stroke="#64748b" stroke-width="1" stroke-dasharray="4,3"/>
+<line x1="420" y1="60" x2="550" y2="100" stroke="#64748b" stroke-width="1" stroke-dasharray="4,3"/>
+<rect x="60" y="100" width="180" height="45" rx="10" fill="rgba(56,189,248,0.12)" stroke="#38bdf8" stroke-width="1.5"/>
+<text x="150" y="120" text-anchor="middle" fill="#38bdf8" font-weight="600" font-size="12" font-family="Inter,sans-serif">A2UI</text>
+<text x="150" y="136" text-anchor="middle" fill="#64748b" font-size="9" font-family="Inter,sans-serif">any transport</text>
+<rect x="260" y="100" width="180" height="45" rx="10" fill="rgba(16,185,129,0.12)" stroke="#34d399" stroke-width="1.5"/>
+<text x="350" y="120" text-anchor="middle" fill="#34d399" font-weight="600" font-size="12" font-family="Inter,sans-serif">json-render</text>
+<text x="350" y="136" text-anchor="middle" fill="#64748b" font-size="9" font-family="Inter,sans-serif">Vercel AI SDK</text>
+<rect x="460" y="100" width="180" height="45" rx="10" fill="rgba(192,132,252,0.12)" stroke="#c084fc" stroke-width="1.5"/>
+<text x="550" y="120" text-anchor="middle" fill="#c084fc" font-weight="600" font-size="12" font-family="Inter,sans-serif">Open GenUI</text>
+<text x="550" y="136" text-anchor="middle" fill="#64748b" font-size="9" font-family="Inter,sans-serif">AG-UI (CopilotKit)</text>
+<rect x="150" y="190" width="400" height="70" rx="12" fill="rgba(251,191,36,0.06)" stroke="rgba(251,191,36,0.3)" stroke-width="1.5"/>
+<text x="350" y="212" text-anchor="middle" fill="#fbbf24" font-weight="600" font-size="12" font-family="Inter,sans-serif">MCP Protocol</text>
+<rect x="260" y="225" width="180" height="30" rx="8" fill="rgba(251,191,36,0.12)" stroke="#fbbf24" stroke-width="1"/>
+<text x="350" y="245" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="600" font-family="Inter,sans-serif">MCP Apps</text>
+<text x="350" y="280" text-anchor="middle" fill="#64748b" font-size="10" font-family="Inter,sans-serif">requires MCP — tied to specific transport</text>
+</svg>
