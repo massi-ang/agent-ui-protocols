@@ -3,66 +3,113 @@
 <svg width="100%" height="100%" viewBox="0 0 900 520" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;">
     <path d="M900,12L900,508C900,514.623 894.623,520 888,520L12,520C5.377,520 0,514.623 0,508L0,12C0,5.377 5.377,0 12,0L888,0C894.623,0 900,5.377 900,12Z" style="fill:rgb(15,15,26);"/>
     <g transform="matrix(1,0,0,1,450,38)">
-        <text x="-82.503px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:18px;fill:rgb(165,180,252);">A2UI Protocol Flow</text>
+        <g transform="matrix(1,0,0,1,-82.503,0)">
+            <text x="0px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:18px;fill:rgb(165,180,252);">A2UI Protocol Flow</text>
+        </g>
     </g>
     <g transform="matrix(1,0,0,1,450,56)">
-        <text x="-199.617px" y="0px" style="font-family:'Helvetica';font-size:11px;fill:rgb(100,116,139);">Declarative Generative UI — <tspan x="-57.165px -49.828px " y="0px 0px ">Ag</tspan>ent streams JSON, renderer displays components</text>
+        <g>
+            <g transform="matrix(1,0,0,1,-199.617,0)">
+                <text x="0px" y="0px" style="font-family:'Helvetica';font-size:11px;fill:rgb(100,116,139);">Declarative Generative UI —</text>
+            </g>
+            <g transform="matrix(1,0,0,1,-57.165,0)">
+                <text x="0px" y="0px" style="font-family:'Helvetica';font-size:11px;fill:rgb(100,116,139);">Agent streams JSON, renderer displays components</text>
+            </g>
+        </g>
     </g>
     <path d="M180,95L180,131C180,136.519 175.519,141 170,141L70,141C64.481,141 60,136.519 60,131L60,95C60,89.481 64.481,85 70,85L170,85C175.519,85 180,89.481 180,95Z" style="fill:rgb(129,140,248);fill-opacity:0.12;stroke:rgb(129,140,248);stroke-width:1.5px;"/>
     <g transform="matrix(1,0,0,1,120,110)">
-        <text x="-14.454px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:13px;fill:rgb(165,180,252);">User</text>
+        <g transform="matrix(1,0,0,1,-14.454,0)">
+            <text x="0px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:13px;fill:rgb(165,180,252);">User</text>
+        </g>
     </g>
     <g transform="matrix(1,0,0,1,120,126)">
-        <text x="-18.623px" y="0px" style="font-family:'Helvetica';font-size:10px;fill:rgb(100,116,139);">Request</text>
+        <g transform="matrix(1,0,0,1,-18.623,0)">
+            <text x="0px" y="0px" style="font-family:'Helvetica';font-size:10px;fill:rgb(100,116,139);">Request</text>
+        </g>
     </g>
     <path d="M480,95L480,131C480,136.519 475.519,141 470,141L330,141C324.481,141 320,136.519 320,131L320,95C320,89.481 324.481,85 330,85L470,85C475.519,85 480,89.481 480,95Z" style="fill:rgb(56,189,248);fill-opacity:0.12;stroke:rgb(56,189,248);stroke-width:1.5px;"/>
     <g transform="matrix(1,0,0,1,400,115)">
-        <text x="-34.065px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:13px;fill:rgb(56,189,248);">ADK <tspan x="-2.764px 6.624px " y="0px 0px ">Ag</tspan>ent</text>
+        <g>
+            <g transform="matrix(1,0,0,1,-34.065,0)">
+                <text x="0px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:13px;fill:rgb(56,189,248);">ADK</text>
+            </g>
+            <g transform="matrix(1,0,0,1,-2.764,0)">
+                <text x="0px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:13px;fill:rgb(56,189,248);">Agent</text>
+            </g>
+        </g>
     </g>
     <path d="M180,113L312,113" style="fill:none;fill-rule:nonzero;stroke:rgb(100,116,139);stroke-width:1.5px;"/>
     <path d="M308,108L316,113L308,118" style="fill:none;fill-rule:nonzero;stroke:rgb(100,116,139);stroke-width:1.5px;"/>
     <circle cx="246" cy="113" r="10" style="fill:rgb(129,140,248);"/>
     <g transform="matrix(1,0,0,1,246,117)">
-        <text x="-2.503px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:9px;fill:white;">1</text>
+        <g transform="matrix(1,0,0,1,-2.503,0)">
+            <text x="0px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:9px;fill:white;">1</text>
+        </g>
     </g>
     <path d="M400,141L400,180" style="fill:none;fill-rule:nonzero;stroke:rgb(56,189,248);stroke-width:1.5px;"/>
     <path d="M394,174L400,182L406,174" style="fill:none;fill-rule:nonzero;stroke:rgb(56,189,248);stroke-width:1.5px;"/>
     <circle cx="400" cy="160" r="10" style="fill:rgb(56,189,248);"/>
     <g transform="matrix(1,0,0,1,400,164)">
-        <text x="-2.503px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:9px;fill:white;">2</text>
+        <g transform="matrix(1,0,0,1,-2.503,0)">
+            <text x="0px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:9px;fill:white;">2</text>
+        </g>
     </g>
     <g transform="matrix(1,0,0,1,430,165)">
         <text x="0px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(148,163,184);">Streams JSONL</text>
     </g>
     <path d="M290,198L290,242C290,246.415 286.415,250 282,250L148,250C143.585,250 140,246.415 140,242L140,198C140,193.585 143.585,190 148,190L282,190C286.415,190 290,193.585 290,198Z" style="fill:rgb(251,191,36);fill-opacity:0.08;stroke:rgb(251,191,36);stroke-width:1.5px;"/>
     <g transform="matrix(1,0,0,1,215,213)">
-        <text x="-38.207px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:11px;fill:rgb(251,191,36);">surfaceUpdate</text>
+        <g transform="matrix(1,0,0,1,-38.207,0)">
+            <text x="0px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:11px;fill:rgb(251,191,36);">surfaceUpdate</text>
+        </g>
     </g>
     <g transform="matrix(1,0,0,1,215,230)">
-        <text x="-32.269px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(148,163,184);">Component tree</text>
+        <g transform="matrix(1,0,0,1,-32.269,0)">
+            <text x="0px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(148,163,184);">Component tree</text>
+        </g>
     </g>
     <g transform="matrix(1,0,0,1,215,243)">
-        <text x="-52.774px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(100,116,139);">(T<tspan x="-45.277px -40.271px " y="0px 0px ">ex</tspan>tInput, Button, Card...)</text>
+        <g>
+            <g transform="matrix(1,0,0,1,-52.774,0)">
+                <text x="0px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(100,116,139);">(T</text>
+            </g>
+            <g transform="matrix(1,0,0,1,-45.277,0)">
+                <text x="0px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(100,116,139);">extInput, Button, Card...)</text>
+            </g>
+        </g>
     </g>
     <path d="M480,198L480,242C480,246.415 476.415,250 472,250L328,250C323.585,250 320,246.415 320,242L320,198C320,193.585 323.585,190 328,190L472,190C476.415,190 480,193.585 480,198Z" style="fill:rgb(16,185,129);fill-opacity:0.08;stroke:rgb(52,211,153);stroke-width:1.5px;"/>
     <g transform="matrix(1,0,0,1,400,213)">
-        <text x="-45.837px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:11px;fill:rgb(52,211,153);">dataModelUpdate</text>
+        <g transform="matrix(1,0,0,1,-45.837,0)">
+            <text x="0px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:11px;fill:rgb(52,211,153);">dataModelUpdate</text>
+        </g>
     </g>
     <g transform="matrix(1,0,0,1,400,230)">
-        <text x="-37.279px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(148,163,184);">Bound data values</text>
+        <g transform="matrix(1,0,0,1,-37.279,0)">
+            <text x="0px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(148,163,184);">Bound data values</text>
+        </g>
     </g>
     <g transform="matrix(1,0,0,1,400,243)">
-        <text x="-48.27px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(100,116,139);">(name, email, options...)</text>
+        <g transform="matrix(1,0,0,1,-48.27,0)">
+            <text x="0px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(100,116,139);">(name, email, options...)</text>
+        </g>
     </g>
     <path d="M660,198L660,242C660,246.415 656.415,250 652,250L518,250C513.585,250 510,246.415 510,242L510,198C510,193.585 513.585,190 518,190L652,190C656.415,190 660,193.585 660,198Z" style="fill:rgb(192,132,252);fill-opacity:0.08;stroke:rgb(192,132,252);stroke-width:1.5px;"/>
     <g transform="matrix(1,0,0,1,585,213)">
-        <text x="-41.862px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:11px;fill:rgb(192,132,252);">beginRendering</text>
+        <g transform="matrix(1,0,0,1,-41.862,0)">
+            <text x="0px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:11px;fill:rgb(192,132,252);">beginRendering</text>
+        </g>
     </g>
     <g transform="matrix(1,0,0,1,585,230)">
-        <text x="-27.767px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(148,163,184);">Render signal</text>
+        <g transform="matrix(1,0,0,1,-27.767,0)">
+            <text x="0px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(148,163,184);">Render signal</text>
+        </g>
     </g>
     <g transform="matrix(1,0,0,1,585,243)">
-        <text x="-31.01px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(100,116,139);">(trigger display)</text>
+        <g transform="matrix(1,0,0,1,-31.01,0)">
+            <text x="0px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(100,116,139);">(trigger display)</text>
+        </g>
     </g>
     <path d="M290,220L312,220" style="fill:none;fill-rule:nonzero;stroke:rgb(100,116,139);stroke-width:1px;stroke-dasharray:4,3;"/>
     <path d="M480,220L502,220" style="fill:none;fill-rule:nonzero;stroke:rgb(100,116,139);stroke-width:1px;stroke-dasharray:4,3;"/>
@@ -74,52 +121,96 @@
     <path d="M394,304L400,312L406,304" style="fill:none;fill-rule:nonzero;stroke:rgb(100,116,139);stroke-width:1.5px;"/>
     <circle cx="400" cy="295" r="10" style="fill:rgb(129,140,248);"/>
     <g transform="matrix(1,0,0,1,400,299)">
-        <text x="-2.503px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:9px;fill:white;">3</text>
+        <g transform="matrix(1,0,0,1,-2.503,0)">
+            <text x="0px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:9px;fill:white;">3</text>
+        </g>
     </g>
     <path d="M540,325L540,361C540,366.519 535.519,371 530,371L270,371C264.481,371 260,366.519 260,361L260,325C260,319.481 264.481,315 270,315L530,315C535.519,315 540,319.481 540,325Z" style="fill:rgb(129,140,248);fill-opacity:0.1;stroke:rgb(129,140,248);stroke-width:1.5px;"/>
     <g transform="matrix(1,0,0,1,400,340)">
-        <text x="-45.154px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:13px;fill:rgb(165,180,252);">A2UI Renderer</text>
+        <g transform="matrix(1,0,0,1,-45.154,0)">
+            <text x="0px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:13px;fill:rgb(165,180,252);">A2UI Renderer</text>
+        </g>
     </g>
     <g transform="matrix(1,0,0,1,400,356)">
-        <text x="-59.746px" y="0px" style="font-family:'Helvetica';font-size:10px;fill:rgb(100,116,139);">Svelte / React / Swift / C++</text>
+        <g transform="matrix(1,0,0,1,-59.746,0)">
+            <text x="0px" y="0px" style="font-family:'Helvetica';font-size:10px;fill:rgb(100,116,139);">Svelte / React / Swift / C++</text>
+        </g>
     </g>
     <path d="M400,371L400,405" style="fill:none;fill-rule:nonzero;stroke:rgb(129,140,248);stroke-width:1.5px;"/>
     <path d="M394,399L400,407L406,399" style="fill:none;fill-rule:nonzero;stroke:rgb(129,140,248);stroke-width:1.5px;"/>
     <circle cx="400" cy="388" r="10" style="fill:rgb(129,140,248);"/>
     <g transform="matrix(1,0,0,1,400,392)">
-        <text x="-2.503px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:9px;fill:white;">4</text>
+        <g transform="matrix(1,0,0,1,-2.503,0)">
+            <text x="0px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:9px;fill:white;">4</text>
+        </g>
     </g>
     <path d="M580,420L580,450C580,455.519 575.519,460 570,460L230,460C224.481,460 220,455.519 220,450L220,420C220,414.481 224.481,410 230,410L570,410C575.519,410 580,414.481 580,420Z" style="fill:rgb(16,185,129);fill-opacity:0.08;stroke:rgb(52,211,153);stroke-width:1.5px;"/>
     <g transform="matrix(1,0,0,1,400,433)">
-        <text x="-40.822px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:13px;fill:rgb(52,211,153);">Interactive UI</text>
+        <g transform="matrix(1,0,0,1,-40.822,0)">
+            <text x="0px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:13px;fill:rgb(52,211,153);">Interactive UI</text>
+        </g>
     </g>
     <g transform="matrix(1,0,0,1,400,449)">
-        <text x="-77.163px" y="0px" style="font-family:'Helvetica';font-size:10px;fill:rgb(100,116,139);">Forms, Cards, <tspan x="-11.221px -6.221px -0.659px " y="0px 0px 0px ">Tab</tspan>les, Dashboards</text>
+        <g>
+            <g transform="matrix(1,0,0,1,-77.163,0)">
+                <text x="0px" y="0px" style="font-family:'Helvetica';font-size:10px;fill:rgb(100,116,139);">Forms, Cards,</text>
+            </g>
+            <g transform="matrix(1,0,0,1,-11.221,0)">
+                <text x="0px" y="0px" style="font-family:'Helvetica';font-size:10px;fill:rgb(100,116,139);">Ta<tspan x="11.67px " y="0px ">b</tspan>les, Dashboards</text>
+            </g>
+        </g>
     </g>
     <path d="M580,435L688.839,433.529L686,113L480,113" style="fill:none;fill-rule:nonzero;stroke:rgb(251,113,133);stroke-width:1.5px;stroke-dasharray:6,3;"/>
     <path d="M487,108L479,113L487,118" style="fill:none;fill-rule:nonzero;stroke:rgb(251,113,133);stroke-width:1.5px;"/>
-    <g transform="matrix(-0,1,-1,-0,700,291)">
+    <g transform="matrix(0,1,-1,0,700,291)">
         <text x="0px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(251,113,133);">User action</text>
-        <text x="48.019px" y="0px" style="font-family:'LucidaGrande', 'Lucida Grande', sans-serif;font-weight:500;font-size:9px;fill:rgb(251,113,133);">→</text>
-        <text x="59.52px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(251,113,133);">Event back to <tspan x="116.06px 122.062px " y="0px 0px ">Ag</tspan>ent</text>
+        <g transform="matrix(1,0,0,1,48.019,0)">
+            <text x="0px" y="0px" style="font-family:'LucidaGrande', 'Lucida Grande', sans-serif;font-weight:500;font-size:9px;fill:rgb(251,113,133);">→</text>
+        </g>
+        <g>
+            <g transform="matrix(1,0,0,1,59.52,0)">
+                <text x="0px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(251,113,133);">Event back to</text>
+            </g>
+            <g transform="matrix(1,0,0,1,116.06,0)">
+                <text x="0px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(251,113,133);">Agent</text>
+            </g>
+        </g>
     </g>
     <g transform="matrix(1,0,0,1,-13,-70)">
         <circle cx="700" cy="350" r="10" style="fill:rgb(251,113,133);"/>
     </g>
     <g transform="matrix(1,0,0,1,687,284)">
-        <text x="-2.503px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:9px;fill:white;">5</text>
+        <g transform="matrix(1,0,0,1,-2.503,0)">
+            <text x="0px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:9px;fill:white;">5</text>
+        </g>
     </g>
     <g transform="matrix(0.675,0,0,1,246.5,0)">
         <path d="M860,198L860,242C860,246.415 854.689,250 848.148,250L671.852,250C665.311,250 660,246.415 660,242L660,198C660,193.585 665.311,190 671.852,190L848.148,190C854.689,190 860,193.585 860,198Z" style="fill:rgb(30,41,59);fill-opacity:0.6;stroke:rgb(99,102,241);stroke-opacity:0.15;stroke-width:1px;"/>
     </g>
     <g transform="matrix(1,0,0,1,760,210)">
-        <text x="-33.772px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:10px;fill:rgb(165,180,252);">~22 Primitives</text>
+        <g transform="matrix(1,0,0,1,-33.772,0)">
+            <text x="0px" y="0px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:10px;fill:rgb(165,180,252);">16 Primitives</text>
+        </g>
     </g>
     <g transform="matrix(1,0,0,1,760,226)">
-        <text x="-47.276px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(148,163,184);">T<tspan x="-42.776px -37.771px " y="0px 0px ">ex</tspan>tInput, Button, Card,</text>
+        <g>
+            <g transform="matrix(1,0,0,1,-47.276,0)">
+                <text x="0px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(148,163,184);">T</text>
+            </g>
+            <g transform="matrix(1,0,0,1,-42.776,0)">
+                <text x="0px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(148,163,184);">extInput, Button, Card,</text>
+            </g>
+        </g>
     </g>
     <g transform="matrix(1,0,0,1,760,240)">
-        <text x="-54.029px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(148,163,184);">DataT<tspan x="-30.518px -25.512px " y="0px 0px ">ab</tspan>le, Image, Select...</text>
+        <g>
+            <g transform="matrix(1,0,0,1,-54.029,0)">
+                <text x="0px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(148,163,184);">DataT</text>
+            </g>
+            <g transform="matrix(1,0,0,1,-30.518,0)">
+                <text x="0px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(148,163,184);">able, Image, Select...</text>
+            </g>
+        </g>
     </g>
     <path d="M410,478L410,502C410,506.415 406.415,510 402,510L38,510C33.585,510 30,506.415 30,502L30,478C30,473.585 33.585,470 38,470L402,470C406.415,470 410,473.585 410,478Z" style="fill:rgb(30,41,59);fill-opacity:0.6;stroke:rgb(99,102,241);stroke-opacity:0.15;stroke-width:1px;"/>
     <path d="M50,490L80,490" style="fill:none;fill-rule:nonzero;stroke:rgb(56,189,248);stroke-width:1.5px;"/>
@@ -132,10 +223,6 @@
     </g>
     <path d="M320,490L350,490" style="fill:none;fill-rule:nonzero;stroke:rgb(100,116,139);stroke-width:1px;stroke-dasharray:4,3;"/>
     <g transform="matrix(1,0,0,1,355,494)">
-        <g transform="matrix(9,0,0,9,21.51123,0)">
-        </g>
-        <g transform="matrix(9,0,0,9,24.011719,0)">
-        </g>
         <text x="0px" y="0px" style="font-family:'Helvetica';font-size:9px;fill:rgb(148,163,184);">Data ﬂow</text>
     </g>
 </svg>

@@ -17,3 +17,9 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+/* Move CopilotKit dev console to bottom-left */
+[data-copilotkit-dev-console] {
+  right: auto !important;
+  left: 16px !important;
+}

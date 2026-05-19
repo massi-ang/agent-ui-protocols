@@ -1,0 +1,181 @@
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  background: #f8fafc;
+}
+
+:root {
+  /* Global */
+  --a2ui-border: 1px solid #e2e8f0;
+  --a2ui-border-radius: 12px;
+  --a2ui-border-width: 1px;
+  --a2ui-color-border: #e2e8f0;
+  --a2ui-color-primary: #4f46e5;
+  --a2ui-color-secondary: #f1f5f9;
+  --a2ui-color-surface: #ffffff;
+  --a2ui-color-input: #f8fafc;
+  --a2ui-color-on-surface: #1e293b;
+  --a2ui-color-on-input: #1e293b;
+  --a2ui-color-on-secondary: #475569;
+
+  /* Spacing */
+  --a2ui-spacing-xs: 4px;
+  --a2ui-spacing-s: 8px;
+  --a2ui-spacing-m: 16px;
+  --a2ui-spacing-l: 24px;
+
+  /* Typography */
+  --a2ui-font-size-xs: 11px;
+  --a2ui-font-size-s: 13px;
+  --a2ui-font-size-xl: 20px;
+  --a2ui-label-font-size: 13px;
+  --a2ui-label-font-weight: 500;
+
+  /* Card */
+  --a2ui-card-background: #ffffff;
+  --a2ui-card-border: 1px solid #e2e8f0;
+  --a2ui-card-border-radius: 12px;
+  --a2ui-card-box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  --a2ui-card-padding: 24px;
+  --a2ui-card-margin: 0 0 16px 0;
+
+  /* Layout */
+  --a2ui-column-gap: 12px;
+  --a2ui-row-gap: 12px;
+  --a2ui-list-gap: 8px;
+  --a2ui-list-padding: 0;
+
+  /* Inputs */
+  --a2ui-checkbox-border-radius: 4px;
+  --a2ui-checkbox-size: 18px;
+  --a2ui-checkbox-gap: 8px;
+  --a2ui-checkbox-label-font-size: 14px;
+  --a2ui-datetimeinput-border: 1px solid #e2e8f0;
+  --a2ui-datetimeinput-border-radius: 8px;
+  --a2ui-datetimeinput-padding: 10px 14px;
+
+  /* Slider */
+  --a2ui-slider-thumb-color: #4f46e5;
+  --a2ui-slider-track-color: #e2e8f0;
+  --a2ui-slider-margin: 8px 0;
+
+  /* Tabs */
+  --a2ui-tabs-border: 1px solid #e2e8f0;
+  --a2ui-tabs-content-padding: 16px;
+  --a2ui-tabs-header-background: #f8fafc;
+  --a2ui-tabs-header-background-active: #ffffff;
+  --a2ui-tabs-header-color: #64748b;
+  --a2ui-tabs-header-color-active: #1e293b;
+
+  /* Divider */
+  --a2ui-divider-spacing: 16px;
+
+  /* Image */
+  --a2ui-image-border-radius: 8px;
+  --a2ui-image-icon-size: 20px;
+  --a2ui-image-avatar-size: 40px;
+
+  /* Modal */
+  --a2ui-modal-border-radius: 16px;
+  --a2ui-modal-overlay-color: rgba(0,0,0,0.5);
+  --a2ui-modal-padding: 24px;
+
+  /* Text */
+  --a2ui-text-caption-color: #94a3b8;
+  --a2ui-checkbox-background: #ffffff;
+  --a2ui-checkbox-border: 1px solid #e2e8f0;
+  --a2ui-checkbox-color-error: #ef4444;
+  --a2ui-checkbox-label-font-weight: 400;
+  --a2ui-checkbox-margin: 8px 0;
+  --a2ui-datetimeinput-background: #ffffff;
+  --a2ui-datetimeinput-color: #1e293b;
+  --a2ui-datetimeinput-label-font-size: 13px;
+  --a2ui-datetimeinput-label-font-weight: 500;
+  --a2ui-icon-color: #475569;
+  --a2ui-icon-size: 20px;
+  --a2ui-slider-label-font-size: 13px;
+  --a2ui-slider-label-font-weight: 500;
+  --a2ui-border-width: 1px;
+}
+
+/* Element styling overrides */
+
+/* TextField wrapper */
+div:has(> label + input),
+div:has(> label + textarea) {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="tel"],
+textarea {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--a2ui-color-border, #e8e8f0);
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: inherit;
+  background: var(--a2ui-color-input, #fafafe);
+  color: var(--a2ui-color-on-input, #2d2d3a);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--a2ui-color-primary, #6366f1);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.08);
+}
+
+/* Labels */
+label {
+  font-size: var(--a2ui-label-font-size, 13px);
+  font-weight: var(--a2ui-label-font-weight, 500);
+  color: #4b5563;
+}
+
+/* Validation hints */
+div:has(> label) > span {
+  color: #a1a1b5;
+  font-size: 12px;
+}
+
+/* Buttons */
+button {
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+  border: 1px solid var(--a2ui-color-border, #e8e8f0);
+  background: var(--a2ui-color-surface, #fefefe);
+  color: var(--a2ui-color-on-surface, #2d2d3a);
+}
+
+button:hover {
+  background: var(--a2ui-color-secondary, #f5f3ff);
+}
+
+button p { margin: 0; }
+button div { display: contents; }
+
+/* Checkbox */
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--a2ui-color-primary, #6366f1);
+}
+
+/* Slider */
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--a2ui-color-primary, #6366f1);
+}

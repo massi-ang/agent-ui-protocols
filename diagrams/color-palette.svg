@@ -1,0 +1,185 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" font-family="Inter, -apple-system, sans-serif">
+
+  <!-- DARK THEME (left) -->
+  <rect x="0" y="0" width="500" height="620" fill="#0f0f1a" rx="12"/>
+  <text x="250" y="32" text-anchor="middle" font-size="16" font-weight="700" fill="#e2e8f0">Dark Theme</text>
+
+  <!-- Background -->
+  <text x="30" y="62" font-size="10" font-weight="600" fill="#94a3b8">BACKGROUNDS</text>
+  <rect x="30" y="72" width="60" height="30" rx="4" fill="#0f0f1a" stroke="#475569" stroke-width="1"/>
+  <text x="100" y="91" font-size="9" fill="#cbd5e1">#0f0f1a — Canvas</text>
+  <rect x="30" y="108" width="60" height="30" rx="4" fill="rgba(30,30,50,0.85)" stroke="#475569" stroke-width="1"/>
+  <text x="100" y="127" font-size="9" fill="#cbd5e1">rgba(30,30,50,0.85) — Card</text>
+
+  <!-- Foreground text -->
+  <text x="30" y="162" font-size="10" font-weight="600" fill="#94a3b8">TEXT</text>
+  <rect x="30" y="172" width="14" height="14" rx="3" fill="#e2e8f0"/>
+  <text x="52" y="183" font-size="9" fill="#cbd5e1">#e2e8f0 — Primary</text>
+  <rect x="170" y="172" width="14" height="14" rx="3" fill="#cbd5e1"/>
+  <text x="192" y="183" font-size="9" fill="#cbd5e1">#cbd5e1 — Body</text>
+  <rect x="310" y="172" width="14" height="14" rx="3" fill="#94a3b8"/>
+  <text x="332" y="183" font-size="9" fill="#cbd5e1">#94a3b8 — Muted</text>
+
+  <!-- Protocol colors -->
+  <text x="30" y="215" font-size="10" font-weight="600" fill="#94a3b8">PROTOCOL COLORS</text>
+  <rect x="30" y="225" width="14" height="14" rx="3" fill="#818cf8"/>
+  <text x="52" y="236" font-size="9" fill="#cbd5e1">#818cf8 — Indigo (AG-UI)</text>
+  <rect x="200" y="225" width="14" height="14" rx="3" fill="#38bdf8"/>
+  <text x="222" y="236" font-size="9" fill="#cbd5e1">#38bdf8 — Cyan (A2UI)</text>
+  <rect x="30" y="247" width="14" height="14" rx="3" fill="#34d399"/>
+  <text x="52" y="258" font-size="9" fill="#cbd5e1">#34d399 — Green (json-render)</text>
+  <rect x="200" y="247" width="14" height="14" rx="3" fill="#c084fc"/>
+  <text x="222" y="258" font-size="9" fill="#cbd5e1">#c084fc — Purple (MCP/Agent)</text>
+  <rect x="30" y="269" width="14" height="14" rx="3" fill="#fbbf24"/>
+  <text x="52" y="280" font-size="9" fill="#cbd5e1">#fbbf24 — Amber (Highlight)</text>
+  <rect x="200" y="269" width="14" height="14" rx="3" fill="#fb7185"/>
+  <text x="222" y="280" font-size="9" fill="#cbd5e1">#fb7185 — Rose (Warning)</text>
+
+  <!-- Box styles -->
+  <text x="30" y="312" font-size="10" font-weight="600" fill="#94a3b8">BOX STYLES</text>
+  <rect x="30" y="322" width="130" height="44" rx="8" fill="rgba(129,140,248,0.12)" stroke="#818cf8" stroke-width="1.5"/>
+  <text x="95" y="342" text-anchor="middle" font-weight="600" font-size="11" fill="#a5b4fc">Title</text>
+  <text x="95" y="357" text-anchor="middle" font-size="9" fill="#cbd5e1">Subtitle</text>
+  <rect x="180" y="322" width="130" height="44" rx="8" fill="rgba(16,185,129,0.12)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="245" y="342" text-anchor="middle" font-weight="600" font-size="11" fill="#34d399">Title</text>
+  <text x="245" y="357" text-anchor="middle" font-size="9" fill="#cbd5e1">Subtitle</text>
+  <rect x="330" y="322" width="130" height="44" rx="8" fill="rgba(250,204,21,0.12)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="395" y="342" text-anchor="middle" font-weight="600" font-size="11" fill="#fbbf24">Title</text>
+  <text x="395" y="357" text-anchor="middle" font-size="9" fill="#cbd5e1">Subtitle</text>
+
+  <!-- Arrow styles -->
+  <text x="30" y="395" font-size="10" font-weight="600" fill="#94a3b8">ARROWS</text>
+  <line x1="30" y1="412" x2="120" y2="412" stroke="#94a3b8" stroke-width="1.5"/>
+  <path d="M116,407 l8,5 l-8,5" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="135" y="416" font-size="9" fill="#cbd5e1">Neutral flow</text>
+  <line x1="30" y1="435" x2="120" y2="435" stroke="#c084fc" stroke-width="1.5"/>
+  <path d="M116,430 l8,5 l-8,5" fill="none" stroke="#c084fc" stroke-width="1.5"/>
+  <text x="135" y="439" font-size="9" fill="#cbd5e1">Protocol-colored</text>
+  <line x1="30" y1="458" x2="120" y2="458" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <path d="M116,453 l8,5 l-8,5" fill="none" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="135" y="462" font-size="9" fill="#cbd5e1">Constraint/dashed</text>
+
+  <!-- Numbered circles -->
+  <text x="30" y="495" font-size="10" font-weight="600" fill="#94a3b8">NUMBERED CIRCLES</text>
+  <circle cx="45" cy="515" r="10" fill="#818cf8"/>
+  <text x="45" y="519" text-anchor="middle" font-size="9" font-weight="700" fill="white">1</text>
+  <text x="65" y="519" font-size="9" fill="#cbd5e1">Indigo → white</text>
+
+  <circle cx="175" cy="515" r="10" fill="#c084fc"/>
+  <text x="175" y="519" text-anchor="middle" font-size="9" font-weight="700" fill="white">2</text>
+  <text x="195" y="519" font-size="9" fill="#cbd5e1">Purple → white</text>
+
+  <circle cx="305" cy="515" r="10" fill="#34d399"/>
+  <text x="305" y="519" text-anchor="middle" font-size="9" font-weight="700" fill="#052e16">3</text>
+  <text x="325" y="519" font-size="9" fill="#cbd5e1">Green → #052e16</text>
+
+  <circle cx="45" cy="545" r="10" fill="#fbbf24"/>
+  <text x="45" y="549" text-anchor="middle" font-size="9" font-weight="700" fill="#422006">4</text>
+  <text x="65" y="549" font-size="9" fill="#cbd5e1">Amber → #422006</text>
+
+  <circle cx="175" cy="545" r="10" fill="#38bdf8"/>
+  <text x="175" y="549" text-anchor="middle" font-size="9" font-weight="700" fill="white">5</text>
+  <text x="195" y="549" font-size="9" fill="#cbd5e1">Cyan → white</text>
+
+  <circle cx="305" cy="545" r="10" fill="#fb7185"/>
+  <text x="305" y="549" text-anchor="middle" font-size="9" font-weight="700" fill="white">6</text>
+  <text x="325" y="549" font-size="9" fill="#cbd5e1">Rose → white</text>
+
+  <!-- Callout box -->
+  <text x="30" y="585" font-size="10" font-weight="600" fill="#94a3b8">CALLOUT BOX</text>
+  <rect x="30" y="593" width="200" height="20" rx="6" fill="rgba(16,185,129,0.12)" stroke="rgba(16,185,129,0.4)" stroke-width="1"/>
+  <text x="130" y="607" text-anchor="middle" font-size="9" fill="#34d399">Key insight text here</text>
+
+  <!-- ========== LIGHT THEME (right) ========== -->
+  <rect x="500" y="0" width="500" height="620" fill="#f8fafc" rx="12"/>
+  <text x="750" y="32" text-anchor="middle" font-size="16" font-weight="700" fill="#1e293b">Light Theme</text>
+
+  <!-- Background -->
+  <text x="530" y="62" font-size="10" font-weight="600" fill="#64748b">BACKGROUNDS</text>
+  <rect x="530" y="72" width="60" height="30" rx="4" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="600" y="91" font-size="9" fill="#475569">#f8fafc — Canvas</text>
+  <rect x="530" y="108" width="60" height="30" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="600" y="127" font-size="9" fill="#475569">#ffffff — Card</text>
+
+  <!-- Foreground text -->
+  <text x="530" y="162" font-size="10" font-weight="600" fill="#64748b">TEXT</text>
+  <rect x="530" y="172" width="14" height="14" rx="3" fill="#1e293b"/>
+  <text x="552" y="183" font-size="9" fill="#475569">#1e293b — Primary</text>
+  <rect x="670" y="172" width="14" height="14" rx="3" fill="#475569"/>
+  <text x="692" y="183" font-size="9" fill="#475569">#475569 — Body</text>
+  <rect x="810" y="172" width="14" height="14" rx="3" fill="#94a3b8"/>
+  <text x="832" y="183" font-size="9" fill="#475569">#94a3b8 — Muted</text>
+
+  <!-- Protocol colors (darker for light bg) -->
+  <text x="530" y="215" font-size="10" font-weight="600" fill="#64748b">PROTOCOL COLORS</text>
+  <rect x="530" y="225" width="14" height="14" rx="3" fill="#4f46e5"/>
+  <text x="552" y="236" font-size="9" fill="#475569">#4f46e5 — Indigo (AG-UI)</text>
+  <rect x="700" y="225" width="14" height="14" rx="3" fill="#0891b2"/>
+  <text x="722" y="236" font-size="9" fill="#475569">#0891b2 — Cyan (A2UI)</text>
+  <rect x="530" y="247" width="14" height="14" rx="3" fill="#059669"/>
+  <text x="552" y="258" font-size="9" fill="#475569">#059669 — Green (json-render)</text>
+  <rect x="700" y="247" width="14" height="14" rx="3" fill="#7c3aed"/>
+  <text x="722" y="258" font-size="9" fill="#475569">#7c3aed — Purple (MCP/Agent)</text>
+  <rect x="530" y="269" width="14" height="14" rx="3" fill="#d97706"/>
+  <text x="552" y="280" font-size="9" fill="#475569">#d97706 — Amber (Highlight)</text>
+  <rect x="700" y="269" width="14" height="14" rx="3" fill="#e11d48"/>
+  <text x="722" y="280" font-size="9" fill="#475569">#e11d48 — Rose (Warning)</text>
+
+  <!-- Box styles -->
+  <text x="530" y="312" font-size="10" font-weight="600" fill="#64748b">BOX STYLES</text>
+  <rect x="530" y="322" width="130" height="44" rx="8" fill="#eef2ff" stroke="#4f46e5" stroke-width="1.5"/>
+  <text x="595" y="342" text-anchor="middle" font-weight="600" font-size="11" fill="#3730a3">Title</text>
+  <text x="595" y="357" text-anchor="middle" font-size="9" fill="#475569">Subtitle</text>
+  <rect x="680" y="322" width="130" height="44" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+  <text x="745" y="342" text-anchor="middle" font-weight="600" font-size="11" fill="#065f46">Title</text>
+  <text x="745" y="357" text-anchor="middle" font-size="9" fill="#475569">Subtitle</text>
+  <rect x="830" y="322" width="130" height="44" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="895" y="342" text-anchor="middle" font-weight="600" font-size="11" fill="#92400e">Title</text>
+  <text x="895" y="357" text-anchor="middle" font-size="9" fill="#475569">Subtitle</text>
+
+  <!-- Arrow styles -->
+  <text x="530" y="395" font-size="10" font-weight="600" fill="#64748b">ARROWS</text>
+  <line x1="530" y1="412" x2="620" y2="412" stroke="#64748b" stroke-width="1.5"/>
+  <path d="M616,407 l8,5 l-8,5" fill="none" stroke="#64748b" stroke-width="1.5"/>
+  <text x="635" y="416" font-size="9" fill="#475569">Neutral flow</text>
+  <line x1="530" y1="435" x2="620" y2="435" stroke="#7c3aed" stroke-width="1.5"/>
+  <path d="M616,430 l8,5 l-8,5" fill="none" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="635" y="439" font-size="9" fill="#475569">Protocol-colored</text>
+  <line x1="530" y1="458" x2="620" y2="458" stroke="#d97706" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <path d="M616,453 l8,5 l-8,5" fill="none" stroke="#d97706" stroke-width="1.5"/>
+  <text x="635" y="462" font-size="9" fill="#475569">Constraint/dashed</text>
+
+  <!-- Numbered circles -->
+  <text x="530" y="495" font-size="10" font-weight="600" fill="#64748b">NUMBERED CIRCLES</text>
+  <circle cx="545" cy="515" r="10" fill="#4f46e5"/>
+  <text x="545" y="519" text-anchor="middle" font-size="9" font-weight="700" fill="white">1</text>
+  <text x="565" y="519" font-size="9" fill="#475569">Indigo → white</text>
+
+  <circle cx="675" cy="515" r="10" fill="#7c3aed"/>
+  <text x="675" y="519" text-anchor="middle" font-size="9" font-weight="700" fill="white">2</text>
+  <text x="695" y="519" font-size="9" fill="#475569">Purple → white</text>
+
+  <circle cx="805" cy="515" r="10" fill="#059669"/>
+  <text x="805" y="519" text-anchor="middle" font-size="9" font-weight="700" fill="white">3</text>
+  <text x="825" y="519" font-size="9" fill="#475569">Green → white</text>
+
+  <circle cx="545" cy="545" r="10" fill="#d97706"/>
+  <text x="545" y="549" text-anchor="middle" font-size="9" font-weight="700" fill="white">4</text>
+  <text x="565" y="549" font-size="9" fill="#475569">Amber → white</text>
+
+  <circle cx="675" cy="545" r="10" fill="#0891b2"/>
+  <text x="675" y="549" text-anchor="middle" font-size="9" font-weight="700" fill="white">5</text>
+  <text x="695" y="549" font-size="9" fill="#475569">Cyan → white</text>
+
+  <circle cx="805" cy="545" r="10" fill="#e11d48"/>
+  <text x="805" y="549" text-anchor="middle" font-size="9" font-weight="700" fill="white">6</text>
+  <text x="825" y="549" font-size="9" fill="#475569">Rose → white</text>
+
+  <!-- Callout box -->
+  <text x="530" y="585" font-size="10" font-weight="600" fill="#64748b">CALLOUT BOX</text>
+  <rect x="530" y="593" width="200" height="20" rx="6" fill="#ecfdf5" stroke="#059669" stroke-width="1"/>
+  <text x="630" y="607" text-anchor="middle" font-size="9" fill="#065f46">Key insight text here</text>
+
+  <!-- Divider -->
+  <line x1="500" y1="10" x2="500" y2="610" stroke="#334155" stroke-width="1"/>
+</svg>

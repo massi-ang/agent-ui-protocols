@@ -37,6 +37,15 @@ export const catalog = defineCatalog(schema, {
       }),
       description: "KPI metric display with trend indicator",
     },
+    ForecastDay: {
+      props: z.object({
+        day: z.string(),
+        conditions: z.string(),
+        high: z.number(),
+        low: z.number(),
+      }),
+      description: "Single day weather forecast card with icon, day name, and high/low temps",
+    },
     BarChart: {
       props: z.object({
         title: z.string(),

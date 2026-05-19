@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" font-family="Inter, -apple-system, sans-serif">
+  <!-- Background -->
+  <rect width="900" height="520" fill="#0f0f1a" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" font-size="18" font-weight="700" fill="#34d399">json-render Protocol Flow</text>
+  <text x="450" y="56" text-anchor="middle" font-size="11" fill="#cbd5e1">Schema-Constrained Generative UI — Zod Catalog → AI → React Components</text>
+
+  <!-- Row 1: Developer → Catalog → System Prompt -->
+  <rect x="40" y="85" width="130" height="56" rx="10" fill="rgba(129,140,248,0.12)" stroke="#818cf8" stroke-width="1.5"/>
+  <text x="105" y="110" text-anchor="middle" font-weight="600" font-size="13" fill="#a5b4fc">Developer</text>
+  <text x="105" y="126" text-anchor="middle" font-size="10" fill="#cbd5e1">Defines catalog</text>
+
+  <rect x="250" y="85" width="160" height="56" rx="10" fill="rgba(16,185,129,0.12)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="330" y="110" text-anchor="middle" font-weight="600" font-size="13" fill="#34d399">Zod Catalog</text>
+  <text x="330" y="126" text-anchor="middle" font-size="10" fill="#cbd5e1">Components + Props + Actions</text>
+
+  <rect x="500" y="85" width="170" height="56" rx="10" fill="rgba(250,204,21,0.12)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="585" y="110" text-anchor="middle" font-weight="600" font-size="13" fill="#fbbf24">catalog.prompt()</text>
+  <text x="585" y="126" text-anchor="middle" font-size="10" fill="#cbd5e1">Auto-generated system prompt</text>
+
+  <!-- Arrows Row 1 -->
+  <line x1="170" y1="113" x2="242" y2="113" stroke="#94a3b8" stroke-width="1.5"/>
+  <path d="M238,108 l8,5 l-8,5" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+  <circle cx="206" cy="113" r="10" fill="#818cf8"/>
+  <text x="206" y="117" text-anchor="middle" font-size="9" font-weight="700" fill="white">1</text>
+
+  <line x1="410" y1="113" x2="492" y2="113" stroke="#34d399" stroke-width="1.5"/>
+  <path d="M488,108 l8,5 l-8,5" fill="none" stroke="#34d399" stroke-width="1.5"/>
+  <circle cx="451" cy="113" r="10" fill="#34d399"/>
+  <text x="451" y="117" text-anchor="middle" font-size="9" font-weight="700" fill="#052e16">2</text>
+
+  <!-- Row 2: User → Strands Agent → JSON Spec -->
+  <rect x="40" y="200" width="130" height="56" rx="10" fill="rgba(129,140,248,0.12)" stroke="#818cf8" stroke-width="1.5"/>
+  <text x="105" y="225" text-anchor="middle" font-weight="600" font-size="13" fill="#a5b4fc">User</text>
+  <text x="105" y="241" text-anchor="middle" font-size="10" fill="#cbd5e1">"Build a dashboard"</text>
+
+  <rect x="250" y="200" width="160" height="56" rx="10" fill="rgba(192,132,252,0.12)" stroke="#c084fc" stroke-width="1.5"/>
+  <text x="330" y="225" text-anchor="middle" font-weight="600" font-size="13" fill="#c084fc">Strands Agent</text>
+  <text x="330" y="241" text-anchor="middle" font-size="10" fill="#cbd5e1">Bedrock + systemPrompt</text>
+
+  <rect x="500" y="200" width="170" height="56" rx="10" fill="rgba(56,189,248,0.12)" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="585" y="225" text-anchor="middle" font-weight="600" font-size="13" fill="#38bdf8">JSON Spec</text>
+  <text x="585" y="241" text-anchor="middle" font-size="10" fill="#cbd5e1">{ root, elements: {...} }</text>
+
+  <!-- Arrows Row 2 -->
+  <line x1="170" y1="228" x2="242" y2="228" stroke="#94a3b8" stroke-width="1.5"/>
+  <path d="M238,223 l8,5 l-8,5" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+  <circle cx="206" cy="228" r="10" fill="#818cf8"/>
+  <text x="206" y="232" text-anchor="middle" font-size="9" font-weight="700" fill="white">3</text>
+
+  <line x1="410" y1="228" x2="492" y2="228" stroke="#c084fc" stroke-width="1.5"/>
+  <path d="M488,223 l8,5 l-8,5" fill="none" stroke="#c084fc" stroke-width="1.5"/>
+  <circle cx="451" cy="228" r="10" fill="#c084fc"/>
+  <text x="451" y="232" text-anchor="middle" font-size="9" font-weight="700" fill="white">4</text>
+
+  <!-- Connector: prompt feeds into agent -->
+  <line x1="585" y1="141" x2="585" y2="165" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="585" y1="165" x2="380" y2="165" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="380" y1="165" x2="380" y2="192" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <path d="M374,188 l6,8 l6,-8" fill="none" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="490" y="160" text-anchor="middle" font-size="9" fill="#fbbf24">constrains output</text>
+
+  <!-- Row 3: Registry → React Components → Rendered UI -->
+  <rect x="250" y="315" width="160" height="56" rx="10" fill="rgba(16,185,129,0.12)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="330" y="340" text-anchor="middle" font-weight="600" font-size="13" fill="#34d399">Registry</text>
+  <text x="330" y="356" text-anchor="middle" font-size="10" fill="#cbd5e1">Maps types → React</text>
+
+  <rect x="500" y="315" width="170" height="56" rx="10" fill="rgba(250,204,21,0.12)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="585" y="340" text-anchor="middle" font-weight="600" font-size="13" fill="#fbbf24">Rendered UI</text>
+  <text x="585" y="356" text-anchor="middle" font-size="10" fill="#cbd5e1">shadcn/ui + custom</text>
+
+  <!-- Arrows Row 3 -->
+  <line x1="585" y1="256" x2="585" y2="307" stroke="#38bdf8" stroke-width="1.5"/>
+  <path d="M579,303 l6,8 l6,-8" fill="none" stroke="#38bdf8" stroke-width="1.5"/>
+  <circle cx="585" cy="281" r="10" fill="#38bdf8"/>
+  <text x="585" y="285" text-anchor="middle" font-size="9" font-weight="700" fill="white">5</text>
+  <text x="620" y="281" font-size="9" fill="#cbd5e1">validate</text>
+
+  <line x1="410" y1="343" x2="492" y2="343" stroke="#34d399" stroke-width="1.5"/>
+  <path d="M488,338 l8,5 l-8,5" fill="none" stroke="#34d399" stroke-width="1.5"/>
+  <circle cx="451" cy="343" r="10" fill="#34d399"/>
+  <text x="451" y="347" text-anchor="middle" font-size="9" font-weight="700" fill="#052e16">6</text>
+
+  <!-- Spec feeds into registry -->
+  <line x1="540" y1="256" x2="540" y2="290" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="540" y1="290" x2="380" y2="290" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="380" y1="290" x2="380" y2="307" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <path d="M374,303 l6,8 l6,-8" fill="none" stroke="#38bdf8" stroke-width="1.5"/>
+
+  <!-- Key insight box -->
+  <rect x="720" y="85" width="150" height="100" rx="10" fill="rgba(16,185,129,0.12)" stroke="rgba(16,185,129,0.3)" stroke-width="1"/>
+  <text x="795" y="108" text-anchor="middle" font-weight="600" font-size="11" fill="#34d399">Guardrails</text>
+  <text x="795" y="128" text-anchor="middle" font-size="9" fill="#cbd5e1">• Zod validates props</text>
+  <text x="795" y="144" text-anchor="middle" font-size="9" fill="#cbd5e1">• Only catalog types</text>
+  <text x="795" y="160" text-anchor="middle" font-size="9" fill="#cbd5e1">• No arbitrary code</text>
+  <text x="795" y="176" text-anchor="middle" font-size="9" fill="#cbd5e1">• Type-safe output</text>
+
+  <!-- Legend -->
+  <rect x="40" y="430" width="280" height="70" rx="8" fill="rgba(30,30,50,0.6)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+  <text x="60" y="452" font-size="10" font-weight="600" fill="#cbd5e1">Legend</text>
+  <line x1="60" y1="466" x2="90" y2="466" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="96" y="470" font-size="9" fill="#cbd5e1">Data flow</text>
+  <line x1="160" y1="466" x2="190" y2="466" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="196" y="470" font-size="9" fill="#cbd5e1">Constraint</text>
+  <rect x="60" y="480" width="12" height="12" rx="3" fill="rgba(16,185,129,0.12)" stroke="#34d399" stroke-width="1"/>
+  <text x="78" y="490" font-size="9" fill="#cbd5e1">Catalog/Registry</text>
+  <rect x="160" y="480" width="12" height="12" rx="3" fill="rgba(192,132,252,0.12)" stroke="#c084fc" stroke-width="1"/>
+  <text x="178" y="490" font-size="9" fill="#cbd5e1">Agent (Strands + Bedrock)</text>
+</svg>

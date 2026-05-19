@@ -1,6 +1,6 @@
-# A2UI Sample: ADK + Svelte + Bedrock
+# A2UI Sample: Strands + Svelte + Bedrock
 
-Declarative Generative UI demo using Google ADK with Amazon Bedrock and Svelte renderer.
+Declarative Generative UI demo using the Strands Agents SDK with Amazon Bedrock and Svelte renderer.
 
 ## Features
 
@@ -20,7 +20,7 @@ Declarative Generative UI demo using Google ADK with Amazon Bedrock and Svelte r
          │
          ↓
 ┌────────────────────────┐
-│  ADK Agent (Python)    │
+│ Strands Agent (Python) │
 │  Bedrock Integration   │
 │  A2UI JSONL Output     │
 └────────────────────────┘
@@ -29,7 +29,7 @@ Declarative Generative UI demo using Google ADK with Amazon Bedrock and Svelte r
 ## Tech Stack
 
 - **Frontend**: Svelte + Vite + TypeScript
-- **Backend**: Google ADK + Python + FastAPI
+- **Backend**: Strands Agents SDK + Python + FastAPI
 - **Agent**: Amazon Bedrock Claude
 - **Protocol**: A2UI (JSONL streaming)
 - **Styling**: Tailwind CSS
@@ -39,6 +39,7 @@ Declarative Generative UI demo using Google ADK with Amazon Bedrock and Svelte r
 ### Local Development
 
 **Backend:**
+
 ```bash
 cd backend
 pip install -r requirements.txt
@@ -46,6 +47,7 @@ python app.py
 ```
 
 **Frontend:**
+
 ```bash
 cd frontend
 npm install
@@ -85,6 +87,7 @@ Visit http://localhost:3002 and try:
 ### A2UI Message Flow
 
 1. **surfaceUpdate**: Define UI components
+
 ```json
 {"surfaceUpdate": {
   "surfaceId": "main",
@@ -95,6 +98,7 @@ Visit http://localhost:3002 and try:
 ```
 
 2. **dataModelUpdate**: Initialize state
+
 ```json
 {"dataModelUpdate": {
   "surfaceId": "main",
@@ -104,16 +108,20 @@ Visit http://localhost:3002 and try:
 ```
 
 3. **beginRendering**: Signal to render
+
 ```json
-{"beginRendering": {
-  "surfaceId": "main",
-  "root": "container"
-}}
+{
+  "beginRendering": {
+    "surfaceId": "main",
+    "root": "container"
+  }
+}
 ```
 
 ### Component Set
 
 A2UI provides ~22 built-in components:
+
 - Text, Button, Image, Link
 - TextField, Checkbox, RadioButton
 - Column, Row, List, Card
@@ -121,9 +129,8 @@ A2UI provides ~22 built-in components:
 
 ## Key Files
 
-- `backend/app.py` - FastAPI server with ADK agent
-- `backend/agent.py` - ADK agent with Bedrock integration
-- `backend/a2ui_generator.py` - A2UI JSONL generator
+- `backend/app.py` - FastAPI server with Strands agent and Bedrock integration
+- `backend/custom_catalog.json` - Custom A2UI component catalog
 - `frontend/src/App.svelte` - Main Svelte app
 - `frontend/src/lib/A2UIRenderer.svelte` - A2UI component renderer
 
@@ -143,7 +150,7 @@ TEMPLATES = {
 
 ### Change Bedrock Model
 
-Update `BEDROCK_MODEL` env var or in `backend/agent.py`
+Update `BEDROCK_MODEL` env var or change the `BedrockModel(model_id=...)` value in `backend/app.py`.
 
 ## Differences from AG-UI
 

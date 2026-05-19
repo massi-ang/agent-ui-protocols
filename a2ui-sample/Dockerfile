@@ -1,30 +1,24 @@
-FROM node:20-alpine AS frontend-builder
-
-WORKDIR /app/frontend
-COPY frontend/package*.json ./
-RUN npm ci
-COPY frontend/ ./
+# Build frontend
+FROM node:22-alpine AS frontend-build
+WORKDIR /app
+COPY frontend/package.json ./
+RUN npm install --legacy-peer-deps
+COPY frontend/ .
+ENV NEXT_PUBLIC_AGENT_URL=""
 RUN npm run build
 
-FROM python:3.11-slim
-
+# Runtime
+FROM python:3.12-slim
 WORKDIR /app
 
-# Install Python dependencies
-COPY backend/requirements.txt ./
+COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+COPY backend/ .
 
-# Copy backend code
-COPY backend/ ./backend/
+RUN python tools/build_catalog/assemble_catalog.py custom_catalog.json --output-name assembled.json --out-dir . --catalog-id urn:a2ui:catalog:custom
 
-# Copy frontend build
-COPY --from=frontend-builder /app/frontend/dist ./frontend/dist
+# Copy static export
+COPY --from=frontend-build /app/out ./static
 
-# Expose port
 EXPOSE 3002
-
-ENV PORT=3002
-
-# Start the application
-WORKDIR /app/backend
 CMD ["python", "app.py"]

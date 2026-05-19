@@ -1,0 +1,132 @@
+{
+  "catalogId": "urn:a2ui:catalog:custom",
+  "components": {
+    "allOf": [
+      {
+        "$ref": "basic_catalog.json#/components"
+      },
+      {
+        "WeatherCard": {
+          "type": "object",
+          "description": "A weather card showing current conditions and 3-day forecast. Use this as a SINGLE component for ALL weather displays instead of composing from basic components.",
+          "properties": {
+            "city": {
+              "type": "string",
+              "description": "City name"
+            },
+            "temperature": {
+              "type": "number",
+              "description": "Temperature in Celsius"
+            },
+            "conditions": {
+              "type": "string",
+              "description": "Weather conditions e.g. Sunny, Cloudy, Rain"
+            },
+            "humidity": {
+              "type": "number",
+              "description": "Humidity percentage"
+            },
+            "wind": {
+              "type": "string",
+              "description": "Wind speed and direction"
+            },
+            "forecast": {
+              "type": "array",
+              "description": "3-day forecast array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "day": {
+                    "type": "string",
+                    "description": "Day name e.g. Tuesday"
+                  },
+                  "high": {
+                    "type": "number",
+                    "description": "High temperature"
+                  },
+                  "low": {
+                    "type": "number",
+                    "description": "Low temperature"
+                  },
+                  "conditions": {
+                    "type": "string",
+                    "description": "Conditions for that day"
+                  }
+                },
+                "required": [
+                  "day",
+                  "high",
+                  "low"
+                ]
+              }
+            }
+          },
+          "required": [
+            "city",
+            "temperature",
+            "conditions"
+          ]
+        },
+        "BankAccountCard": {
+          "type": "object",
+          "description": "A bank account summary card showing balances and transactions. Use this as a SINGLE component for ALL bank/finance displays instead of composing from basic components.",
+          "properties": {
+            "accounts": {
+              "type": "array",
+              "description": "List of bank accounts",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Account name"
+                  },
+                  "balance": {
+                    "type": "number",
+                    "description": "Account balance"
+                  },
+                  "number": {
+                    "type": "string",
+                    "description": "Masked account number"
+                  }
+                },
+                "required": [
+                  "name",
+                  "balance"
+                ]
+              }
+            },
+            "transactions": {
+              "type": "array",
+              "description": "Recent transactions",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "description": {
+                    "type": "string",
+                    "description": "Transaction description"
+                  },
+                  "amount": {
+                    "type": "number",
+                    "description": "Amount (negative for debits)"
+                  },
+                  "date": {
+                    "type": "string",
+                    "description": "Transaction date"
+                  }
+                },
+                "required": [
+                  "description",
+                  "amount"
+                ]
+              }
+            }
+          },
+          "required": [
+            "accounts"
+          ]
+        }
+      }
+    ]
+  }
+}

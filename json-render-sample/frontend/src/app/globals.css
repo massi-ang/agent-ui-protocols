@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 @source "../../node_modules/@json-render/shadcn";
 
 @custom-variant dark (&:is(.dark *));
@@ -56,5 +57,16 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  /* Fix grid children overflow */
+  [data-slot="card"] {
+    min-width: 0;
+    overflow: hidden;
+  }
+  [data-slot="card-description"] {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 }

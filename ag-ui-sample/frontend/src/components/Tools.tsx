@@ -4,15 +4,18 @@ import { useCopilotAction, useCopilotReadable } from '@copilotkit/react-core';
 import { WeatherCard } from './WeatherCard';
 import { ProfileCard } from './ProfileCard';
 import { ChartCard } from './ChartCard';
+import { BankAccountCard } from './BankAccountCard';
 import { useState } from 'react';
 
 export function Tools() {
   const [weatherData, setWeatherData] = useState<any>(null);
   const [profileData, setProfileData] = useState<any>(null);
   const [chartData, setChartData] = useState<any>(null);
+  const [bankData, setBankData] = useState<any>(null);
   const [uiState, setUiState] = useState({
     sidebarOpen: true,
     theme: 'light' as 'light' | 'dark',
+    units: 'metric' as 'metric' | 'imperial',
     counter: 0,
     notifications: [] as string[],
     activePanel: 'main' as 'main' | 'settings' | 'help',
@@ -24,29 +27,36 @@ export function Tools() {
     value: uiState,
   });
 
-  // Weather Tool (Server-side data)
+  // Weather Tool (Client-side display)
   useCopilotAction({
-    name: 'get_weather',
-    description: 'Get current weather information for a location. Returns temperature, conditions, humidity, and wind speed.',
+    name: 'show_weather_card',
+    description: 'Display a weather card widget. Call this after fetching weather data with get_weather.',
+    parameters: [
+      { name: 'location', type: 'string', description: 'City name', required: true },
+      { name: 'temperature', type: 'number', description: 'Temperature in Fahrenheit', required: true },
+      { name: 'conditions', type: 'string', description: 'Weather conditions', required: true },
+      { name: 'humidity', type: 'number', description: 'Humidity percentage', required: true },
+      { name: 'windSpeed', type: 'number', description: 'Wind speed in mph', required: true },
+    ],
+    handler: async ({ location, temperature, conditions, humidity, windSpeed }) => {
+      setWeatherData({ location, temperature, conditions, humidity, windSpeed });
+      return 'Weather card displayed';
+    },
+  });
+
+  // Toggle Units Tool (Client-side state)
+  useCopilotAction({
+    name: 'toggle_units',
+    description: 'Switch the weather card between metric (°C, km/h) and imperial (°F, mph) units.',
     parameters: [{
-      name: 'location',
+      name: 'units',
       type: 'string',
-      description: 'The city or location to get weather for',
+      description: 'Either "metric" or "imperial"',
       required: true,
     }],
-    handler: async ({ location }) => {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      const weather = {
-        location,
-        temperature: Math.floor(Math.random() * 30) + 50,
-        conditions: ['Sunny', 'Cloudy', 'Rainy', 'Partly Cloudy'][Math.floor(Math.random() * 4)],
-        humidity: Math.floor(Math.random() * 40) + 40,
-        windSpeed: Math.floor(Math.random() * 20) + 5,
-      };
-      
-      setWeatherData(weather);
-      return JSON.stringify(weather);
+    handler: async ({ units }) => {
+      setUiState(prev => ({ ...prev, units: units as 'metric' | 'imperial' }));
+      return `Units changed to ${units}`;
     },
   });
 
@@ -111,6 +121,21 @@ export function Tools() {
       
       setChartData(chartInfo);
       return JSON.stringify(chartInfo);
+    },
+  });
+
+  // Bank Account Tool (Server-side data)
+  useCopilotAction({
+    name: 'show_bank_account_card',
+    description: 'Display a bank account card widget with account balances and recent transactions. Call this after fetching bank data with get_bank_account.',
+    parameters: [
+      { name: 'accounts', type: 'object[]', description: 'Array of accounts with name, balance, number', required: true },
+      { name: 'recent_transactions', type: 'object[]', description: 'Array of transactions with date, description, amount, category', required: true },
+      { name: 'monthly_spending', type: 'object', description: 'Object with category keys and amount values', required: true },
+    ],
+    handler: async ({ accounts, recent_transactions, monthly_spending }) => {
+      setBankData({ accounts, recent_transactions, monthly_spending });
+      return 'Bank account card displayed';
     },
   });
 
@@ -246,6 +271,7 @@ export function Tools() {
       setUiState({
         sidebarOpen: true,
         theme: 'light',
+        units: 'metric',
         counter: 0,
         notifications: [],
         activePanel: 'main',
@@ -362,9 +388,10 @@ export function Tools() {
 
       {/* Cards */}
       <div className={`fixed bottom-24 left-8 space-y-4 max-w-md z-10 ${uiState.sidebarOpen ? 'ml-64' : ''}`}>
-        {weatherData && <WeatherCard data={weatherData} onClose={() => setWeatherData(null)} />}
+        {weatherData && <WeatherCard data={weatherData} units={uiState.units} onClose={() => setWeatherData(null)} />}
         {profileData && <ProfileCard data={profileData} onClose={() => setProfileData(null)} />}
         {chartData && <ChartCard data={chartData} onClose={() => setChartData(null)} />}
+        {bankData && <BankAccountCard data={bankData} onClose={() => setBankData(null)} />}
       </div>
     </>
   );

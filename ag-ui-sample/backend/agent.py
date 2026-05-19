@@ -19,6 +19,40 @@ def get_time() -> str:
     return datetime.now().strftime("%H:%M:%S")
 
 
+@tool
+def get_weather(city: str) -> str:
+    """Get current weather for a city including temperature, conditions, humidity, wind, and 3-day forecast."""
+    import json
+    data = {
+        "london": {"temp": 14, "conditions": "Partly Cloudy", "humidity": 72, "wind": "12 km/h SW", "forecast": [{"day": "Tue", "high": 16, "low": 11}, {"day": "Wed", "high": 18, "low": 12}, {"day": "Thu", "high": 15, "low": 10}]},
+        "tokyo": {"temp": 26, "conditions": "Sunny", "humidity": 55, "wind": "8 km/h E", "forecast": [{"day": "Tue", "high": 28, "low": 22}, {"day": "Wed", "high": 27, "low": 21}, {"day": "Thu", "high": 29, "low": 23}]},
+        "new york": {"temp": 22, "conditions": "Clear", "humidity": 45, "wind": "15 km/h NW", "forecast": [{"day": "Tue", "high": 24, "low": 18}, {"day": "Wed", "high": 21, "low": 16}, {"day": "Thu", "high": 23, "low": 17}]},
+    }
+    weather = data.get(city.lower(), {"temp": 20, "conditions": "Fair", "humidity": 60, "wind": "10 km/h", "forecast": [{"day": "Tue", "high": 22, "low": 15}, {"day": "Wed", "high": 21, "low": 14}, {"day": "Thu", "high": 23, "low": 16}]})
+    return json.dumps({"city": city, **weather})
+
+
+@tool
+def get_bank_account() -> str:
+    """Get bank account summary including balances, recent transactions, and spending breakdown."""
+    import json
+    return json.dumps({
+        "accounts": [
+            {"name": "Checking", "balance": 4285.50, "number": "****4821"},
+            {"name": "Savings", "balance": 12740.00, "number": "****3390", "apy": "4.25%"},
+            {"name": "Investment", "balance": 38920.75, "number": "****7714"},
+        ],
+        "recent_transactions": [
+            {"date": "2024-06-05", "description": "Grocery Store", "amount": -82.40, "category": "Food"},
+            {"date": "2024-06-04", "description": "Salary Deposit", "amount": 3500.00, "category": "Income"},
+            {"date": "2024-06-03", "description": "Electric Bill", "amount": -145.00, "category": "Utilities"},
+            {"date": "2024-06-02", "description": "Restaurant", "amount": -56.80, "category": "Dining"},
+            {"date": "2024-06-01", "description": "Subscription", "amount": -14.99, "category": "Entertainment"},
+        ],
+        "monthly_spending": {"Housing": 1200, "Food": 380, "Transport": 145, "Entertainment": 210, "Health": 90},
+    })
+
+
 app = FastAPI()
 
 app.add_middleware(
@@ -37,12 +71,13 @@ model = BedrockModel(
 agent = Agent(
     model=model,
     system_prompt=(
-        "You are a helpful assistant with access to UI tools. "
-        "You can control the sidebar, theme, counter, notifications, and panels. "
-        "You can also fetch weather, user profiles, and create charts. "
+        "You are a helpful assistant with access to backend data tools and frontend display tools. "
+        "When the user asks for weather or bank info: 1) call the backend tool (get_weather, get_bank_account) to fetch data, "
+        "2) then call the frontend display tool (show_weather_card, show_bank_account_card) with the fetched data to render a widget. "
+        "You can also control the sidebar, theme, counter, notifications, and panels. "
         "Be concise and helpful."
     ),
-    tools=[get_time],
+    tools=[get_time, get_weather, get_bank_account],
     callback_handler=null_callback_handler,
 )
 

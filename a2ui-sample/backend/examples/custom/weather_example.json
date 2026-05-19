@@ -1,0 +1,31 @@
+[
+  {
+    "version": "v0.9",
+    "createSurface": {
+      "surfaceId": "weather-example",
+      "catalogId": "urn:a2ui:catalog:custom"
+    }
+  },
+  {
+    "version": "v0.9",
+    "updateComponents": {
+      "surfaceId": "weather-example",
+      "components": [
+        {
+          "id": "root",
+          "component": "WeatherCard",
+          "city": "London",
+          "temperature": 14,
+          "conditions": "Partly Cloudy",
+          "humidity": 72,
+          "wind": "12 km/h SW",
+          "forecast": [
+            {"day": "Tuesday", "high": 16, "low": 11, "conditions": "Cloudy"},
+            {"day": "Wednesday", "high": 18, "low": 12, "conditions": "Sunny"},
+            {"day": "Thursday", "high": 15, "low": 10, "conditions": "Rain"}
+          ]
+        }
+      ]
+    }
+  }
+]
