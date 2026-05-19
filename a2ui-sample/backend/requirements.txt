@@ -1,4 +1,4 @@
-google-adk[extensions]
+strands-agents>=1.0.0
 a2ui-agent-sdk
 fastapi>=0.124.1
 uvicorn>=0.34.0

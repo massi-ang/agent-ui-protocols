@@ -15,6 +15,8 @@ COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY backend/ .
 
+RUN python tools/build_catalog/assemble_catalog.py custom_catalog.json --output-name assembled.json --out-dir . --catalog-id urn:a2ui:catalog:custom
+
 # Copy static export
 COPY --from=frontend-build /app/out ./static
 
