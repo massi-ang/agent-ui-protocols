@@ -46,7 +46,6 @@ _a2ui_instruction = schema_manager.generate_system_prompt(
     include_schema=True,
     include_examples=True,
 )
-print(_a2ui_instruction)
 
 
 @tool

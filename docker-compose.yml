@@ -81,6 +81,33 @@ services:
     networks:
       - credentials_provider_network
 
+  open-generative-ui-backend:
+    build:
+      context: ./open-generative-ui-sample/agent
+    ports:
+      - "8082:8082"
+    environment:
+      - AWS_CONTAINER_CREDENTIALS_FULL_URI=http://169.254.170.2:8000/credentials
+      - AWS_REGION=${AWS_REGION:-us-east-1}
+      - BEDROCK_MODEL=${BEDROCK_MODEL:-global.anthropic.claude-sonnet-4-6}
+    restart: unless-stopped
+    networks:
+      - credentials_provider_network
+
+  open-generative-ui-frontend:
+    build:
+      context: ./open-generative-ui-sample/frontend
+    ports:
+      - "3005:3005"
+    environment:
+      - AGENT_URL=http://open-generative-ui-backend:8082/invocations
+      - NODE_ENV=production
+    depends_on:
+      - open-generative-ui-backend
+    restart: unless-stopped
+    networks:
+      - credentials_provider_network
+
 networks:
   credentials_provider_network:
     external: true
