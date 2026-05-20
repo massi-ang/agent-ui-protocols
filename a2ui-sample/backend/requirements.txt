@@ -4,3 +4,4 @@ fastapi>=0.124.1
 uvicorn>=0.34.0
 sse-starlette
 boto3>=1.28.57
+sideseat

@@ -22,6 +22,9 @@ services:
       - AWS_CONTAINER_CREDENTIALS_FULL_URI=http://169.254.170.2:8000/credentials
       - AWS_REGION=${AWS_REGION:-us-east-1}
       - BEDROCK_MODEL=${BEDROCK_MODEL:-global.anthropic.claude-sonnet-4-6}
+      - SIDESEAT_ENDPOINT=http://sideseat:5388
+    depends_on:
+      - sideseat
     restart: unless-stopped
     networks:
       - credentials_provider_network
@@ -36,6 +39,9 @@ services:
       - AWS_CONTAINER_CREDENTIALS_FULL_URI=http://169.254.170.2:8000/credentials
       - AWS_REGION=${AWS_REGION:-us-east-1}
       - BEDROCK_MODEL=${BEDROCK_MODEL:-global.anthropic.claude-sonnet-4-6}
+      - SIDESEAT_ENDPOINT=http://sideseat:5388
+    depends_on:
+      - sideseat
     restart: unless-stopped
     networks:
       - credentials_provider_network
@@ -90,6 +96,9 @@ services:
       - AWS_CONTAINER_CREDENTIALS_FULL_URI=http://169.254.170.2:8000/credentials
       - AWS_REGION=${AWS_REGION:-us-east-1}
       - BEDROCK_MODEL=${BEDROCK_MODEL:-global.anthropic.claude-sonnet-4-6}
+      - SIDESEAT_ENDPOINT=http://sideseat:5388
+    depends_on:
+      - sideseat
     restart: unless-stopped
     networks:
       - credentials_provider_network
@@ -117,6 +126,9 @@ services:
       - AWS_CONTAINER_CREDENTIALS_FULL_URI=http://169.254.170.2:8000/credentials
       - AWS_REGION=${AWS_REGION:-us-east-1}
       - BEDROCK_MODEL=${BEDROCK_MODEL:-global.anthropic.claude-sonnet-4-6}
+      - SIDESEAT_ENDPOINT=http://sideseat:5388
+    depends_on:
+      - sideseat
     restart: unless-stopped
     networks:
       - credentials_provider_network
@@ -131,6 +143,23 @@ services:
       - NODE_ENV=production
     depends_on:
       - ag-ui-address-backend
+    restart: unless-stopped
+    networks:
+      - credentials_provider_network
+
+  sideseat:
+    image: node:22-slim
+    command: sh -c "apt-get update && apt-get install -y ca-certificates && npm install -g sideseat && sideseat --host 0.0.0.0 --no-auth --pricing-sync-hours 0 --no-update-check"
+    ports:
+      - "5388:5388"
+    environment:
+      - SIDESEAT_DATA_DIR=/data
+      - SIDESEAT_CONFIG_DIR=/config
+      - SIDESEAT_CACHE_DIR=/cache
+    volumes:
+      - ./sideseat/data:/data
+      - ./sideseat/config:/config
+      - ./sideseat/cache:/cache
     restart: unless-stopped
     networks:
       - credentials_provider_network

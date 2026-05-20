@@ -4,3 +4,4 @@ ag-ui-strands
 ag-ui-protocol
 fastapi
 uvicorn
+sideseat

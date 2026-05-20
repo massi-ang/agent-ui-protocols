@@ -3,6 +3,9 @@ from strands.handlers import null_callback_handler
 from strands.models.bedrock import BedrockModel
 from ag_ui_strands import StrandsAgent
 from ag_ui.core import RunAgentInput
+from sideseat import SideSeat, Frameworks
+
+SideSeat(framework=Frameworks.Strands)
 from ag_ui.encoder import EventEncoder
 
 import uvicorn

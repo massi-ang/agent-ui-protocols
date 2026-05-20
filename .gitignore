@@ -45,3 +45,6 @@ coverage/
 
 # Misc
 .cache/
+
+# SideSeat local data
+sideseat/

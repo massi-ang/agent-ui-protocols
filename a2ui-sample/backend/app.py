@@ -7,6 +7,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from sse_starlette.sse import EventSourceResponse
 import uvicorn
 
+from sideseat import SideSeat, Frameworks
+
+SideSeat(framework=Frameworks.Strands)
+
 from strands import Agent, tool
 from strands.models import BedrockModel
 from a2ui.schema.manager import A2uiSchemaManager, CatalogConfig

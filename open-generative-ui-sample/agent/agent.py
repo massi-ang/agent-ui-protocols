@@ -6,6 +6,9 @@ from strands.models.bedrock import BedrockModel
 from ag_ui_strands import StrandsAgent
 from ag_ui.core import RunAgentInput
 from ag_ui.encoder import EventEncoder
+from sideseat import SideSeat, Frameworks
+
+SideSeat(framework=Frameworks.Strands)
 
 import uvicorn
 from fastapi import FastAPI, Request

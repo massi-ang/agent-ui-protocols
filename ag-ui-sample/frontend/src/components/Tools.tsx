@@ -33,10 +33,10 @@ export function Tools() {
     description: 'Display a weather card widget. Call this after fetching weather data with get_weather.',
     parameters: [
       { name: 'location', type: 'string', description: 'City name', required: true },
-      { name: 'temperature', type: 'number', description: 'Temperature in Fahrenheit', required: true },
+      { name: 'temperature', type: 'number', description: 'Temperature in Celsius', required: true },
       { name: 'conditions', type: 'string', description: 'Weather conditions', required: true },
       { name: 'humidity', type: 'number', description: 'Humidity percentage', required: true },
-      { name: 'windSpeed', type: 'number', description: 'Wind speed in mph', required: true },
+      { name: 'windSpeed', type: 'number', description: 'Wind speed in km/h', required: true },
     ],
     handler: async ({ location, temperature, conditions, humidity, windSpeed }) => {
       setWeatherData({ location, temperature, conditions, humidity, windSpeed });

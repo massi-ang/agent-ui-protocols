@@ -10,11 +10,11 @@ interface WeatherData {
 
 export function WeatherCard({ data, units, onClose }: { data: WeatherData; units: 'metric' | 'imperial'; onClose: () => void }) {
   const temp = units === 'metric'
-    ? `${Math.round((data.temperature - 32) * 5 / 9)}°C`
-    : `${data.temperature}°F`;
+    ? `${data.temperature}°C`
+    : `${Math.round(data.temperature * 9 / 5 + 32)}°F`;
   const wind = units === 'metric'
-    ? `${Math.round(data.windSpeed * 1.6)} km/h`
-    : `${data.windSpeed} mph`;
+    ? `${data.windSpeed} km/h`
+    : `${Math.round(data.windSpeed / 1.6)} mph`;
 
   return (
     <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg shadow-xl p-6 text-white animate-in slide-in-from-bottom duration-300">
