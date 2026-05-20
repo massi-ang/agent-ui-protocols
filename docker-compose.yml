@@ -108,6 +108,33 @@ services:
     networks:
       - credentials_provider_network
 
+  ag-ui-address-backend:
+    build:
+      context: ./ag-ui-address-sample/backend
+    ports:
+      - "8083:8080"
+    environment:
+      - AWS_CONTAINER_CREDENTIALS_FULL_URI=http://169.254.170.2:8000/credentials
+      - AWS_REGION=${AWS_REGION:-us-east-1}
+      - BEDROCK_MODEL=${BEDROCK_MODEL:-global.anthropic.claude-sonnet-4-6}
+    restart: unless-stopped
+    networks:
+      - credentials_provider_network
+
+  ag-ui-address-frontend:
+    build:
+      context: ./ag-ui-address-sample/frontend
+    ports:
+      - "3006:3006"
+    environment:
+      - AGENT_URL=http://ag-ui-address-backend:8080/invocations
+      - NODE_ENV=production
+    depends_on:
+      - ag-ui-address-backend
+    restart: unless-stopped
+    networks:
+      - credentials_provider_network
+
 networks:
   credentials_provider_network:
     external: true
